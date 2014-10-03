@@ -35,13 +35,16 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
+  - GoogleAnalytics-iOS-SDK (3.0.9)
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.4)
-  - BlocksKit (~> 2.2)
+  - AFNetworking
+  - BlocksKit
+  - GoogleAnalytics-iOS-SDK
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   BlocksKit: 4439e7f30a9f90743462ca63545a15c1f4304cef
+  GoogleAnalytics-iOS-SDK: d9e198b1f955259a72886769be7377cdfcdb2250
 
 COCOAPODS: 0.33.1
