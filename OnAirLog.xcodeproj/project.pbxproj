@@ -19,7 +19,6 @@
 		85069DEE19DE00C7004F5C8F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85069DEB19DE00C7004F5C8F /* TodayViewController.swift */; };
 		85069DEF19DE00C7004F5C8F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85069DEB19DE00C7004F5C8F /* TodayViewController.swift */; };
 		852A0FE419E089FB00B65500 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 852A0FBD19E0885600B65500 /* LaunchScreen.xib */; };
-		852A0FE519E089FC00B65500 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 852A0FBD19E0885600B65500 /* LaunchScreen.xib */; };
 		852A0FE619E08A0500B65500 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852A0FBC19E0885600B65500 /* AppDelegate.swift */; };
 		852A0FE719E08A0600B65500 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852A0FBC19E0885600B65500 /* AppDelegate.swift */; };
 		852A0FE819E08A2900B65500 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 852A0FB719E0885600B65500 /* Images.xcassets */; };
@@ -35,21 +34,35 @@
 		852A0FF419E095E700B65500 /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852A0FCE19E0885600B65500 /* SongTableViewCell.swift */; };
 		852A0FF519E095E700B65500 /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852A0FCE19E0885600B65500 /* SongTableViewCell.swift */; };
 		8548E65F19E0D2D500001AF5 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548E65A19E0D2D500001AF5 /* Environment.swift */; };
-		8548E66019E0D2D500001AF5 /* OnAirLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8548E65C19E0D2D500001AF5 /* OnAirLog.xcdatamodeld */; };
 		8548E66119E0D2D500001AF5 /* SongManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548E65E19E0D2D500001AF5 /* SongManager.swift */; };
 		8548E66219E0D2E000001AF5 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548E65A19E0D2D500001AF5 /* Environment.swift */; };
 		8548E66319E0D2E100001AF5 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548E65A19E0D2D500001AF5 /* Environment.swift */; };
 		8548E66419E0D2E100001AF5 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548E65A19E0D2D500001AF5 /* Environment.swift */; };
-		8548E66519E0D2E800001AF5 /* OnAirLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8548E65C19E0D2D500001AF5 /* OnAirLog.xcdatamodeld */; };
-		8548E66619E0D2E900001AF5 /* OnAirLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8548E65C19E0D2D500001AF5 /* OnAirLog.xcdatamodeld */; };
-		8548E66719E0D2E900001AF5 /* OnAirLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8548E65C19E0D2D500001AF5 /* OnAirLog.xcdatamodeld */; };
 		8548E66819E0D2ED00001AF5 /* SongManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548E65E19E0D2D500001AF5 /* SongManager.swift */; };
 		8548E66919E0D2EE00001AF5 /* SongManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548E65E19E0D2D500001AF5 /* SongManager.swift */; };
 		8548E66A19E0D31200001AF5 /* SongManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548E65E19E0D2D500001AF5 /* SongManager.swift */; };
-		85E9A73F19E0D389002D5737 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A73E19E0D389002D5737 /* Song.m */; };
-		85E9A74219E0D65F002D5737 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A73E19E0D389002D5737 /* Song.m */; };
-		85E9A74319E0D65F002D5737 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A73E19E0D389002D5737 /* Song.m */; };
-		85E9A74419E0D660002D5737 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A73E19E0D389002D5737 /* Song.m */; };
+		85E9A78319E0FA91002D5737 /* OnAirLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A78119E0FA91002D5737 /* OnAirLog.xcdatamodeld */; };
+		85E9A78419E0FA94002D5737 /* OnAirLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A78119E0FA91002D5737 /* OnAirLog.xcdatamodeld */; };
+		85E9A78519E0FA95002D5737 /* OnAirLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A78119E0FA91002D5737 /* OnAirLog.xcdatamodeld */; };
+		85E9A78619E0FA95002D5737 /* OnAirLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A78119E0FA91002D5737 /* OnAirLog.xcdatamodeld */; };
+		85E9A78919E0FB22002D5737 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A78819E0FB22002D5737 /* Song.m */; };
+		85E9A78A19E0FB22002D5737 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A78819E0FB22002D5737 /* Song.m */; };
+		85E9A78B19E0FB22002D5737 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A78819E0FB22002D5737 /* Song.m */; };
+		85E9A78C19E0FB22002D5737 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A78819E0FB22002D5737 /* Song.m */; };
+		85E9A79019E0FE28002D5737 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A78F19E0FE28002D5737 /* AppConfig.swift */; };
+		85E9A79119E0FE36002D5737 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A78D19E0FDB5002D5737 /* AppConfig.swift */; };
+		85E9A79D19E11576002D5737 /* SongSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A79C19E11576002D5737 /* SongSpec.swift */; };
+		85E9A79F19E1165A002D5737 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E9A79E19E1165A002D5737 /* StoreKit.framework */; };
+		85E9A7A019E11661002D5737 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E9A79E19E1165A002D5737 /* StoreKit.framework */; };
+		85E9A7A219E11690002D5737 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 852A0FBD19E0885600B65500 /* LaunchScreen.xib */; };
+		85E9A7A319E118A4002D5737 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A78F19E0FE28002D5737 /* AppConfig.swift */; };
+		85E9A7A419E118A9002D5737 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A78D19E0FDB5002D5737 /* AppConfig.swift */; };
+		85E9A7A619E11B59002D5737 /* SongAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A7A519E11B59002D5737 /* SongAPIClient.swift */; };
+		85E9A7A719E11B59002D5737 /* SongAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A7A519E11B59002D5737 /* SongAPIClient.swift */; };
+		85E9A7A819E11B59002D5737 /* SongAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A7A519E11B59002D5737 /* SongAPIClient.swift */; };
+		85E9A7A919E11B59002D5737 /* SongAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A7A519E11B59002D5737 /* SongAPIClient.swift */; };
+		85E9A7AD19E126B0002D5737 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E9A7AB19E126B0002D5737 /* Nimble.framework */; };
+		85E9A7AE19E126B0002D5737 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E9A7AC19E126B0002D5737 /* Quick.framework */; };
 		E84D5BDC278F483E9E6AE198 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8AADD6368FC412A90FDE49F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -138,8 +151,6 @@
 		85069DE719DE0089004F5C8F /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		85069DEA19DE00C7004F5C8F /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		85069DEB19DE00C7004F5C8F /* TodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		85069DF019DE0179004F5C8F /* NowOnAirWidget813-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NowOnAirWidget813-Bridging-Header.h"; sourceTree = "<group>"; };
-		85069DF119DE0189004F5C8F /* NowOnAirWidget802-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NowOnAirWidget802-Bridging-Header.h"; sourceTree = "<group>"; };
 		852A0FB719E0885600B65500 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		852A0FB819E0885600B65500 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		852A0FBA19E0885600B65500 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -154,14 +165,23 @@
 		852A0FE019E088BB00B65500 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		852A0FE119E088BF00B65500 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		8548E65A19E0D2D500001AF5 /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
-		8548E65D19E0D2D500001AF5 /* OnAirLog813.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OnAirLog813.xcdatamodel; sourceTree = "<group>"; };
 		8548E65E19E0D2D500001AF5 /* SongManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongManager.swift; sourceTree = "<group>"; };
 		85BC707119DF908A00653771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		85BC707219DF908A00653771 /* OnAirLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnAirLogTests.swift; sourceTree = "<group>"; };
-		85E9A73D19E0D389002D5737 /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
-		85E9A73E19E0D389002D5737 /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
 		85E9A74019E0D603002D5737 /* OnAirLogApp-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OnAirLogApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		85E9A74119E0D620002D5737 /* NowOnAirWidget-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NowOnAirWidget-Bridging-Header.h"; sourceTree = "<group>"; };
+		85E9A78219E0FA91002D5737 /* OnAirLog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OnAirLog.xcdatamodel; sourceTree = "<group>"; };
+		85E9A78719E0FB22002D5737 /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
+		85E9A78819E0FB22002D5737 /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
+		85E9A78D19E0FDB5002D5737 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		85E9A78F19E0FE28002D5737 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		85E9A79919E0FF9B002D5737 /* OnAirLog813.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = OnAirLog813.entitlements; sourceTree = "<group>"; };
+		85E9A79A19E0FFA2002D5737 /* OnAirLog802.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = OnAirLog802.entitlements; sourceTree = "<group>"; };
+		85E9A79B19E11575002D5737 /* OnAirLogTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OnAirLogTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		85E9A79C19E11576002D5737 /* SongSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongSpec.swift; sourceTree = "<group>"; };
+		85E9A79E19E1165A002D5737 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
+		85E9A7A519E11B59002D5737 /* SongAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongAPIClient.swift; sourceTree = "<group>"; };
+		85E9A7AB19E126B0002D5737 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = "Vendor/Nimble/build/Debug-iphoneos/Nimble.framework"; sourceTree = "<group>"; };
+		85E9A7AC19E126B0002D5737 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = "../../Library/Developer/Xcode/DerivedData/OnAirLog-dqlhujtpoqrgmyfatlndydkwokyj/Build/Products/Debug/Quick.framework"; sourceTree = "<group>"; };
 		85F5241419DD877E003105F0 /* OnAirLog813.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnAirLog813.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85F5244519DD87F5003105F0 /* OnAirLogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnAirLogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		85F5245619DD88A6003105F0 /* OnAirLog802.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnAirLog802.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +211,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85E9A79F19E1165A002D5737 /* StoreKit.framework in Frameworks */,
 				E84D5BDC278F483E9E6AE198 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,6 +220,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85E9A7AD19E126B0002D5737 /* Nimble.framework in Frameworks */,
+				85E9A7AE19E126B0002D5737 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +229,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85E9A7A019E11661002D5737 /* StoreKit.framework in Frameworks */,
 				85069D9519DDF9AE004F5C8F /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,7 +240,6 @@
 		85069DBF19DE006A004F5C8F /* 813 */ = {
 			isa = PBXGroup;
 			children = (
-				85069DF019DE0179004F5C8F /* NowOnAirWidget813-Bridging-Header.h */,
 				85069DC119DE006A004F5C8F /* Info.plist */,
 			);
 			name = 813;
@@ -226,7 +249,6 @@
 		85069DD519DE007A004F5C8F /* 802 */ = {
 			isa = PBXGroup;
 			children = (
-				85069DF119DE0189004F5C8F /* NowOnAirWidget802-Bridging-Header.h */,
 				85069DD719DE007A004F5C8F /* Info.plist */,
 			);
 			name = 802;
@@ -265,6 +287,7 @@
 		852A0FB619E0885600B65500 /* 802 */ = {
 			isa = PBXGroup;
 			children = (
+				85E9A78F19E0FE28002D5737 /* AppConfig.swift */,
 				852A0FB719E0885600B65500 /* Images.xcassets */,
 				852A0FB819E0885600B65500 /* Info.plist */,
 			);
@@ -276,6 +299,7 @@
 			children = (
 				852A0FBA19E0885600B65500 /* Images.xcassets */,
 				852A0FBB19E0885600B65500 /* Info.plist */,
+				85E9A78D19E0FDB5002D5737 /* AppConfig.swift */,
 			);
 			path = 813;
 			sourceTree = "<group>";
@@ -283,10 +307,11 @@
 		8548E65919E0D2D500001AF5 /* OnAirLog */ = {
 			isa = PBXGroup;
 			children = (
+				85E9A78119E0FA91002D5737 /* OnAirLog.xcdatamodeld */,
 				8548E65A19E0D2D500001AF5 /* Environment.swift */,
 				8548E65B19E0D2D500001AF5 /* Models */,
-				8548E65C19E0D2D500001AF5 /* OnAirLog.xcdatamodeld */,
 				8548E65E19E0D2D500001AF5 /* SongManager.swift */,
+				85E9A7A519E11B59002D5737 /* SongAPIClient.swift */,
 			);
 			path = OnAirLog;
 			sourceTree = "<group>";
@@ -294,8 +319,8 @@
 		8548E65B19E0D2D500001AF5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				85E9A73D19E0D389002D5737 /* Song.h */,
-				85E9A73E19E0D389002D5737 /* Song.m */,
+				85E9A78719E0FB22002D5737 /* Song.h */,
+				85E9A78819E0FB22002D5737 /* Song.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -303,8 +328,9 @@
 		85BC706F19DF908A00653771 /* OnAirLogTests */ = {
 			isa = PBXGroup;
 			children = (
-				85BC707219DF908A00653771 /* OnAirLogTests.swift */,
 				85BC707019DF908A00653771 /* Supporting Files */,
+				85E9A79C19E11576002D5737 /* SongSpec.swift */,
+				85E9A79B19E11575002D5737 /* OnAirLogTests-Bridging-Header.h */,
 			);
 			path = OnAirLogTests;
 			sourceTree = "<group>";
@@ -320,6 +346,8 @@
 		85F5240919DD871B003105F0 = {
 			isa = PBXGroup;
 			children = (
+				85E9A79A19E0FFA2002D5737 /* OnAirLog802.entitlements */,
+				85E9A79919E0FF9B002D5737 /* OnAirLog813.entitlements */,
 				8548E65919E0D2D500001AF5 /* OnAirLog */,
 				852A0FB519E0885600B65500 /* OnAirLogApp */,
 				85069DE919DE00C7004F5C8F /* NowOnAirWidget */,
@@ -345,6 +373,9 @@
 		B3FDE7ECF51D472EA0A843F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				85E9A7AB19E126B0002D5737 /* Nimble.framework */,
+				85E9A7AC19E126B0002D5737 /* Quick.framework */,
+				85E9A79E19E1165A002D5737 /* StoreKit.framework */,
 				85069DE719DE0089004F5C8F /* libPods.a */,
 				85069DE519DE0085004F5C8F /* libPods.a */,
 				85069D9419DDF9AE004F5C8F /* libPods.a */,
@@ -554,9 +585,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85E9A7A219E11690002D5737 /* LaunchScreen.xib in Resources */,
 				852A0FEC19E08A4000B65500 /* Main.storyboard in Resources */,
 				852A0FEE19E08A4700B65500 /* Images.xcassets in Resources */,
-				852A0FE519E089FC00B65500 /* LaunchScreen.xib in Resources */,
 				852A0FE819E08A2900B65500 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -601,11 +632,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85E9A74319E0D65F002D5737 /* Song.m in Sources */,
+				85E9A78B19E0FB22002D5737 /* Song.m in Sources */,
+				85E9A78519E0FA95002D5737 /* OnAirLog.xcdatamodeld in Sources */,
 				85069DEE19DE00C7004F5C8F /* TodayViewController.swift in Sources */,
-				8548E66619E0D2E900001AF5 /* OnAirLog.xcdatamodeld in Sources */,
+				85E9A7A419E118A9002D5737 /* AppConfig.swift in Sources */,
 				8548E66819E0D2ED00001AF5 /* SongManager.swift in Sources */,
 				8548E66319E0D2E100001AF5 /* Environment.swift in Sources */,
+				85E9A7A819E11B59002D5737 /* SongAPIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,11 +646,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85E9A74419E0D660002D5737 /* Song.m in Sources */,
+				85E9A78C19E0FB22002D5737 /* Song.m in Sources */,
+				85E9A78619E0FA95002D5737 /* OnAirLog.xcdatamodeld in Sources */,
 				85069DEF19DE00C7004F5C8F /* TodayViewController.swift in Sources */,
-				8548E66719E0D2E900001AF5 /* OnAirLog.xcdatamodeld in Sources */,
+				85E9A7A319E118A4002D5737 /* AppConfig.swift in Sources */,
 				8548E66919E0D2EE00001AF5 /* SongManager.swift in Sources */,
 				8548E66419E0D2E100001AF5 /* Environment.swift in Sources */,
+				85E9A7A919E11B59002D5737 /* SongAPIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,13 +660,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85E9A73F19E0D389002D5737 /* Song.m in Sources */,
+				85E9A79119E0FE36002D5737 /* AppConfig.swift in Sources */,
+				85E9A78919E0FB22002D5737 /* Song.m in Sources */,
+				85E9A78319E0FA91002D5737 /* OnAirLog.xcdatamodeld in Sources */,
 				852A0FF219E08A8700B65500 /* MasterViewController.swift in Sources */,
 				852A0FF019E08A5400B65500 /* DetailViewController.swift in Sources */,
 				8548E66119E0D2D500001AF5 /* SongManager.swift in Sources */,
 				852A0FF419E095E700B65500 /* SongTableViewCell.swift in Sources */,
 				852A0FE619E08A0500B65500 /* AppDelegate.swift in Sources */,
-				8548E66019E0D2D500001AF5 /* OnAirLog.xcdatamodeld in Sources */,
+				85E9A7A619E11B59002D5737 /* SongAPIClient.swift in Sources */,
 				8548E65F19E0D2D500001AF5 /* Environment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -640,6 +677,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85E9A79D19E11576002D5737 /* SongSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,13 +685,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85E9A74219E0D65F002D5737 /* Song.m in Sources */,
+				85E9A79019E0FE28002D5737 /* AppConfig.swift in Sources */,
+				85E9A78A19E0FB22002D5737 /* Song.m in Sources */,
+				85E9A78419E0FA94002D5737 /* OnAirLog.xcdatamodeld in Sources */,
 				852A0FF319E08A8800B65500 /* MasterViewController.swift in Sources */,
 				852A0FF119E08A5500B65500 /* DetailViewController.swift in Sources */,
 				8548E66A19E0D31200001AF5 /* SongManager.swift in Sources */,
 				852A0FF519E095E700B65500 /* SongTableViewCell.swift in Sources */,
 				852A0FE719E08A0600B65500 /* AppDelegate.swift in Sources */,
-				8548E66519E0D2E800001AF5 /* OnAirLog.xcdatamodeld in Sources */,
+				85E9A7A719E11B59002D5737 /* SongAPIClient.swift in Sources */,
 				8548E66219E0D2E000001AF5 /* Environment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -960,7 +1000,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = OnAirLogApp/813/App.entitlements;
+				CODE_SIGN_ENTITLEMENTS = OnAirLog813.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1011,7 +1051,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = OnAirLogApp/813/App.entitlements;
+				CODE_SIGN_ENTITLEMENTS = OnAirLog813.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1060,6 +1100,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/Nimble/build/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/OnAirLog-dqlhujtpoqrgmyfatlndydkwokyj/Build/Products/Debug",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1082,6 +1124,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "OnAirLogTests/OnAirLogTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OnAirLog813.app/OnAirLog813";
 			};
@@ -1112,6 +1155,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/Nimble/build/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/OnAirLog-dqlhujtpoqrgmyfatlndydkwokyj/Build/Products/Debug",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1126,6 +1171,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "OnAirLogTests/OnAirLogTests-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OnAirLog813.app/OnAirLog813";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1150,7 +1196,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = OnAirLogApp/802/App.entitlements;
+				CODE_SIGN_ENTITLEMENTS = OnAirLog802.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1205,7 +1251,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = OnAirLogApp/802/App.entitlements;
+				CODE_SIGN_ENTITLEMENTS = OnAirLog802.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1294,12 +1340,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		8548E65C19E0D2D500001AF5 /* OnAirLog.xcdatamodeld */ = {
+		85E9A78119E0FA91002D5737 /* OnAirLog.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				8548E65D19E0D2D500001AF5 /* OnAirLog813.xcdatamodel */,
+				85E9A78219E0FA91002D5737 /* OnAirLog.xcdatamodel */,
 			);
-			currentVersion = 8548E65D19E0D2D500001AF5 /* OnAirLog813.xcdatamodel */;
+			currentVersion = 85E9A78219E0FA91002D5737 /* OnAirLog.xcdatamodel */;
 			path = OnAirLog.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

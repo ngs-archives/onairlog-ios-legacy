@@ -16,7 +16,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
   var songManager: SongManager? = nil
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    // Override point for customization after application launch.
+    // Google Analytics
+    let gai = GAI.sharedInstance()
+    gai.trackUncaughtExceptions = true
+    gai.dispatchInterval = 20
+    gai.trackerWithTrackingId(kOnAirLogGATrackingId)
+
+    // AFNetworking
+    AFNetworkActivityIndicatorManager.sharedManager().enabled = true
+
+    // Setup view controllers
     let splitViewController = self.window!.rootViewController as UISplitViewController
     let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as UINavigationController
     navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
@@ -25,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     let masterNavigationController = splitViewController.viewControllers[0] as UINavigationController
     let controller = masterNavigationController.topViewController as MasterViewController
     self.songManager = SongManager()
-    controller.managedObjectContext = self.songManager!.managedObjectContext
+    controller.songManager = self.songManager
     return true
   }
 
@@ -39,7 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     if let secondaryAsNavController = secondaryViewController as? UINavigationController {
       if let topAsDetailController = secondaryAsNavController.topViewController as? DetailViewController {
         if topAsDetailController.detailItem == nil {
-          // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
           return true
         }
       }

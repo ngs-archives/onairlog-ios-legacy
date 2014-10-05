@@ -18,7 +18,7 @@ class SongTableViewCell: UITableViewCell {
     NSLog("%@", self)
   }
   func configureSong(song: Song) {
-    self.titleLabel.text = song.timeStamp.description
+    self.titleLabel.text = song.title
     self.titleLabel.sizeToFit()
     self.setNeedsUpdateConstraints()
     self.updateConstraints()
