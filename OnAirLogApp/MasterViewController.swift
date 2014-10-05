@@ -14,7 +14,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
   var detailViewController: DetailViewController? = nil
   var songManager: SongManager? = nil
 
-
   override func awakeFromNib() {
     super.awakeFromNib()
     if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
@@ -26,6 +25,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
   override func viewDidLoad() {
     super.viewDidLoad()
     var refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
     self.tableView.addSubview(refreshControl)
     self.navigationItem.leftBarButtonItem = self.editButtonItem()
     if let split = self.splitViewController {
@@ -94,7 +94,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
   var fetchedResultsController: NSFetchedResultsController {
     if _fetchedResultsController == nil {
-      _fetchedResultsController = self.songManager?.fetchedResultsControllerWithPredicate(nil, delegate: self)
+      _fetchedResultsController = songManager?.fetchedResultsControllerWithPredicate(nil, delegate: self)
       }
       return _fetchedResultsController!
   }
@@ -103,7 +103,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
   var favoritesFetchedResultsController: NSFetchedResultsController {
     if _favoritesFetchedResultsController == nil {
       let predicate: NSPredicate = NSPredicate(format: "favoritedTimeStamp IS NOT NULL")
-      _favoritesFetchedResultsController = self.songManager?.fetchedResultsControllerWithPredicate(predicate, delegate: self)
+      _favoritesFetchedResultsController = songManager?.fetchedResultsControllerWithPredicate(predicate, delegate: self)
       }
       return _favoritesFetchedResultsController!
   }
@@ -142,6 +142,32 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
   func controllerDidChangeContent(controller: NSFetchedResultsController) {
     self.tableView.endUpdates()
+  }
+
+  // MARK: - API
+
+  var apiClient: SongAPIClient {
+    if _apiClient == nil {
+      _apiClient = SongAPIClient()
+      _apiClient?.songManager = songManager
+      }
+      return _apiClient!
+  }
+
+  var _apiClient: SongAPIClient? = nil
+
+  func refresh(sender :AnyObject?) {
+    let refreshControl: UIRefreshControl? = sender as? UIRefreshControl
+    apiClient.load(false,
+      success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+        if (refreshControl != nil) {
+          refreshControl!.endRefreshing()
+        }
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        if (refreshControl != nil) {
+          refreshControl!.endRefreshing()
+        }
+    }
   }
   
 }
