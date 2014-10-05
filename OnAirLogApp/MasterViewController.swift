@@ -158,9 +158,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     let scrollTop = scrollView.contentOffset.y
     let diff = contentHeight - scrollTop - top
     if diff < height {
-      self.apiClient.load(true, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-        }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-      })
+      self.apiClient.load(true,
+        success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in },
+        failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in })
     }
   }
 

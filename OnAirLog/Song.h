@@ -12,6 +12,7 @@
 
 @interface Song : NSManagedObject
 
+@property (nonatomic, retain) NSString * sectionIdentifier;
 @property (nonatomic, retain) NSDate * favoritedAt;
 @property (nonatomic, retain) NSString * artist;
 @property (nonatomic, retain) NSDate * timeStamp;

@@ -41,6 +41,8 @@
 		85B18E6719E1BDF600FF4D27 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B18E6519E1BDF600FF4D27 /* Song.m */; };
 		85B18E6819E1BDF600FF4D27 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B18E6519E1BDF600FF4D27 /* Song.m */; };
 		85B18E6919E1BDF600FF4D27 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B18E6519E1BDF600FF4D27 /* Song.m */; };
+		85B18E6B19E1EBCD00FF4D27 /* SpecHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B18E6A19E1EBCD00FF4D27 /* SpecHelper.swift */; };
+		85B18E7219E1F18400FF4D27 /* song01.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B18E7119E1F18400FF4D27 /* song01.json */; };
 		85CD888319E12E28009F8DCF /* SongAPIClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD888219E12E28009F8DCF /* SongAPIClientSpec.swift */; };
 		85CD888519E12FBC009F8DCF /* SongAPISessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD888419E12FBC009F8DCF /* SongAPISessionManager.swift */; };
 		85CD888619E12FBC009F8DCF /* SongAPISessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD888419E12FBC009F8DCF /* SongAPISessionManager.swift */; };
@@ -99,6 +101,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 85069DD219DE007A004F5C8F;
 			remoteInfo = NowOnAirWidget802;
+		};
+		85B18E6C19E1F0D700FF4D27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 85F5240A19DD871B003105F0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 85F5241319DD877E003105F0;
+			remoteInfo = OnAirLog813;
+		};
+		85B18E6E19E1F0D800FF4D27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 85F5240A19DD871B003105F0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 85F5241319DD877E003105F0;
+			remoteInfo = OnAirLog813;
 		};
 		85F5244B19DD87F5003105F0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -172,6 +188,8 @@
 		8548E65A19E0D2D500001AF5 /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		85B18E6419E1BDF600FF4D27 /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
 		85B18E6519E1BDF600FF4D27 /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
+		85B18E6A19E1EBCD00FF4D27 /* SpecHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecHelper.swift; sourceTree = "<group>"; };
+		85B18E7119E1F18400FF4D27 /* song01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = song01.json; sourceTree = "<group>"; };
 		85BC707119DF908A00653771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85CD888219E12E28009F8DCF /* SongAPIClientSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongAPIClientSpec.swift; sourceTree = "<group>"; };
 		85CD888419E12FBC009F8DCF /* SongAPISessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongAPISessionManager.swift; sourceTree = "<group>"; };
@@ -325,13 +343,23 @@
 			path = OnAirLog;
 			sourceTree = "<group>";
 		};
+		85B18E7019E1F18400FF4D27 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				85B18E7119E1F18400FF4D27 /* song01.json */,
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
 		85BC706F19DF908A00653771 /* OnAirLogTests */ = {
 			isa = PBXGroup;
 			children = (
+				85B18E7019E1F18400FF4D27 /* Fixtures */,
 				85BC707019DF908A00653771 /* Supporting Files */,
 				85E9A79C19E11576002D5737 /* SongSpec.swift */,
 				85E9A79B19E11575002D5737 /* OnAirLogTests-Bridging-Header.h */,
 				85CD888219E12E28009F8DCF /* SongAPIClientSpec.swift */,
+				85B18E6A19E1EBCD00FF4D27 /* SpecHelper.swift */,
 			);
 			path = OnAirLogTests;
 			sourceTree = "<group>";
@@ -458,6 +486,8 @@
 			);
 			dependencies = (
 				85F5244C19DD87F5003105F0 /* PBXTargetDependency */,
+				85B18E6D19E1F0D700FF4D27 /* PBXTargetDependency */,
+				85B18E6F19E1F0D800FF4D27 /* PBXTargetDependency */,
 			);
 			name = OnAirLogTests;
 			productName = OnAirLogTests;
@@ -585,6 +615,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85B18E7219E1F18400FF4D27 /* song01.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,6 +719,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85E9A79D19E11576002D5737 /* SongSpec.swift in Sources */,
+				85B18E6B19E1EBCD00FF4D27 /* SpecHelper.swift in Sources */,
 				85CD888319E12E28009F8DCF /* SongAPIClientSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -732,6 +764,16 @@
 			isa = PBXTargetDependency;
 			target = 85069DD219DE007A004F5C8F /* NowOnAirWidget802 */;
 			targetProxy = 85069DDF19DE007A004F5C8F /* PBXContainerItemProxy */;
+		};
+		85B18E6D19E1F0D700FF4D27 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 85F5241319DD877E003105F0 /* OnAirLog813 */;
+			targetProxy = 85B18E6C19E1F0D700FF4D27 /* PBXContainerItemProxy */;
+		};
+		85B18E6F19E1F0D800FF4D27 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 85F5241319DD877E003105F0 /* OnAirLog813 */;
+			targetProxy = 85B18E6E19E1F0D800FF4D27 /* PBXContainerItemProxy */;
 		};
 		85F5244C19DD87F5003105F0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1093,6 +1135,7 @@
 			baseConfigurationReference = 0A515A4A2BCB4DF6923B5F71 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1129,6 +1172,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/BlocksKit\"",
+					"\"${PODS_ROOT}/Headers/GoogleAnalytics-iOS-SDK\"",
+					"\"${PODS_ROOT}/Headers/MagicalRecord\"",
+					"$(SDKROOT)/usr/include/libz",
+					"$(SRCROOT)/OnAirLog",
+				);
 				INFOPLIST_FILE = OnAirLogTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1147,6 +1199,7 @@
 			baseConfigurationReference = 0A515A4A2BCB4DF6923B5F71 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1177,6 +1230,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/BlocksKit\"",
+					"\"${PODS_ROOT}/Headers/GoogleAnalytics-iOS-SDK\"",
+					"\"${PODS_ROOT}/Headers/MagicalRecord\"",
+					"$(SDKROOT)/usr/include/libz",
+					"$(SRCROOT)/OnAirLog",
+				);
 				INFOPLIST_FILE = OnAirLogTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
