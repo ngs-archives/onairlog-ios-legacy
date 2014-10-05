@@ -2,7 +2,7 @@
 //  OnAirLogTests.swift
 //  OnAirLogTests
 //
-//  Created by Atsushi Nagase on 10/2/14.
+//  Created by Atsushi Nagase on 10/4/14.
 //
 //
 

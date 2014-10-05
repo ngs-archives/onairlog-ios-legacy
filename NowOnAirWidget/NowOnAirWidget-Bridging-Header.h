@@ -5,3 +5,4 @@
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
 #import <GoogleAnalytics-iOS-SDK/GAIFields.h>
 #import <GoogleAnalytics-iOS-SDK/GAIDictionaryBuilder.h>
+#import "Song.h"
