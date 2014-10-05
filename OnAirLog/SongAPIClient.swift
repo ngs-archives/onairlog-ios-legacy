@@ -11,16 +11,16 @@ import Foundation
 class SongAPIClient {
   var currentPage = 1
   var totalPages = 0
+  var isLoading = false
   var sinceDate: NSDate? = nil
-  var songManager: SongManager? = nil
 
   func hasMore() -> Bool {
     return currentPage < totalPages
   }
 
   func load(more: Bool, success: (NSURLSessionDataTask!, AnyObject!) -> Void, failure: (NSURLSessionDataTask!, NSError!) -> Void ) {
+    if isLoading || (more && !hasMore()) { return }
     if more {
-      if !hasMore() { return }
       currentPage++
     } else {
       currentPage = 1
@@ -28,13 +28,17 @@ class SongAPIClient {
     }
     let url = NSURL(scheme: "http", host: "813.liap.us", path: "/")
     let manager = SongAPISessionManager(baseURL: url)
+    isLoading = true
     manager.GET("/search.json", parameters: queryParams(),
       success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         let serializer = manager.responseSerializer as SongAPIResponseSerializer
-        self.currentPage = serializer.currentPage
         self.totalPages = serializer.totalPages
+        self.isLoading = false
         success(task, responseObject)
-      }, failure: failure)
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        self.isLoading = false
+        failure(task, error)
+    }
   }
 
   func queryParams() -> NSDictionary {

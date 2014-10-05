@@ -13,9 +13,12 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 
   var window: UIWindow?
-  var songManager: SongManager? = nil
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    // Magical Record
+    let dbURL = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(kOnAirLogDocumentContainerDomain)?.URLByAppendingPathComponent("OnAirLog.sqlite")
+    MagicalRecord.setupCoreDataStackWithiCloudContainer("iCloud.org.ngsdev.iphone.OnAirLog813", localStoreNamed: "OnAirLog.sqlite")
+
     // Google Analytics
     let gai = GAI.sharedInstance()
     gai.trackUncaughtExceptions = true
@@ -33,13 +36,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     let masterNavigationController = splitViewController.viewControllers[0] as UINavigationController
     let controller = masterNavigationController.topViewController as MasterViewController
-    self.songManager = SongManager()
-    controller.songManager = self.songManager
     return true
   }
 
   func applicationWillTerminate(application: UIApplication) {
-    self.songManager!.saveContext()
+    NSManagedObjectContext.contextForCurrentThread().saveToPersistentStoreAndWait()
   }
 
   // MARK: - Split view
@@ -54,6 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
     return false
   }
-
+  
 }
 

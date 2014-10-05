@@ -3,11 +3,12 @@
     <entity name="Song" representedClassName="Song" syncable="YES">
         <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="favoritedAt" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="sectionIdentifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="songID" optional="YES" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="timeStamp" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Song" positionX="3139" positionY="987" width="128" height="120"/>
+        <element name="Song" positionX="3139" positionY="987" width="128" height="135"/>
     </elements>
 </model>

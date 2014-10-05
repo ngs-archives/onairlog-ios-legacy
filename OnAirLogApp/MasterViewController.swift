@@ -11,8 +11,8 @@ import CoreData
 
 class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
+  @IBOutlet weak var filterTypeSegmentControl: UISegmentedControl!
   var detailViewController: DetailViewController? = nil
-  var songManager: SongManager? = nil
 
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -32,6 +32,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
       let controllers = split.viewControllers
       self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
     }
+    self.refresh(nil)
   }
 
   // MARK: - Segues
@@ -50,6 +51,16 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
   // MARK: - Table View
 
+  override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    let sections = self.fetchedResultsController.sections
+    if sections?.count < section + 1 {
+      return nil
+    }
+    let s = sections![section] as NSFetchedResultsSectionInfo
+    let song = s.objects.first as Song
+    return song.sectionTitle()
+  }
+
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return self.fetchedResultsController.sections?.count ?? 0
   }
@@ -66,23 +77,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
   }
 
   override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    // Return false if you do not want the specified item to be editable.
-    return true
-  }
-
-  override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    if editingStyle == .Delete {
-      let context = self.fetchedResultsController.managedObjectContext
-      context.deleteObject(self.fetchedResultsController.objectAtIndexPath(indexPath) as NSManagedObject)
-
-      var error: NSError? = nil
-      if !context.save(&error) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        //println("Unresolved error \(error), \(error.userInfo)")
-        abort()
-      }
-    }
+    return false
   }
 
   func configureCell(cell: SongTableViewCell, atIndexPath indexPath: NSIndexPath) {
@@ -94,20 +89,11 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
   var fetchedResultsController: NSFetchedResultsController {
     if _fetchedResultsController == nil {
-      _fetchedResultsController = songManager?.fetchedResultsControllerWithPredicate(nil, delegate: self)
+      _fetchedResultsController = Song.fetchAllSortedBy("songID", ascending: false, withPredicate: predicate(), groupBy: "sectionIdentifier", delegate: self)
       }
       return _fetchedResultsController!
   }
   var _fetchedResultsController: NSFetchedResultsController? = nil
-
-  var favoritesFetchedResultsController: NSFetchedResultsController {
-    if _favoritesFetchedResultsController == nil {
-      let predicate: NSPredicate = NSPredicate(format: "favoritedTimeStamp IS NOT NULL")
-      _favoritesFetchedResultsController = songManager?.fetchedResultsControllerWithPredicate(predicate, delegate: self)
-      }
-      return _favoritesFetchedResultsController!
-  }
-  var _favoritesFetchedResultsController: NSFetchedResultsController? = nil
 
   func controllerWillChangeContent(controller: NSFetchedResultsController) {
     self.tableView.beginUpdates()
@@ -131,7 +117,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     case .Delete:
       tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
     case .Update:
-      self.configureCell(tableView.cellForRowAtIndexPath(indexPath)! as SongTableViewCell, atIndexPath: indexPath)
+      let cell = tableView.cellForRowAtIndexPath(newIndexPath)
+      if cell != nil {
+        self.configureCell(cell! as SongTableViewCell, atIndexPath: newIndexPath)
+      }
     case .Move:
       tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
       tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
@@ -139,9 +128,40 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
       return
     }
   }
+  @IBAction func filterTypeSegmentChange(sender: AnyObject) {
+    self.fetchedResultsController.fetchRequest.predicate = predicate()
+    self.fetchedResultsController.performFetch(nil)
+    self.tableView.reloadData()
+  }
+
+  func predicate() -> NSPredicate? {
+    if filterTypeSegmentControl != nil && filterTypeSegmentControl.selectedSegmentIndex == 1 {
+      return NSPredicate(format: "favoritedAt != nil")
+    }
+    return nil
+  }
+
+  func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+    self.configureCell(self.tableView.cellForRowAtIndexPath(indexPath!)! as SongTableViewCell, atIndexPath: indexPath!)
+  }
 
   func controllerDidChangeContent(controller: NSFetchedResultsController) {
     self.tableView.endUpdates()
+  }
+
+  // MARK: - Scroll
+
+  override func scrollViewDidScroll(scrollView: UIScrollView) {
+    let contentHeight = scrollView.contentSize.height
+    let height = scrollView.frame.size.height
+    let top = scrollView.frame.origin.y
+    let scrollTop = scrollView.contentOffset.y
+    let diff = contentHeight - scrollTop - top
+    if diff < height {
+      self.apiClient.load(true, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+        }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+      })
+    }
   }
 
   // MARK: - API
@@ -149,7 +169,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
   var apiClient: SongAPIClient {
     if _apiClient == nil {
       _apiClient = SongAPIClient()
-      _apiClient?.songManager = songManager
       }
       return _apiClient!
   }
@@ -158,14 +177,15 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
   func refresh(sender :AnyObject?) {
     let refreshControl: UIRefreshControl? = sender as? UIRefreshControl
+    refreshControl?.beginRefreshing()
     apiClient.load(false,
       success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-        if (refreshControl != nil) {
-          refreshControl!.endRefreshing()
+        if refreshControl != nil {
+          refreshControl?.endRefreshing()
         }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        if (refreshControl != nil) {
-          refreshControl!.endRefreshing()
+        if refreshControl != nil {
+          refreshControl?.endRefreshing()
         }
     }
   }

@@ -19,7 +19,9 @@
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, assign) BOOL isFavorited;
 
-+ (id)createInManagedObjectContext:(NSManagedObjectContext *)context;
 - (void)updateAttributes:(NSDictionary *)attributes;
+- (NSString *)timeStampFormatted;
+- (NSString *)sectionTitle;
++ (id)findOrCreateWithAttributes:(NSDictionary *)attributes inContext:(NSManagedObjectContext *)context;
 
 @end

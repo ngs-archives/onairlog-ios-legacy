@@ -36,15 +36,18 @@ PODS:
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
   - GoogleAnalytics-iOS-SDK (3.0.9)
+  - MagicalRecord/Shorthand (2.2)
 
 DEPENDENCIES:
   - AFNetworking
   - BlocksKit
   - GoogleAnalytics-iOS-SDK
+  - MagicalRecord/Shorthand
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   BlocksKit: 4439e7f30a9f90743462ca63545a15c1f4304cef
   GoogleAnalytics-iOS-SDK: d9e198b1f955259a72886769be7377cdfcdb2250
+  MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
 
 COCOAPODS: 0.33.1

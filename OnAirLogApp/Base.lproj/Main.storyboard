@@ -88,7 +88,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" misplaced="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVA-UK-35w">
-                                            <rect key="frame" x="8" y="10" width="469" height="11.5"/>
+                                            <rect key="frame" x="8" y="8" width="539" height="13.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -99,17 +99,19 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" misplaced="YES" text="2014-10-03 12:34" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAR-Uz-NPB">
-                                            <rect key="frame" x="485" y="8" width="106.5" height="13.5"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" misplaced="YES" text="12:34" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAR-Uz-NPB">
+                                            <rect key="frame" x="555" y="8" width="35" height="13.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="35" id="V09-Vi-e54"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="center" ambiguous="YES" misplaced="YES" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKr-9a-uAL">
+                                        <button opaque="NO" contentMode="center" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKr-9a-uAL">
                                             <rect key="frame" x="569" y="29" width="22" height="22"/>
-                                            <color key="tintColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" image="726-star-toolbar">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
                                                 <action selector="toggleFavorite:" destination="WCw-Qf-5nD" eventType="touchUpInside" id="hEF-wv-Lzs"/>
@@ -120,6 +122,8 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="tKr-9a-uAL" secondAttribute="trailing" constant="2" id="4FD-Uj-2qJ"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="dAR-Uz-NPB" secondAttribute="trailing" constant="2" id="B3D-cp-u8L"/>
                                         <constraint firstItem="dAR-Uz-NPB" firstAttribute="leading" secondItem="mVA-UK-35w" secondAttribute="trailing" constant="2" id="TiM-Vu-f7T"/>
+                                        <constraint firstItem="X2z-14-yff" firstAttribute="leading" secondItem="37f-cq-3Eg" secondAttribute="leadingMargin" constant="8" id="l0M-yU-pnG"/>
+                                        <constraint firstItem="mVA-UK-35w" firstAttribute="leading" secondItem="37f-cq-3Eg" secondAttribute="leadingMargin" constant="8" id="lWq-9k-muf"/>
                                         <constraint firstItem="X2z-14-yff" firstAttribute="trailing" secondItem="tKr-9a-uAL" secondAttribute="leading" constant="2" id="xXj-Zu-Xpd"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -148,8 +152,14 @@
                                 <segment title="" image="728-clock-toolbar" width="70"/>
                                 <segment title="" image="726-star-toolbar" width="70"/>
                             </segments>
+                            <connections>
+                                <action selector="filterTypeSegmentChange:" destination="7bK-jq-Zjz" eventType="valueChanged" id="0US-Is-Ac1"/>
+                            </connections>
                         </segmentedControl>
                     </navigationItem>
+                    <connections>
+                        <outlet property="filterTypeSegmentControl" destination="RJZ-BU-vEA" id="ND5-44-2BB"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
