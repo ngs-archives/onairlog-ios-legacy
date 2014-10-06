@@ -52,6 +52,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
         controller.navigationItem.leftItemsSupplementBackButton = true
       }
+    } else if segue.identifier == "showDatePicker" {
+      
     }
   }
 

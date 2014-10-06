@@ -43,6 +43,8 @@
 		85B18E6919E1BDF600FF4D27 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B18E6519E1BDF600FF4D27 /* Song.m */; };
 		85B18E6B19E1EBCD00FF4D27 /* SpecHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B18E6A19E1EBCD00FF4D27 /* SpecHelper.swift */; };
 		85B18E7219E1F18400FF4D27 /* song01.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B18E7119E1F18400FF4D27 /* song01.json */; };
+		85C1CC6B19E2F03200BF9EEA /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C1CC6A19E2F03200BF9EEA /* DatePickerViewController.swift */; };
+		85C1CC6C19E2F03200BF9EEA /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C1CC6A19E2F03200BF9EEA /* DatePickerViewController.swift */; };
 		85CD888319E12E28009F8DCF /* SongAPIClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD888219E12E28009F8DCF /* SongAPIClientSpec.swift */; };
 		85CD888519E12FBC009F8DCF /* SongAPISessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD888419E12FBC009F8DCF /* SongAPISessionManager.swift */; };
 		85CD888619E12FBC009F8DCF /* SongAPISessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD888419E12FBC009F8DCF /* SongAPISessionManager.swift */; };
@@ -189,6 +191,7 @@
 		85B18E6A19E1EBCD00FF4D27 /* SpecHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecHelper.swift; sourceTree = "<group>"; };
 		85B18E7119E1F18400FF4D27 /* song01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = song01.json; sourceTree = "<group>"; };
 		85BC707119DF908A00653771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85C1CC6A19E2F03200BF9EEA /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		85CD888219E12E28009F8DCF /* SongAPIClientSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongAPIClientSpec.swift; sourceTree = "<group>"; };
 		85CD888419E12FBC009F8DCF /* SongAPISessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongAPISessionManager.swift; sourceTree = "<group>"; };
 		85CD888919E1398F009F8DCF /* SongAPIResponseSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongAPIResponseSerializer.swift; sourceTree = "<group>"; };
@@ -301,6 +304,7 @@
 				852A0FC419E0885600B65500 /* Images.xcassets */,
 				852A0FC819E0885600B65500 /* MasterViewController.swift */,
 				852A0FCE19E0885600B65500 /* SongTableViewCell.swift */,
+				85C1CC6A19E2F03200BF9EEA /* DatePickerViewController.swift */,
 			);
 			path = OnAirLogApp;
 			sourceTree = "<group>";
@@ -725,6 +729,7 @@
 				85B18E6619E1BDF600FF4D27 /* Song.m in Sources */,
 				852A0FF019E08A5400B65500 /* DetailViewController.swift in Sources */,
 				852A0FF419E095E700B65500 /* SongTableViewCell.swift in Sources */,
+				85C1CC6B19E2F03200BF9EEA /* DatePickerViewController.swift in Sources */,
 				852A0FE619E08A0500B65500 /* AppDelegate.swift in Sources */,
 				85E9A7A619E11B59002D5737 /* SongAPIClient.swift in Sources */,
 				8548E65F19E0D2D500001AF5 /* Environment.swift in Sources */,
@@ -753,6 +758,7 @@
 				85B18E6719E1BDF600FF4D27 /* Song.m in Sources */,
 				852A0FF119E08A5500B65500 /* DetailViewController.swift in Sources */,
 				852A0FF519E095E700B65500 /* SongTableViewCell.swift in Sources */,
+				85C1CC6C19E2F03200BF9EEA /* DatePickerViewController.swift in Sources */,
 				852A0FE719E08A0600B65500 /* AppDelegate.swift in Sources */,
 				85E9A7A719E11B59002D5737 /* SongAPIClient.swift in Sources */,
 				8548E66219E0D2E000001AF5 /* Environment.swift in Sources */,
