@@ -145,6 +145,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="Zdf-7t-Un8">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" image="851-calendar-toolbar" id="FyS-z1-72c"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bar" selectedSegmentIndex="0" id="RJZ-BU-vEA">
                             <rect key="frame" x="229.5" y="7" width="141" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -184,6 +185,7 @@
     <resources>
         <image name="726-star-toolbar" width="22" height="22"/>
         <image name="728-clock-toolbar" width="22" height="22"/>
+        <image name="851-calendar-toolbar" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6S0-TO-JiA"/>

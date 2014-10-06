@@ -27,7 +27,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     self.refreshControl = UIRefreshControl()
     self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
     self.tableView.addSubview(self.refreshControl!)
-    self.navigationItem.leftBarButtonItem = self.editButtonItem()
     if let split = self.splitViewController {
       let controllers = split.viewControllers
       self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
@@ -199,7 +198,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
   var _apiClient: SongAPIClient? = nil
 
   func load(sinceID: Int = 0) {
-    refreshControl?.beginRefreshing()
     apiClient.load(sinceID,
       success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         if self.refreshControl != nil {
@@ -213,6 +211,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
   }
 
   func refresh(sender :AnyObject?) {
+    refreshControl?.beginRefreshing()
     self.load()
   }
   
