@@ -13,6 +13,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
   @IBOutlet weak var filterTypeSegmentControl: UISegmentedControl!
   var detailViewController: DetailViewController? = nil
+  private var scrollCache = [-CGFloat.max, -CGFloat.max]
 
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -53,8 +54,24 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         controller.navigationItem.leftItemsSupplementBackButton = true
       }
     } else if segue.identifier == "showDatePicker" {
-      
+      // TODO: show date picker in half screen
     }
+  }
+
+  // MARK: - Scroll
+
+  override func scrollViewDidScroll(scrollView: UIScrollView) {
+    let contentHeight = scrollView.contentSize.height
+    let height = scrollView.frame.size.height
+    let top = scrollView.frame.origin.y
+    let scrollTop = scrollView.contentOffset.y
+    let diff = contentHeight - scrollTop - top
+    if diff < height && !apiClient.isLoading {
+      let section = self.fetchedResultsController.sections?.last? as NSFetchedResultsSectionInfo
+      let song = section.objects.last as Song
+      self.load(sinceID: song.songID.integerValue - 1)
+    }
+    scrollCache[filterTypeSegmentControl.selectedSegmentIndex] = scrollView.contentOffset.y
   }
 
   // MARK: - Table View
@@ -145,6 +162,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     self.fetchedResultsController.fetchRequest.predicate = predicate()
     self.fetchedResultsController.performFetch(nil)
     self.tableView.reloadData()
+    let top = self.scrollCache[self.filterTypeSegmentControl.selectedSegmentIndex]
+    if top > 0 {
+      self.tableView.contentOffset = CGPointMake(0, top)
+    }
   }
 
   func isTimeline() -> Bool {
