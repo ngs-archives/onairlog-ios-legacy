@@ -36,18 +36,22 @@ PODS:
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
   - GoogleAnalytics-iOS-SDK (3.0.9)
-  - MagicalRecord/Shorthand (2.2)
+  - MagicalRecord/Shorthand (2.3.0-beta.4-ngs)
 
 DEPENDENCIES:
   - AFNetworking
   - BlocksKit
   - GoogleAnalytics-iOS-SDK
-  - MagicalRecord/Shorthand
+  - MagicalRecord/Shorthand (from `https://gist.githubusercontent.com/ngs/43a1be5353e937fc38fc/raw/201a23ad2b3c3bb6e4cab025ad2d323fd5df19dd/MagicalRecord.podspec`)
+
+EXTERNAL SOURCES:
+  MagicalRecord:
+    :podspec: https://gist.githubusercontent.com/ngs/43a1be5353e937fc38fc/raw/201a23ad2b3c3bb6e4cab025ad2d323fd5df19dd/MagicalRecord.podspec
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   BlocksKit: 4439e7f30a9f90743462ca63545a15c1f4304cef
   GoogleAnalytics-iOS-SDK: d9e198b1f955259a72886769be7377cdfcdb2250
-  MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
+  MagicalRecord: 3ee24a65ee0182416c5c3c18f7816ea29ed92852
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.34.1

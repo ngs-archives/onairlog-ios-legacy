@@ -1,3 +1,4 @@
+
 //
 //  Song.m
 //  OnAirLog
@@ -10,22 +11,17 @@
 #define MR_SHORTHAND
 #import <MagicalRecord/CoreData+MagicalRecord.h>
 
-@interface Song ()
-
-// https://developer.apple.com/library/ios/samplecode/DateSectionTitles/Listings/DateSectionTitles_APLEvent_m.html#//apple_ref/doc/uid/DTS40009939-DateSectionTitles_APLEvent_m-DontLinkElementID_6
-@property (nonatomic) NSDate *primitiveTimeStamp;
-@property (nonatomic) NSString *primitiveSectionIdentifier;
-
-@end
-
-
 @implementation Song
 
-@dynamic favoritedAt, artist, timeStamp, songID, title, primitiveSectionIdentifier, primitiveTimeStamp;
+@dynamic favoritedAt, artist, timeStamp, songID, title, sectionIdentifier;
+
++ (NSString *)entityName {
+  return @"Song";
+}
 
 + (id)findOrCreateWithAttributes:(NSDictionary *)attributes inContext:(NSManagedObjectContext *)context {
   id song = attributes[@"id"] ? [Song findFirstByAttribute:@"songID" withValue:attributes[@"id"] inContext:context] : nil;
-  if(!song) song = [self createInContext:context];
+  if(!song) song = [self createEntityInContext:context];
   [song updateAttributes:attributes];
   return song;
 }
@@ -56,29 +52,21 @@
     }
   });
   self.timeStamp = [fmt dateFromString:attributes[@"date"]];
+  [self updateSectionIdentifier];
 }
 
-- (NSString *)sectionIdentifier {
-  // Create and cache the section identifier on demand.
 
-  [self willAccessValueForKey:@"sectionIdentifier"];
-  NSString *tmp = [self primitiveSectionIdentifier];
-  [self didAccessValueForKey:@"sectionIdentifier"];
-
-  if (!tmp) {
-    static NSDateFormatter *fmt = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      if(!fmt) {
-        fmt = [[NSDateFormatter alloc] init];
-        fmt.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:9*60*60];
-        [fmt setDateFormat:@"yyyyMMddHH"];
-      }
-    });
-    tmp = [fmt stringFromDate:self.timeStamp];
-    [self setPrimitiveSectionIdentifier:tmp];
-  }
-  return tmp;
+- (void)updateSectionIdentifier {
+  static NSDateFormatter *fmt = nil;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    if(!fmt) {
+      fmt = [[NSDateFormatter alloc] init];
+      fmt.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:9*60*60];
+      [fmt setDateFormat:@"yyyyMMddHH"];
+    }
+  });
+  self.sectionIdentifier = [fmt stringFromDate:self.timeStamp];
 }
 
 - (NSString *)timeStampFormatted {
@@ -107,25 +95,19 @@
   return [fmt stringFromDate:self.timeStamp];
 }
 
++ (void)deleteDuplicatesWithSet:(NSSet *)set inContext:(NSManagedObjectContext *)context {
+  if (set.count > 0) {
+    NSMutableArray *songIDs = [[NSMutableArray alloc] init];
+    for(NSInteger i = 0; i < set.count; i++) {
+      id objectID = set.allObjects[i];
+      Song *song = (Song *)[context existingObjectWithID:objectID error:nil];
+      if(song.songID)
+        [songIDs addObject:song.songID];
+    }
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"songID IN %@" ,songIDs];
+    [self deleteAllMatchingPredicate:pred inContext:context];
+  }
 
-#pragma mark - Time stamp setter
-
-- (void)setTimeStamp:(NSDate *)newDate {
-  // If the time stamp changes, the section identifier become invalid.
-  [self willChangeValueForKey:@"timeStamp"];
-  [self setPrimitiveTimeStamp:newDate];
-  [self didChangeValueForKey:@"timeStamp"];
-
-  [self setPrimitiveSectionIdentifier:nil];
 }
-
-
-#pragma mark - Key path dependencies
-
-+ (NSSet *)keyPathsForValuesAffectingSectionIdentifier {
-  // If the value of timeStamp changes, the section identifier may change as well.
-  return [NSSet setWithObject:@"timeStamp"];
-}
-
 
 @end

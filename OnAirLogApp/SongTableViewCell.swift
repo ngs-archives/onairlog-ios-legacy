@@ -19,7 +19,7 @@ class SongTableViewCell: UITableViewCell {
   @IBAction func toggleFavorite(sender: AnyObject) {
     if self.song != nil {
       self.song?.isFavorited = !self.song!.isFavorited
-      self.song?.managedObjectContext.saveToPersistentStoreWithCompletion({ (success: Bool, error: NSError!) -> Void in })
+      self.song?.managedObjectContext.saveToPersistentStoreAndWait()
     }
   }
 

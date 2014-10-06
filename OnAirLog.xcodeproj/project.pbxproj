@@ -59,8 +59,6 @@
 		85E9A79019E0FE28002D5737 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A78F19E0FE28002D5737 /* AppConfig.swift */; };
 		85E9A79119E0FE36002D5737 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A78D19E0FDB5002D5737 /* AppConfig.swift */; };
 		85E9A79D19E11576002D5737 /* SongSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A79C19E11576002D5737 /* SongSpec.swift */; };
-		85E9A79F19E1165A002D5737 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E9A79E19E1165A002D5737 /* StoreKit.framework */; };
-		85E9A7A019E11661002D5737 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E9A79E19E1165A002D5737 /* StoreKit.framework */; };
 		85E9A7A219E11690002D5737 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 852A0FBD19E0885600B65500 /* LaunchScreen.xib */; };
 		85E9A7A319E118A4002D5737 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A78F19E0FE28002D5737 /* AppConfig.swift */; };
 		85E9A7A419E118A9002D5737 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A78D19E0FDB5002D5737 /* AppConfig.swift */; };
@@ -161,7 +159,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0A515A4A2BCB4DF6923B5F71 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		6F0BFFCE75623911906443C9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		85069D9419DDF9AE004F5C8F /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		85069DBC19DE006A004F5C8F /* NowOnAirWidget813.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NowOnAirWidget813.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		85069DBD19DE006A004F5C8F /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = Library/Frameworks/NotificationCenter.framework; sourceTree = DEVELOPER_DIR; };
@@ -203,13 +201,13 @@
 		85E9A79A19E0FFA2002D5737 /* OnAirLog802.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = OnAirLog802.entitlements; sourceTree = "<group>"; };
 		85E9A79B19E11575002D5737 /* OnAirLogTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OnAirLogTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		85E9A79C19E11576002D5737 /* SongSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongSpec.swift; sourceTree = "<group>"; };
-		85E9A79E19E1165A002D5737 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		85E9A7A519E11B59002D5737 /* SongAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongAPIClient.swift; sourceTree = "<group>"; };
 		85E9A7AB19E126B0002D5737 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = "Vendor/Nimble/build/Debug-iphoneos/Nimble.framework"; sourceTree = "<group>"; };
 		85E9A7AC19E126B0002D5737 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = "../../Library/Developer/Xcode/DerivedData/OnAirLog-dqlhujtpoqrgmyfatlndydkwokyj/Build/Products/Debug/Quick.framework"; sourceTree = "<group>"; };
 		85F5241419DD877E003105F0 /* OnAirLog813.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnAirLog813.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85F5244519DD87F5003105F0 /* OnAirLogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnAirLogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		85F5245619DD88A6003105F0 /* OnAirLog802.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnAirLog802.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		97F457047E456234A0108F25 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F8AADD6368FC412A90FDE49F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -236,7 +234,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85E9A79F19E1165A002D5737 /* StoreKit.framework in Frameworks */,
 				E84D5BDC278F483E9E6AE198 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,7 +251,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85E9A7A019E11661002D5737 /* StoreKit.framework in Frameworks */,
 				85069D9519DDF9AE004F5C8F /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,8 +378,8 @@
 				85069DE919DE00C7004F5C8F /* NowOnAirWidget */,
 				85BC706F19DF908A00653771 /* OnAirLogTests */,
 				85F5241519DD877E003105F0 /* Products */,
-				0A515A4A2BCB4DF6923B5F71 /* Pods.xcconfig */,
 				B3FDE7ECF51D472EA0A843F7 /* Frameworks */,
+				C9397576B91BB395C9D2322D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -404,7 +400,6 @@
 			children = (
 				85E9A7AB19E126B0002D5737 /* Nimble.framework */,
 				85E9A7AC19E126B0002D5737 /* Quick.framework */,
-				85E9A79E19E1165A002D5737 /* StoreKit.framework */,
 				85069DE719DE0089004F5C8F /* libPods.a */,
 				85069DE519DE0085004F5C8F /* libPods.a */,
 				85069D9419DDF9AE004F5C8F /* libPods.a */,
@@ -412,6 +407,15 @@
 				85069DBD19DE006A004F5C8F /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C9397576B91BB395C9D2322D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				97F457047E456234A0108F25 /* Pods.debug.xcconfig */,
+				6F0BFFCE75623911906443C9 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -525,10 +529,20 @@
 					85069DBB19DE006A004F5C8F = {
 						CreatedOnToolsVersion = 6.0.1;
 						DevelopmentTeam = 3Y8APYUG2G;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					85069DD219DE007A004F5C8F = {
 						CreatedOnToolsVersion = 6.0.1;
 						DevelopmentTeam = 3Y8APYUG2G;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					85F5241319DD877E003105F0 = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -536,6 +550,9 @@
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 0;
 							};
 							com.apple.iCloud = {
 								enabled = 1;
@@ -660,7 +677,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -806,7 +823,7 @@
 /* Begin XCBuildConfiguration section */
 		85069DCC19DE006A004F5C8F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A515A4A2BCB4DF6923B5F71 /* Pods.xcconfig */;
+			baseConfigurationReference = 97F457047E456234A0108F25 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -864,7 +881,7 @@
 		};
 		85069DCD19DE006A004F5C8F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A515A4A2BCB4DF6923B5F71 /* Pods.xcconfig */;
+			baseConfigurationReference = 6F0BFFCE75623911906443C9 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -880,7 +897,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -915,7 +932,7 @@
 		};
 		85069DE219DE007A004F5C8F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A515A4A2BCB4DF6923B5F71 /* Pods.xcconfig */;
+			baseConfigurationReference = 97F457047E456234A0108F25 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -973,7 +990,7 @@
 		};
 		85069DE319DE007A004F5C8F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A515A4A2BCB4DF6923B5F71 /* Pods.xcconfig */;
+			baseConfigurationReference = 6F0BFFCE75623911906443C9 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -989,7 +1006,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1037,7 +1054,7 @@
 		};
 		85F5243719DD877E003105F0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A515A4A2BCB4DF6923B5F71 /* Pods.xcconfig */;
+			baseConfigurationReference = 97F457047E456234A0108F25 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1056,6 +1073,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = OnAirLog813.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1088,7 +1106,7 @@
 		};
 		85F5243819DD877E003105F0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A515A4A2BCB4DF6923B5F71 /* Pods.xcconfig */;
+			baseConfigurationReference = 6F0BFFCE75623911906443C9 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1107,6 +1125,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = OnAirLog813.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1132,7 +1151,7 @@
 		};
 		85F5244E19DD87F5003105F0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A515A4A2BCB4DF6923B5F71 /* Pods.xcconfig */;
+			baseConfigurationReference = 97F457047E456234A0108F25 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1173,11 +1192,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"\"${PODS_ROOT}/Headers\"",
-					"\"${PODS_ROOT}/Headers/AFNetworking\"",
-					"\"${PODS_ROOT}/Headers/BlocksKit\"",
-					"\"${PODS_ROOT}/Headers/GoogleAnalytics-iOS-SDK\"",
-					"\"${PODS_ROOT}/Headers/MagicalRecord\"",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/BlocksKit\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics-iOS-SDK\"",
+					"\"${PODS_ROOT}/Headers/Public/MagicalRecord\"",
+					"\"${PODS_ROOT}/Headers/Public/MagicalRecord/MagicalRecord\"",
 					"$(SDKROOT)/usr/include/libz",
 					"$(SRCROOT)/OnAirLog",
 				);
@@ -1196,7 +1216,7 @@
 		};
 		85F5244F19DD87F5003105F0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A515A4A2BCB4DF6923B5F71 /* Pods.xcconfig */;
+			baseConfigurationReference = 6F0BFFCE75623911906443C9 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1231,11 +1251,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"\"${PODS_ROOT}/Headers\"",
-					"\"${PODS_ROOT}/Headers/AFNetworking\"",
-					"\"${PODS_ROOT}/Headers/BlocksKit\"",
-					"\"${PODS_ROOT}/Headers/GoogleAnalytics-iOS-SDK\"",
-					"\"${PODS_ROOT}/Headers/MagicalRecord\"",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/BlocksKit\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics-iOS-SDK\"",
+					"\"${PODS_ROOT}/Headers/Public/MagicalRecord\"",
+					"\"${PODS_ROOT}/Headers/Public/MagicalRecord/MagicalRecord\"",
 					"$(SDKROOT)/usr/include/libz",
 					"$(SRCROOT)/OnAirLog",
 				);
@@ -1253,7 +1274,7 @@
 		};
 		85F5247819DD88A6003105F0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A515A4A2BCB4DF6923B5F71 /* Pods.xcconfig */;
+			baseConfigurationReference = 97F457047E456234A0108F25 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1309,7 +1330,7 @@
 		};
 		85F5247919DD88A6003105F0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A515A4A2BCB4DF6923B5F71 /* Pods.xcconfig */;
+			baseConfigurationReference = 6F0BFFCE75623911906443C9 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

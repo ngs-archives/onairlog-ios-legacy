@@ -24,15 +24,16 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    var refreshControl = UIRefreshControl()
-    refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
-    self.tableView.addSubview(refreshControl)
+    self.refreshControl = UIRefreshControl()
+    self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+    self.tableView.addSubview(self.refreshControl!)
     self.navigationItem.leftBarButtonItem = self.editButtonItem()
     if let split = self.splitViewController {
       let controllers = split.viewControllers
       self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
     }
-    self.refresh(nil)
+    self.fetchedResultsController.performFetch(nil)
+    self.load()
   }
 
   // MARK: - Segues
@@ -129,13 +130,22 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
   }
   @IBAction func filterTypeSegmentChange(sender: AnyObject) {
+    if isTimeline() {
+      self.tableView.addSubview(self.refreshControl!)
+    } else {
+      self.refreshControl?.removeFromSuperview()
+    }
     self.fetchedResultsController.fetchRequest.predicate = predicate()
     self.fetchedResultsController.performFetch(nil)
     self.tableView.reloadData()
   }
 
+  func isTimeline() -> Bool {
+    return filterTypeSegmentControl == nil || filterTypeSegmentControl.selectedSegmentIndex != 1
+  }
+
   func predicate() -> NSPredicate? {
-    if filterTypeSegmentControl != nil && filterTypeSegmentControl.selectedSegmentIndex == 1 {
+    if !isTimeline() {
       return NSPredicate(format: "favoritedAt != nil")
     }
     return nil
@@ -149,18 +159,31 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     self.tableView.endUpdates()
   }
 
-  // MARK: - Scroll
-
-  override func scrollViewDidScroll(scrollView: UIScrollView) {
-    let contentHeight = scrollView.contentSize.height
-    let height = scrollView.frame.size.height
-    let top = scrollView.frame.origin.y
-    let scrollTop = scrollView.contentOffset.y
-    let diff = contentHeight - scrollTop - top
-    if diff < height {
-      self.apiClient.load(true,
-        success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in },
-        failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in })
+  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    if self.apiClient.isLoading { return }
+    var row = indexPath.row
+    var section = indexPath.section
+    var sectionCount = self.numberOfSectionsInTableView(tableView)
+    var rowCount = self.tableView(tableView, numberOfRowsInSection: section)
+    if rowCount >= row + 1 {
+      row = 0
+      section++
+    }
+    let song1 = self.fetchedResultsController .objectAtIndexPath(indexPath) as Song
+    let songID1 = song1.songID.integerValue
+    var sinceID = 0
+    if section >= sectionCount {
+      sinceID = songID1 - 1
+    } else {
+      let indexPath2 = NSIndexPath(forRow: row, inSection: section)
+      let song2 = self.fetchedResultsController .objectAtIndexPath(indexPath2) as Song
+      let songID2 = song2.songID.integerValue
+      if songID1 - songID2  > 10 {
+        sinceID = songID1 - 1
+      }
+    }
+    if sinceID > 0 {
+      self.load(sinceID: sinceID)
     }
   }
 
@@ -175,19 +198,22 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
   var _apiClient: SongAPIClient? = nil
 
-  func refresh(sender :AnyObject?) {
-    let refreshControl: UIRefreshControl? = sender as? UIRefreshControl
+  func load(sinceID: Int = 0) {
     refreshControl?.beginRefreshing()
-    apiClient.load(false,
+    apiClient.load(sinceID,
       success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-        if refreshControl != nil {
-          refreshControl?.endRefreshing()
+        if self.refreshControl != nil {
+          self.refreshControl?.endRefreshing()
         }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        if refreshControl != nil {
-          refreshControl?.endRefreshing()
+        if self.refreshControl != nil {
+          self.refreshControl?.endRefreshing()
         }
     }
+  }
+
+  func refresh(sender :AnyObject?) {
+    self.load()
   }
   
 }

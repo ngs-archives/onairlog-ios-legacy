@@ -9,32 +9,39 @@
 import Foundation
 
 class SongAPIClient {
-  var currentPage = 1
-  var totalPages = 0
+  var totalPages = -1
   var isLoading = false
   var sinceDate: NSDate? = nil
 
-  func hasMore() -> Bool {
-    return currentPage < totalPages
-  }
-
-  func load(more: Bool, success: (NSURLSessionDataTask!, AnyObject!) -> Void, failure: (NSURLSessionDataTask!, NSError!) -> Void ) {
-    if isLoading || (more && !hasMore()) { return }
-    if more {
-      currentPage++
-    } else {
-      currentPage = 1
-      totalPages = -1
-    }
-    let url = NSURL(scheme: "http", host: "813.liap.us", path: "/")
+  func load(sinceID: Int, success: (NSURLSessionDataTask!, AnyObject!) -> Void, failure: (NSURLSessionDataTask!, NSError!) -> Void ) {
+    if isLoading { return }
+    let url = NSURL(scheme: "http", host: kOnAirLogAPIHost, path: "/")
     let manager = SongAPISessionManager(baseURL: url)
     isLoading = true
-    manager.GET("/search.json", parameters: queryParams(),
+    let params = self.queryParams().mutableCopy() as NSMutableDictionary
+    if sinceID > 0 {
+      params["s"] = sinceID
+    }
+    manager.GET("/search.json", parameters: params,
       success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         let serializer = manager.responseSerializer as SongAPIResponseSerializer
         self.totalPages = serializer.totalPages
-        self.isLoading = false
-        success(task, responseObject)
+        let songs = serializer.songs
+        // FIXME: use saveBlock:completion:
+        MagicalRecord.saveUsingCurrentThreadContextWithBlock({ (context: NSManagedObjectContext!) -> Void in
+          for var i = 0; i < songs?.count; i++ {
+            let songDict = songs![i] as? NSDictionary
+            Song.findOrCreateWithAttributes(songDict, inContext: context)
+          }
+          },
+          completion: { (isSuccess: Bool, error: NSError?) -> Void in
+            self.isLoading = false
+            if error == nil {
+              success(task, responseObject)
+            } else {
+              failure(task, error)
+            }
+        })
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         self.isLoading = false
         failure(task, error)
@@ -43,7 +50,6 @@ class SongAPIClient {
 
   func queryParams() -> NSDictionary {
     var params: NSMutableDictionary = NSMutableDictionary()
-    params["p"] = currentPage
     if sinceDate != nil {
       let fmtd = NSDateFormatter()
       fmtd.dateFormat = "yyyyMMddHHmmss"
@@ -51,5 +57,5 @@ class SongAPIClient {
     }
     return params.copy() as NSDictionary
   }
-  
+
 }
