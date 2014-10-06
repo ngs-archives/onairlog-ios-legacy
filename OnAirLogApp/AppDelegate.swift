@@ -18,19 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Magical Record
     let dbURL = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(kOnAirLogDocumentContainerDomain)?.URLByAppendingPathComponent("OnAirLog.sqlite")
-    MagicalRecord.setupCoreDataStackWithiCloudContainer(nil, contentNameKey: "OnAirLog", localStoreAtURL: dbURL, cloudStorePathComponent: "OnAirLog")
-    NSNotificationCenter.defaultCenter().addObserverForName(kMagicalRecordDidMergeChangesFromiCloudNotification, object: nil, queue: nil) { (note: NSNotification!) -> Void in
-      let inserted = note.userInfo![NSInsertedObjectsKey] as NSSet?
-      let updated = note.userInfo![NSUpdatedObjectsKey] as NSSet?
-      MagicalRecord.saveUsingCurrentThreadContextWithBlock({ (context: NSManagedObjectContext!) -> Void in
-        if inserted?.count > 0 {
-          Song.deleteDuplicatesWithSet(inserted, inContext: context)
-        }
-        if updated?.count > 0 {
-          Song.deleteDuplicatesWithSet(updated, inContext: context)
-        }
-        }, completion: { (success: Bool, error: NSError!) -> Void in })
-    }
+    MagicalRecord.setupCoreDataStackWithStoreAtURL(dbURL)
+
     // Google Analytics
     let gai = GAI.sharedInstance()
     gai.trackUncaughtExceptions = true

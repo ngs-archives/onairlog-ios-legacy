@@ -24,6 +24,5 @@
 - (NSString *)timeStampFormatted;
 - (NSString *)sectionTitle;
 + (id)findOrCreateWithAttributes:(NSDictionary *)attributes inContext:(NSManagedObjectContext *)context;
-+ (void)deleteDuplicatesWithSet:(NSSet *)set inContext:(NSManagedObjectContext *)context;
 
 @end

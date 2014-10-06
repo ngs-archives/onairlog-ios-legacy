@@ -95,19 +95,4 @@
   return [fmt stringFromDate:self.timeStamp];
 }
 
-+ (void)deleteDuplicatesWithSet:(NSSet *)set inContext:(NSManagedObjectContext *)context {
-  if (set.count > 0) {
-    NSMutableArray *songIDs = [[NSMutableArray alloc] init];
-    for(NSInteger i = 0; i < set.count; i++) {
-      id objectID = set.allObjects[i];
-      Song *song = (Song *)[context existingObjectWithID:objectID error:nil];
-      if(song.songID)
-        [songIDs addObject:song.songID];
-    }
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"songID IN %@" ,songIDs];
-    [self deleteAllMatchingPredicate:pred inContext:context];
-  }
-
-}
-
 @end
