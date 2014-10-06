@@ -13,6 +13,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 
   var window: UIWindow?
+  var masterViewController: MasterViewController?
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Magical Record
@@ -47,6 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     let masterNavigationController = splitViewController.viewControllers[0] as UINavigationController
     let controller = masterNavigationController.topViewController as MasterViewController
+    self.masterViewController = controller
     return true
   }
 

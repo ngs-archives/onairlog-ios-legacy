@@ -20,18 +20,24 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
       self.clearsSelectionOnViewWillAppear = false
       self.preferredContentSize = CGSize(width: 320.0, height: 600.0)
     }
+    self.refreshControl = UIRefreshControl()
+    self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+    self.tableView.addSubview(self.refreshControl!)
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.refreshControl = UIRefreshControl()
-    self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
-    self.tableView.addSubview(self.refreshControl!)
     if let split = self.splitViewController {
       let controllers = split.viewControllers
       self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
     }
-    self.fetchedResultsController.performFetch(nil)
+  }
+
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    var error: NSError?
+    self.fetchedResultsController.performFetch(&error)
+    self.tableView.reloadData()
     self.load()
   }
 
@@ -159,7 +165,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
   }
 
   override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-    if self.apiClient.isLoading { return }
+    if self.apiClient.isLoading || !isTimeline() { return }
     var row = indexPath.row
     var section = indexPath.section
     var sectionCount = self.numberOfSectionsInTableView(tableView)
