@@ -172,6 +172,7 @@
 		85069DE719DE0089004F5C8F /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		85069DEA19DE00C7004F5C8F /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		85069DEB19DE00C7004F5C8F /* TodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		850EE6FA19E43A67006439F3 /* NowOnAirWidget802.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NowOnAirWidget802.entitlements; sourceTree = "<group>"; };
 		852A0FB719E0885600B65500 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		852A0FB819E0885600B65500 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		852A0FBA19E0885600B65500 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -192,6 +193,7 @@
 		85B18E7119E1F18400FF4D27 /* song01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = song01.json; sourceTree = "<group>"; };
 		85BC707119DF908A00653771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85C1CC6A19E2F03200BF9EEA /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
+		85C1CC6E19E4355300BF9EEA /* NowOnAirWidget813.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NowOnAirWidget813.entitlements; sourceTree = "<group>"; };
 		85CD888219E12E28009F8DCF /* SongAPIClientSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongAPIClientSpec.swift; sourceTree = "<group>"; };
 		85CD888419E12FBC009F8DCF /* SongAPISessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongAPISessionManager.swift; sourceTree = "<group>"; };
 		85CD888919E1398F009F8DCF /* SongAPIResponseSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongAPIResponseSerializer.swift; sourceTree = "<group>"; };
@@ -291,6 +293,17 @@
 			path = NowOnAirWidget;
 			sourceTree = "<group>";
 		};
+		850EE6FB19E44314006439F3 /* Entitlements */ = {
+			isa = PBXGroup;
+			children = (
+				850EE6FA19E43A67006439F3 /* NowOnAirWidget802.entitlements */,
+				85C1CC6E19E4355300BF9EEA /* NowOnAirWidget813.entitlements */,
+				85E9A79A19E0FFA2002D5737 /* OnAirLog802.entitlements */,
+				85E9A79919E0FF9B002D5737 /* OnAirLog813.entitlements */,
+			);
+			name = Entitlements;
+			sourceTree = "<group>";
+		};
 		852A0FB519E0885600B65500 /* OnAirLogApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,8 +388,7 @@
 		85F5240919DD871B003105F0 = {
 			isa = PBXGroup;
 			children = (
-				85E9A79A19E0FFA2002D5737 /* OnAirLog802.entitlements */,
-				85E9A79919E0FF9B002D5737 /* OnAirLog813.entitlements */,
+				850EE6FB19E44314006439F3 /* Entitlements */,
 				8548E65919E0D2D500001AF5 /* OnAirLog */,
 				852A0FB519E0885600B65500 /* OnAirLogApp */,
 				85069DE919DE00C7004F5C8F /* NowOnAirWidget */,
@@ -534,6 +546,9 @@
 						CreatedOnToolsVersion = 6.0.1;
 						DevelopmentTeam = 3Y8APYUG2G;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.iCloud = {
 								enabled = 0;
 							};
@@ -543,6 +558,9 @@
 						CreatedOnToolsVersion = 6.0.1;
 						DevelopmentTeam = 3Y8APYUG2G;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.iCloud = {
 								enabled = 0;
 							};
@@ -845,6 +863,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = NowOnAirWidget813.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -903,7 +922,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_ENTITLEMENTS = NowOnAirWidget813.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -954,6 +974,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = NowOnAirWidget802.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -1012,7 +1033,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_ENTITLEMENTS = NowOnAirWidget802.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;

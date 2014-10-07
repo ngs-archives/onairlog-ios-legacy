@@ -11,3 +11,5 @@ import Foundation
 let kOnAirLogDocumentContainerDomain = "group.org.ngsdev.iphone.OnAirLog813"
 let kOnAirLogGATrackingId = "UA-55433017-1"
 let kOnAirLogAPIHost = "813.liap.us"
+let kOnAirLogAppScheme = "oalog813"
+let kOnAirLogAppHost = "813.onairlog.app"

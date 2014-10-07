@@ -66,7 +66,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     let top = scrollView.frame.origin.y
     let scrollTop = scrollView.contentOffset.y
     let diff = contentHeight - scrollTop - top
-    if diff < height && !apiClient.isLoading {
+    if diff < height && !apiClient.isLoading && self.fetchedResultsController.sections?.count > 0 {
       let section = self.fetchedResultsController.sections?.last? as NSFetchedResultsSectionInfo
       let song = section.objects.last as Song
       self.load(sinceID: song.songID.integerValue - 1)
