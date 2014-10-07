@@ -47,7 +47,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   }
 
   func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
-    return UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 20)
+    return UIEdgeInsets(top: 0, left: 50, bottom: 0, right: 20)
   }
 
   var titleAttributes: NSDictionary {

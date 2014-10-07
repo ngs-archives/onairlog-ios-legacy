@@ -35,6 +35,7 @@
                                     </fragment>
                                 </attributedString>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="qcC-XQ-TPf">
                                 <rect key="frame" x="16" y="74" width="288" height="36"/>
@@ -58,9 +59,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4F-kp-5Li">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <size key="titleShadowOffset" width="0.0" height="1"/>
                                 <connections>
                                     <action selector="didViewTapped:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="zdQ-s8-acM"/>
                                 </connections>
