@@ -21,8 +21,11 @@
 @property (nonatomic, assign) BOOL isFavorited;
 
 - (void)updateAttributes:(NSDictionary *)attributes;
-- (NSString *)timeStampFormatted;
+- (NSString *)timeFormatted;
+- (NSString *)dateTimeFormatted;
 - (NSString *)sectionTitle;
+- (NSURL *)iTunesSearchURL;
+- (NSString *)searchTerm;
 + (id)findOrCreateWithAttributes:(NSDictionary *)attributes inContext:(NSManagedObjectContext *)context;
 
 @end

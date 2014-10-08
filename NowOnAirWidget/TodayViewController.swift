@@ -18,7 +18,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   override func viewDidLoad() {
     super.viewDidLoad()
     // Magical Record
-    let dbURL = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(kOnAirLogDocumentContainerDomain)?.URLByAppendingPathComponent("OnAirLog.sqlite")
+    let dbURL = NSFileManager.defaultManager()
+      .containerURLForSecurityApplicationGroupIdentifier(kOnAirLogDocumentContainerDomain)?
+      .URLByAppendingPathComponent("OnAirLog.sqlite")
     MagicalRecord.setupCoreDataStackWithStoreAtURL(dbURL)
     self.apiClient = SongAPIClient()
     // Google Analytics
@@ -47,36 +49,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   }
 
   func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
-    return UIEdgeInsets(top: 0, left: 50, bottom: 0, right: 20)
+    return UIEdgeInsets(top: 0, left: 50, bottom: 0, right: 30)
   }
-
-  var titleAttributes: NSDictionary {
-    if nil == _titleAttributes {
-      let para = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
-      para.lineSpacing = 8
-      _titleAttributes = [
-        NSParagraphStyleAttributeName: para,
-        NSFontAttributeName: UIFont(name: "HiraKakuProN-W3", size: 30.0),
-        NSForegroundColorAttributeName: UIColor(white: 1.0, alpha: 1.0)
-      ]
-      }
-      return _titleAttributes!
-  }
-  private var _titleAttributes: NSDictionary?
-
-  var subtitleAttributes: NSDictionary {
-    if nil == _subtitleAttributes {
-      let para = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
-      para.lineSpacing = 5
-      _subtitleAttributes = [
-        NSParagraphStyleAttributeName: para,
-        NSFontAttributeName: UIFont(name: "HiraKakuProN-W3", size: 18.0),
-        NSForegroundColorAttributeName: UIColor(white: 1.0, alpha: 0.6)
-      ]
-      }
-      return _subtitleAttributes!
-  }
-  private var _subtitleAttributes: NSDictionary?
 
   func updateSong() -> Bool {
     let newSong = Song.MR_findFirstOrderedByAttribute("songID", ascending: false)
@@ -85,15 +59,15 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         return false
       }
       song = newSong
-      let titleString = NSAttributedString(string: song!.title!, attributes: titleAttributes)
-      self.titleLabel.attributedText = titleString
-      let subtitle = NSString(format: "%@ %@", song!.artist!, song!.timeStampFormatted())
-      let subtitleString = NSAttributedString(string: subtitle, attributes: subtitleAttributes)
-      self.subtitleLabel.attributedText = subtitleString
+      self.titleLabel.text = song?.title
+      self.titleLabel.sizeToFit()
+      let subtitle = NSString(format: "%@ %@", song!.artist!, song!.timeFormatted())
+      self.subtitleLabel.text = subtitle
+      self.subtitleLabel.sizeToFit()
       return true
     }
-    self.titleLabel.attributedText = nil
-    self.subtitleLabel.attributedText = nil
+    self.titleLabel.text = nil
+    self.subtitleLabel.text = nil
     return false
   }
 

@@ -33,7 +33,7 @@ class SongSpec: QuickSpec {
     describe("#timeStampFormatted", {
       song.timeStamp = NSDate(timeIntervalSince1970: 1412544120)
       it("returns formatted timestamp", {
-        expect(song.timeStampFormatted()).to(equal("06:22"))
+        expect(song.timeFormatted()).to(equal("06:22"))
       })
     })
     describe("#sectionTitle", {

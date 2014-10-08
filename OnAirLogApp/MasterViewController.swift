@@ -46,10 +46,15 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "showDetail" {
+      var song: Song? = nil
       if let indexPath = self.tableView.indexPathForSelectedRow() {
-        let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as NSManagedObject
+        song = self.fetchedResultsController.objectAtIndexPath(indexPath) as? Song
+      } else if (sender?.isKindOfClass(Song) == true) {
+        song = sender as? Song
+      }
+      if song != nil {
         let controller = (segue.destinationViewController as UINavigationController).topViewController as DetailViewController
-        controller.detailItem = object
+        controller.song = song
         controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
         controller.navigationItem.leftItemsSupplementBackButton = true
       }

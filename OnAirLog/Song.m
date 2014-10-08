@@ -11,6 +11,8 @@
 #define MR_SHORTHAND
 #import <MagicalRecord/CoreData+MagicalRecord.h>
 
+static NSString *ITUNES_LINK_FORMAT = @"https://itunes.apple.com/WebObjects/MZStore.woa/wa/search?mt=1&term=%@&uo=4&at=10l87J";
+
 @implementation Song
 
 @dynamic favoritedAt, artist, timeStamp, songID, title, sectionIdentifier;
@@ -69,7 +71,7 @@
   self.sectionIdentifier = [fmt stringFromDate:self.timeStamp];
 }
 
-- (NSString *)timeStampFormatted {
+- (NSString *)timeFormatted {
   static NSDateFormatter *fmt = nil;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
@@ -77,6 +79,19 @@
       fmt = [[NSDateFormatter alloc] init];
       fmt.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:9*60*60];
       [fmt setDateFormat:@"HH:mm"];
+    }
+  });
+  return [fmt stringFromDate:self.timeStamp];
+}
+
+- (NSString *)dateTimeFormatted {
+  static NSDateFormatter *fmt = nil;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    if(!fmt) {
+      fmt = [[NSDateFormatter alloc] init];
+      fmt.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:9*60*60];
+      [fmt setDateFormat:@"yyyy/MM/dd HH:mm"];
     }
   });
   return [fmt stringFromDate:self.timeStamp];
@@ -93,6 +108,17 @@
     }
   });
   return [fmt stringFromDate:self.timeStamp];
+}
+
+- (NSURL *)iTunesSearchURL {
+  NSString *urlString =
+  [NSString stringWithFormat:ITUNES_LINK_FORMAT,
+   [self.searchTerm stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]];
+  return [NSURL URLWithString:urlString];
+}
+
+- (NSString *)searchTerm {
+  return [NSString stringWithFormat:@"%@ %@", self.title, self.artist];
 }
 
 @end
