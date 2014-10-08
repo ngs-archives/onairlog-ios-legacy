@@ -47,9 +47,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "85069DD219DE007A004F5C8F"
-            BuildableName = "NowOnAirWidget802.appex"
-            BlueprintName = "NowOnAirWidget802"
+            BlueprintIdentifier = "85F5245519DD88A6003105F0"
+            BuildableName = "OnAirLog802.app"
+            BlueprintName = "OnAirLog802"
             ReferencedContainer = "container:OnAirLog.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
