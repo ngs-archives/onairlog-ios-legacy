@@ -111,11 +111,14 @@ static NSString *ITUNES_LINK_FORMAT = @"https://itunes.apple.com/WebObjects/MZSt
 }
 
 - (NSURL *)iTunesSearchURL {
-  NSString *term = [NSString stringWithFormat:@"%@ %@", self.title, self.artist];
   NSString *urlString =
   [NSString stringWithFormat:ITUNES_LINK_FORMAT,
-   [term stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]];
+   [self.searchTerm stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]];
   return [NSURL URLWithString:urlString];
+}
+
+- (NSString *)searchTerm {
+  return [NSString stringWithFormat:@"%@ %@", self.title, self.artist];
 }
 
 @end

@@ -25,6 +25,7 @@
 - (NSString *)dateTimeFormatted;
 - (NSString *)sectionTitle;
 - (NSURL *)iTunesSearchURL;
+- (NSString *)searchTerm;
 + (id)findOrCreateWithAttributes:(NSDictionary *)attributes inContext:(NSManagedObjectContext *)context;
 
 @end

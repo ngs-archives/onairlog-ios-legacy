@@ -13,4 +13,5 @@ let kOnAirLogGATrackingId = "UA-55433017-2"
 let kOnAirLogAPIHost = "802.liap.us"
 let kOnAirLogAppScheme = "oalog802"
 let kOnAirLogAppHost = "802.onairlog.app"
-let kOnAirLogTintColor = UIColor(red: 221.0/255.0, green: 190.0/255.0, blue: 45.0/255.0, alpha: 1.0)
+let kOnAirLogCampaignToken = "onairlog802"
+let kOnAirLogTintColor = UIColor(red: 195.0/255.0, green: 80.0/255.0, blue: 130.0/255.0, alpha: 1.0)
