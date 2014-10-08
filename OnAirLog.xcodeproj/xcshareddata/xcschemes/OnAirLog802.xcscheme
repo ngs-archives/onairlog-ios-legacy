@@ -20,20 +20,6 @@
                ReferencedContainer = "container:OnAirLog.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "85F5246E19DD88A6003105F0"
-               BuildableName = "OnAirLog802Tests.xctest"
-               BlueprintName = "OnAirLog802Tests"
-               ReferencedContainer = "container:OnAirLog.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -42,16 +28,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "85F5246E19DD88A6003105F0"
-               BuildableName = "OnAirLog802Tests.xctest"
-               BlueprintName = "OnAirLog802Tests"
-               ReferencedContainer = "container:OnAirLog.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
