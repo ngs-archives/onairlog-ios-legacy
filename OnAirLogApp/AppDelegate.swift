@@ -17,7 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Magical Record
-    let dbURL = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(kOnAirLogDocumentContainerDomain)?.URLByAppendingPathComponent("OnAirLog.sqlite")
+    let dbURL = NSFileManager.defaultManager()
+      .containerURLForSecurityApplicationGroupIdentifier(kOnAirLogDocumentContainerDomain)?
+      .URLByAppendingPathComponent("OnAirLog.sqlite")
     MagicalRecord.setupCoreDataStackWithStoreAtURL(dbURL)
 
     // Google Analytics
@@ -28,6 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     // AFNetworking
     AFNetworkActivityIndicatorManager.sharedManager().enabled = true
+
+    // Appearance
+    UIView.appearance().tintColor = kOnAirLogTintColor
 
     // Setup view controllers
     let splitViewController = self.window!.rootViewController as UISplitViewController
@@ -41,6 +46,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     return true
   }
 
+  func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+    let pc = url.pathComponents
+    if url.host! == kOnAirLogAppHost && pc.count == 3 && pc[1] as String == "song" {
+      let songID = pc[2] as String
+      let song = Song.findFirstByAttribute("songID", withValue: songID)
+      if song == nil { return false }
+      self.masterViewController?.performSegueWithIdentifier("showDetail", sender: song)
+      return true
+    }
+    return false
+  }
+
   func applicationWillTerminate(application: UIApplication) {
     NSManagedObjectContext.contextForCurrentThread().saveToPersistentStoreAndWait()
   }
@@ -50,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
   func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController:UIViewController!, ontoPrimaryViewController primaryViewController:UIViewController!) -> Bool {
     if let secondaryAsNavController = secondaryViewController as? UINavigationController {
       if let topAsDetailController = secondaryAsNavController.topViewController as? DetailViewController {
-        if topAsDetailController.detailItem == nil {
+        if topAsDetailController.song == nil {
           return true
         }
       }

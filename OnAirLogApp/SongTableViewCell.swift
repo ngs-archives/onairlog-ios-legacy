@@ -25,7 +25,7 @@ class SongTableViewCell: UITableViewCell {
 
   override func layoutSubviews() {
     super.layoutSubviews()
-    let imgName = self.song != nil && self.song!.isFavorited ? "726-star-toolbar-selected" : "726-star-toolbar"
+    let imgName = self.song?.isFavorited == true ? "726-star-toolbar-selected" : "726-star-toolbar"
     let img = UIImage(named: imgName).imageWithRenderingMode(.AlwaysTemplate)
     self.favoriteButton.setImage(img, forState: .Normal)
   }
@@ -34,7 +34,7 @@ class SongTableViewCell: UITableViewCell {
     self.song = song
     self.titleLabel.text = song.title
     self.subtitleLabel.text = song.artist
-    self.timeStampLabel.text = song.timeStampFormatted()
+    self.timeStampLabel.text = song.timeFormatted()
     self.setNeedsUpdateConstraints()
     self.updateConstraints()
     self.setNeedsLayout()
