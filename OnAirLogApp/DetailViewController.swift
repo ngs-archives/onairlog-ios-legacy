@@ -41,7 +41,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
       let manager = AFHTTPSessionManager()
       manager.responseSerializer = AFJSONResponseSerializer()
       manager.requestSerializer = AFHTTPRequestSerializer()
-      let url = NSString(format: "http://813.liap.us/song/%@.json", song!.songID)
+      let url = NSString(format: "http://%@/song/%@.json", kOnAirLogAPIHost, song!.songID)
       manager.GET(url, parameters: nil,
         success: { (task: NSURLSessionDataTask!, response: AnyObject!) -> Void in
           var json = response as? NSDictionary

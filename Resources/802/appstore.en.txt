@@ -1,0 +1,15 @@
+This software provides informations of aired songs on FM-802 ( http://funky802.com/ ) , Osaka, Japan.
+Updates most recent aired songs; Searches back to the past.
+
+Songs which sold on the iTunes Store are avail to preview and buy.
+
+You can check them later with Bookmarks.
+
+----
+
+Developer: Atsushi NAGASE
+http://ngsdev.org/
+
+== Version history ==
+[ 1.0 ]
+Initial release.
