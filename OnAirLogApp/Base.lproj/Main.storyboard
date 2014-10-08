@@ -130,7 +130,7 @@
                         </variation>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
+                    <navigationItem key="navigationItem" id="mOI-FS-AaM"/>
                     <connections>
                         <outlet property="artistLabel" destination="tFr-oi-sgx" id="nvg-2P-KSY"/>
                         <outlet property="tableView" destination="DYV-a3-Tr5" id="cqa-pO-Hi0"/>
@@ -243,7 +243,7 @@
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" image="851-calendar-toolbar" id="FyS-z1-72c">
                             <connections>
-                                <segue destination="gvG-4J-c3P" kind="popoverPresentation" identifier="showDatePicker" popoverAnchorBarButtonItem="FyS-z1-72c" id="HmO-UI-Ab0">
+                                <segue destination="TW7-CJ-fCF" kind="popoverPresentation" identifier="showDatePicker" popoverAnchorBarButtonItem="FyS-z1-72c" id="Cu3-QE-xUP">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
@@ -268,79 +268,100 @@
             </objects>
             <point key="canvasLocation" x="709" y="-630"/>
         </scene>
-        <!--Date Picker View Controller-->
-        <scene sceneID="eVY-Uy-E2W">
+        <!--Navigation Controller-->
+        <scene sceneID="ZwN-g7-xlD">
             <objects>
-                <viewController id="gvG-4J-c3P" customClass="DatePickerViewController" customModule="OnAirLog802" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="TW7-CJ-fCF" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6fd-hl-Oz6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="uLG-LQ-Llu" kind="relationship" relationship="rootViewController" id="vix-vn-S5g"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u1r-Vk-AXo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1434" y="-620"/>
+        </scene>
+        <!--Date Picker View Controller-->
+        <scene sceneID="b9Q-k2-Dgf">
+            <objects>
+                <viewController id="uLG-LQ-Llu" customClass="DatePickerViewController" customModule="OnAirLog802" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Y3j-PO-fZC"/>
-                        <viewControllerLayoutGuide type="bottom" id="nZA-er-uY0"/>
+                        <viewControllerLayoutGuide type="top" id="OZj-CQ-jDy"/>
+                        <viewControllerLayoutGuide type="bottom" id="JHC-CI-Qs5"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ZvJ-eM-sAg">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                    <view key="view" contentMode="scaleToFill" id="I2r-SR-NLv">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="wEH-9f-EwB">
-                                <rect key="frame" x="0.0" y="44" width="600" height="216"/>
-                                <date key="date" timeIntervalSinceReferenceDate="434301839.83403599">
-                                    <!--2014-10-06 15:23:59 +0000-->
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="KfI-se-ldB">
+                                <rect key="frame" x="0.0" y="64" width="600" height="162"/>
+                                <date key="date" timeIntervalSinceReferenceDate="434446810.31851399">
+                                    <!--2014-10-08 07:40:10 +0000-->
+                                </date>
+                                <date key="minimumDate" timeIntervalSinceReferenceDate="289954800">
+                                    <!--2010-03-10 23:00:00 +0000-->
                                 </date>
                             </datePicker>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qHF-YH-gKG">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                <items>
-                                    <navigationItem title="Select date" id="vt8-on-GaN">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="qO7-xe-p9u">
-                                            <connections>
-                                                <action selector="cancelButtonTapped:" destination="gvG-4J-c3P" id="56k-3B-oAV"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="6tZ-qa-sgs"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v4d-3k-n7w">
+                                <rect key="frame" x="0.0" y="64" width="600" height="162"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="l7G-Wl-bAN">
+                                        <rect key="frame" x="290" y="71" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="0.70000000000000007" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="l7G-Wl-bAN" secondAttribute="centerY" constant="1" id="BpF-nZ-yg9"/>
+                                    <constraint firstItem="l7G-Wl-bAN" firstAttribute="centerY" secondItem="v4d-3k-n7w" secondAttribute="centerY" id="DzD-UH-3nl"/>
+                                    <constraint firstItem="l7G-Wl-bAN" firstAttribute="centerX" secondItem="v4d-3k-n7w" secondAttribute="centerX" id="i3T-zT-EGH"/>
+                                    <constraint firstAttribute="centerX" secondItem="l7G-Wl-bAN" secondAttribute="centerX" constant="1" id="j4C-pF-Up9"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="BpF-nZ-yg9"/>
+                                        <exclude reference="j4C-pF-Up9"/>
+                                    </mask>
+                                </variation>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qHF-YH-gKG" firstAttribute="bottom" secondItem="wEH-9f-EwB" secondAttribute="top" id="0Rg-Uw-VdW"/>
-                            <constraint firstItem="qHF-YH-gKG" firstAttribute="leading" secondItem="ZvJ-eM-sAg" secondAttribute="leadingMargin" constant="-16" id="8LY-74-Jlo"/>
-                            <constraint firstItem="qHF-YH-gKG" firstAttribute="top" secondItem="Y3j-PO-fZC" secondAttribute="bottom" id="DHQ-hb-Hze"/>
-                            <constraint firstItem="qHF-YH-gKG" firstAttribute="leading" secondItem="ZvJ-eM-sAg" secondAttribute="leadingMargin" id="EXN-bJ-leq"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="wEH-9f-EwB" secondAttribute="trailing" constant="-16" id="Tlv-md-j2d"/>
-                            <constraint firstItem="nZA-er-uY0" firstAttribute="top" secondItem="wEH-9f-EwB" secondAttribute="bottom" id="ZwV-Iq-an6"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qHF-YH-gKG" secondAttribute="trailing" constant="-16" id="aQH-20-kJ9"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qHF-YH-gKG" secondAttribute="trailing" id="rmT-49-bba"/>
-                            <constraint firstItem="wEH-9f-EwB" firstAttribute="leading" secondItem="ZvJ-eM-sAg" secondAttribute="leadingMargin" constant="-16" id="yxc-aA-0Pu"/>
+                            <constraint firstItem="v4d-3k-n7w" firstAttribute="bottom" secondItem="KfI-se-ldB" secondAttribute="bottom" id="Jut-KD-sJb"/>
+                            <constraint firstItem="v4d-3k-n7w" firstAttribute="height" secondItem="KfI-se-ldB" secondAttribute="height" id="Qq0-4V-y0P"/>
+                            <constraint firstItem="v4d-3k-n7w" firstAttribute="trailing" secondItem="KfI-se-ldB" secondAttribute="trailing" id="UCw-PT-9Kt"/>
+                            <constraint firstItem="KfI-se-ldB" firstAttribute="width" secondItem="I2r-SR-NLv" secondAttribute="width" id="Zrm-FM-RvJ"/>
+                            <constraint firstItem="v4d-3k-n7w" firstAttribute="width" secondItem="KfI-se-ldB" secondAttribute="width" id="anl-jV-x4W"/>
+                            <constraint firstAttribute="centerX" secondItem="KfI-se-ldB" secondAttribute="centerX" id="b9T-hR-0WP"/>
+                            <constraint firstItem="v4d-3k-n7w" firstAttribute="leading" secondItem="KfI-se-ldB" secondAttribute="leading" id="bc9-Cn-AgN"/>
+                            <constraint firstItem="KfI-se-ldB" firstAttribute="top" secondItem="OZj-CQ-jDy" secondAttribute="bottom" id="iSA-0B-E2n"/>
+                            <constraint firstItem="v4d-3k-n7w" firstAttribute="top" secondItem="KfI-se-ldB" secondAttribute="top" id="lYi-jy-qZF"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="EXN-bJ-leq"/>
-                                <exclude reference="rmT-49-bba"/>
-                                <exclude reference="Tlv-md-j2d"/>
-                                <exclude reference="yxc-aA-0Pu"/>
-                                <exclude reference="ZwV-Iq-an6"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=regular">
-                            <mask key="constraints">
-                                <include reference="Tlv-md-j2d"/>
-                                <include reference="yxc-aA-0Pu"/>
-                            </mask>
-                        </variation>
                     </view>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="400"/>
+                    <navigationItem key="navigationItem" id="8Wc-Ek-KJz">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="seE-Di-E2n">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="uLG-LQ-Llu" id="VGw-Qp-acy"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="FiQ-86-RWH">
+                            <connections>
+                                <action selector="doneButtonTapped:" destination="uLG-LQ-Llu" id="qhX-Dv-t96"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="datePicker" destination="wEH-9f-EwB" id="e8k-gA-xoC"/>
-                        <outlet property="navigationBar" destination="qHF-YH-gKG" id="Z32-FL-QCy"/>
+                        <outlet property="cancelButtonItem" destination="seE-Di-E2n" id="xu8-s8-see"/>
+                        <outlet property="datePicker" destination="KfI-se-ldB" id="Ml8-eA-sPx"/>
+                        <outlet property="doneButtonItem" destination="FiQ-86-RWH" id="rQZ-iH-X1I"/>
+                        <outlet property="progressOverlayView" destination="v4d-3k-n7w" id="wYx-ja-1Sr"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mjH-J0-wci" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f4W-Br-ggT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1434" y="-770"/>
+            <point key="canvasLocation" x="2082" y="-620"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">

@@ -30,6 +30,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     self.updateBarButtonItems()
   }
 
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    self.configureView()
+  }
+
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
     if searchResults == nil && song != nil {
@@ -62,7 +67,13 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
 
   func configureView() {
-    if self.song != nil && self.titleLabel != nil {
+    if self.titleLabel == nil { return }
+    let b = self.song == nil
+    self.timeStampLabel.hidden = b
+    self.artistLabel.hidden = b
+    self.titleLabel.hidden = b
+    self.tableView.hidden = b
+    if !b {
       self.timeStampLabel.text = self.song!.dateTimeFormatted()
       self.artistLabel.text = self.song!.artist
       self.titleLabel.text = self.song!.title
@@ -131,7 +142,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     let item = searchResults![indexPath.row]
     let imageURL = NSURL(string: item["artworkUrl100"] as String)
     cell.imageView?.setImageWithURLRequest(NSURLRequest(URL: imageURL),
-      placeholderImage: UIImage(named: "placeholder"),
+      placeholderImage: nil,
       success: { (req: NSURLRequest!, res: NSHTTPURLResponse!, img: UIImage!) -> Void in
         cell.imageView?.image = img
         cell.setNeedsLayout()
@@ -160,6 +171,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
   func productViewControllerDidFinish(viewController: SKStoreProductViewController!) {
     viewController.dismissViewControllerAnimated(true, completion: nil)
   }
-
+  
 }
 

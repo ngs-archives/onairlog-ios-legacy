@@ -59,11 +59,22 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         controller.navigationItem.leftItemsSupplementBackButton = true
       }
     } else if segue.identifier == "showDatePicker" {
-      // TODO: show date picker in half screen
+      let controller = (segue.destinationViewController as UINavigationController).topViewController as DatePickerViewController
+      controller.masterViewController = self
     }
   }
 
   // MARK: - Scroll
+
+  private var isScrolling = false
+
+  override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    self.isScrolling = true
+  }
+
+  override func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    self.isScrolling = false
+  }
 
   override func scrollViewDidScroll(scrollView: UIScrollView) {
     let contentHeight = scrollView.contentSize.height
@@ -71,7 +82,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     let top = scrollView.frame.origin.y
     let scrollTop = scrollView.contentOffset.y
     let diff = contentHeight - scrollTop - top
-    if diff < height && !apiClient.isLoading && self.fetchedResultsController.sections?.count > 0 {
+    if self.shouldAutoLoad() && diff < height && self.fetchedResultsController.sections?.count > 0 {
       let section = self.fetchedResultsController.sections?.last? as NSFetchedResultsSectionInfo
       let song = section.objects.last as Song
       self.load(sinceID: song.songID.integerValue - 1)
@@ -192,8 +203,12 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     self.tableView.endUpdates()
   }
 
+  func shouldAutoLoad() -> Bool {
+    return !self.apiClient.isLoading && isTimeline() && !self.isScrolling
+  }
+
   override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-    if self.apiClient.isLoading || !isTimeline() { return }
+    if !shouldAutoLoad() { return }
     var row = indexPath.row
     var section = indexPath.section
     var sectionCount = self.numberOfSectionsInTableView(tableView)
@@ -215,7 +230,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         sinceID = songID1 - 1
       }
     }
-    if sinceID > 0 {
+    if sinceID > 0  {
       self.load(sinceID: sinceID)
     }
   }
@@ -241,6 +256,20 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         if self.refreshControl != nil {
           self.refreshControl?.endRefreshing()
         }
+    }
+  }
+
+  func scrollToSong(song :Song?) {
+    let indexPath = song == nil ? nil : self.fetchedResultsController.indexPathForObject(song!)
+    if indexPath != nil {
+      self.isScrolling = true
+      // lock loading more for 3.sec
+      let time = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 3))
+      dispatch_after(time, dispatch_get_main_queue(), {
+        self.isScrolling = false
+      })
+      self.tableView.scrollToRowAtIndexPath(indexPath!,
+        atScrollPosition: UITableViewScrollPosition.Top, animated: true)
     }
   }
 
