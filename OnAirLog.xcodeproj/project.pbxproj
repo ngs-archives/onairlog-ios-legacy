@@ -104,26 +104,82 @@
 			remoteGlobalIDString = 85069DD219DE007A004F5C8F;
 			remoteInfo = NowOnAirWidget802;
 		};
-		85B18E6C19E1F0D700FF4D27 /* PBXContainerItemProxy */ = {
+		857E4F4F19E81860008EA69D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 85F5240A19DD871B003105F0 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 85F5241319DD877E003105F0;
 			remoteInfo = OnAirLog813;
 		};
-		85B18E6E19E1F0D800FF4D27 /* PBXContainerItemProxy */ = {
+		857E4F5C19E85DBA008EA69D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 85F5240A19DD871B003105F0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 85F5241319DD877E003105F0;
-			remoteInfo = OnAirLog813;
+			containerPortal = 857E4F5219E85DBA008EA69D /* Nimble.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1F1A74291940169200FFFC47;
+			remoteInfo = "Nimble-iOS";
 		};
-		85F5244B19DD87F5003105F0 /* PBXContainerItemProxy */ = {
+		857E4F5E19E85DBA008EA69D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 85F5240A19DD871B003105F0 /* Project object */;
+			containerPortal = 857E4F5219E85DBA008EA69D /* Nimble.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1F1A74341940169200FFFC47;
+			remoteInfo = "Nimble-iOSTests";
+		};
+		857E4F6019E85DBA008EA69D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 857E4F5219E85DBA008EA69D /* Nimble.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1F925EAD195C0D6300ED456B;
+			remoteInfo = "Nimble-OSX";
+		};
+		857E4F6219E85DBA008EA69D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 857E4F5219E85DBA008EA69D /* Nimble.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1F925EB7195C0D6300ED456B;
+			remoteInfo = "Nimble-OSXTests";
+		};
+		857E4F6819E85DBA008EA69D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 857E4F5519E85DBA008EA69D /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DAEB6B8E1943873100289F44;
+			remoteInfo = Quick;
+		};
+		857E4F6A19E85DBA008EA69D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 857E4F5519E85DBA008EA69D /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DAEB6B991943873100289F44;
+			remoteInfo = QuickTests;
+		};
+		857E4F6C19E85DBA008EA69D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 857E4F5519E85DBA008EA69D /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5A5D117C19473F2100F6D13D;
+			remoteInfo = "Quick-iOS";
+		};
+		857E4F6E19E85DBA008EA69D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 857E4F5519E85DBA008EA69D /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5A5D118619473F2100F6D13D;
+			remoteInfo = "Quick-iOSTests";
+		};
+		857E4F7019E85DD2008EA69D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 857E4F5219E85DBA008EA69D /* Nimble.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 85F5241319DD877E003105F0;
-			remoteInfo = OnAirLog813;
+			remoteGlobalIDString = 1F1A74281940169200FFFC47;
+			remoteInfo = "Nimble-iOS";
+		};
+		857E4F7219E85DD2008EA69D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 857E4F5519E85DBA008EA69D /* Quick.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5A5D117B19473F2100F6D13D;
+			remoteInfo = "Quick-iOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -148,16 +204,6 @@
 				85069DDE19DE007A004F5C8F /* NowOnAirWidget802.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		85BC707D19DF908B00653771 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -191,6 +237,8 @@
 		854E7C5319E51F1C00E57AFA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8556746519E4CE5B00BE400E /* ShortenURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortenURL.h; sourceTree = "<group>"; };
 		8556746619E4CE5B00BE400E /* ShortenURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortenURL.m; sourceTree = "<group>"; };
+		857E4F5219E85DBA008EA69D /* Nimble.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Nimble.xcodeproj; path = Vendor/Nimble/Nimble.xcodeproj; sourceTree = "<group>"; };
+		857E4F5519E85DBA008EA69D /* Quick.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Quick.xcodeproj; path = Vendor/Quick/Quick/Quick.xcodeproj; sourceTree = "<group>"; };
 		85B18E6419E1BDF600FF4D27 /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
 		85B18E6519E1BDF600FF4D27 /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
 		85B18E6A19E1EBCD00FF4D27 /* SpecHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecHelper.swift; sourceTree = "<group>"; };
@@ -362,6 +410,28 @@
 			path = OnAirLog;
 			sourceTree = "<group>";
 		};
+		857E4F5319E85DBA008EA69D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				857E4F5D19E85DBA008EA69D /* Nimble.framework */,
+				857E4F5F19E85DBA008EA69D /* NimbleTests.xctest */,
+				857E4F6119E85DBA008EA69D /* Nimble.framework */,
+				857E4F6319E85DBA008EA69D /* Nimble-OSXTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		857E4F5619E85DBA008EA69D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				857E4F6919E85DBA008EA69D /* Quick.framework */,
+				857E4F6B19E85DBA008EA69D /* QuickTests.xctest */,
+				857E4F6D19E85DBA008EA69D /* Quick.framework */,
+				857E4F6F19E85DBA008EA69D /* Quick-iOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		85B18E7019E1F18400FF4D27 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,6 +470,8 @@
 				85069DE919DE00C7004F5C8F /* NowOnAirWidget */,
 				85BC706F19DF908A00653771 /* OnAirLogTests */,
 				85F5241519DD877E003105F0 /* Products */,
+				857E4F5219E85DBA008EA69D /* Nimble.xcodeproj */,
+				857E4F5519E85DBA008EA69D /* Quick.xcodeproj */,
 				B3FDE7ECF51D472EA0A843F7 /* Frameworks */,
 				C9397576B91BB395C9D2322D /* Pods */,
 			);
@@ -487,7 +559,6 @@
 				85F5241219DD877E003105F0 /* Resources */,
 				9E9D9AAD0D6649FCABEEC839 /* Copy Pods Resources */,
 				85069DC819DE006A004F5C8F /* Embed App Extensions */,
-				85BC707D19DF908B00653771 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -504,6 +575,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 85F5244D19DD87F5003105F0 /* Build configuration list for PBXNativeTarget "OnAirLogTests" */;
 			buildPhases = (
+				857E4F7419E86061008EA69D /* ShellScript */,
 				85F5244119DD87F5003105F0 /* Sources */,
 				85F5244219DD87F5003105F0 /* Frameworks */,
 				85F5244319DD87F5003105F0 /* Resources */,
@@ -511,9 +583,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				85F5244C19DD87F5003105F0 /* PBXTargetDependency */,
-				85B18E6D19E1F0D700FF4D27 /* PBXTargetDependency */,
-				85B18E6F19E1F0D800FF4D27 /* PBXTargetDependency */,
+				857E4F7119E85DD2008EA69D /* PBXTargetDependency */,
+				857E4F7319E85DD2008EA69D /* PBXTargetDependency */,
+				857E4F5019E81860008EA69D /* PBXTargetDependency */,
 			);
 			name = OnAirLogTests;
 			productName = OnAirLogTests;
@@ -617,6 +689,16 @@
 			mainGroup = 85F5240919DD871B003105F0;
 			productRefGroup = 85F5241519DD877E003105F0 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 857E4F5319E85DBA008EA69D /* Products */;
+					ProjectRef = 857E4F5219E85DBA008EA69D /* Nimble.xcodeproj */;
+				},
+				{
+					ProductGroup = 857E4F5619E85DBA008EA69D /* Products */;
+					ProjectRef = 857E4F5519E85DBA008EA69D /* Quick.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				85F5241319DD877E003105F0 /* OnAirLog813 */,
@@ -627,6 +709,65 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		857E4F5D19E85DBA008EA69D /* Nimble.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Nimble.framework;
+			remoteRef = 857E4F5C19E85DBA008EA69D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		857E4F5F19E85DBA008EA69D /* NimbleTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NimbleTests.xctest;
+			remoteRef = 857E4F5E19E85DBA008EA69D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		857E4F6119E85DBA008EA69D /* Nimble.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Nimble.framework;
+			remoteRef = 857E4F6019E85DBA008EA69D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		857E4F6319E85DBA008EA69D /* Nimble-OSXTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Nimble-OSXTests.xctest";
+			remoteRef = 857E4F6219E85DBA008EA69D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		857E4F6919E85DBA008EA69D /* Quick.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Quick.framework;
+			remoteRef = 857E4F6819E85DBA008EA69D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		857E4F6B19E85DBA008EA69D /* QuickTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = QuickTests.xctest;
+			remoteRef = 857E4F6A19E85DBA008EA69D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		857E4F6D19E85DBA008EA69D /* Quick.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Quick.framework;
+			remoteRef = 857E4F6C19E85DBA008EA69D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		857E4F6F19E85DBA008EA69D /* Quick-iOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Quick-iOSTests.xctest";
+			remoteRef = 857E4F6E19E85DBA008EA69D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		85069DBA19DE006A004F5C8F /* Resources */ = {
@@ -692,6 +833,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		857E4F7419E86061008EA69D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"$RUN_UNIT_TEST_WITH_IOS_SIM\" = \"YES\" ]; then\ntest_bundle_path=\"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.$WRAPPER_EXTENSION\"\necho \"$(dirname \"$TEST_HOST\")\" > test.txt\nios-sim launch \"$(dirname \"$TEST_HOST\")\" --setenv DYLD_INSERT_LIBRARIES=/../../Library/PrivateFrameworks/IDEBundleInjection.framework/IDEBundleInjection --setenv XCInjectBundle=\"$test_bundle_path\" --setenv XCInjectBundleInto=\"$TEST_HOST\" --args -SenTest All \"$test_bundle_path\"\necho \"Finished running tests with ios-sim\"\nelse\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\nfi";
 		};
 		9E9D9AAD0D6649FCABEEC839 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -814,20 +968,20 @@
 			target = 85069DD219DE007A004F5C8F /* NowOnAirWidget802 */;
 			targetProxy = 85069DDF19DE007A004F5C8F /* PBXContainerItemProxy */;
 		};
-		85B18E6D19E1F0D700FF4D27 /* PBXTargetDependency */ = {
+		857E4F5019E81860008EA69D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 85F5241319DD877E003105F0 /* OnAirLog813 */;
-			targetProxy = 85B18E6C19E1F0D700FF4D27 /* PBXContainerItemProxy */;
+			targetProxy = 857E4F4F19E81860008EA69D /* PBXContainerItemProxy */;
 		};
-		85B18E6F19E1F0D800FF4D27 /* PBXTargetDependency */ = {
+		857E4F7119E85DD2008EA69D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 85F5241319DD877E003105F0 /* OnAirLog813 */;
-			targetProxy = 85B18E6E19E1F0D800FF4D27 /* PBXContainerItemProxy */;
+			name = "Nimble-iOS";
+			targetProxy = 857E4F7019E85DD2008EA69D /* PBXContainerItemProxy */;
 		};
-		85F5244C19DD87F5003105F0 /* PBXTargetDependency */ = {
+		857E4F7319E85DD2008EA69D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 85F5241319DD877E003105F0 /* OnAirLog813 */;
-			targetProxy = 85F5244B19DD87F5003105F0 /* PBXContainerItemProxy */;
+			name = "Quick-iOS";
+			targetProxy = 857E4F7219E85DD2008EA69D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -872,8 +1026,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = NowOnAirWidget813.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Atsushi Nagase (3W9WBJZU24)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -909,6 +1062,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "NowOnAirWidget/NowOnAirWidget-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -931,8 +1085,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = NowOnAirWidget813.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LittleApps Inc. (3Y8APYUG2G)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -960,6 +1113,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "NowOnAirWidget/NowOnAirWidget-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -983,8 +1137,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = NowOnAirWidget802.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Atsushi Nagase (3W9WBJZU24)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1020,6 +1173,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "NowOnAirWidget/NowOnAirWidget-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1042,8 +1196,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = NowOnAirWidget802.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LittleApps Inc. (3Y8APYUG2G)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1071,6 +1224,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "NowOnAirWidget/NowOnAirWidget-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1108,8 +1262,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = OnAirLog813.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Atsushi Nagase (3W9WBJZU24)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1160,8 +1313,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = OnAirLog813.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LittleApps Inc. (3Y8APYUG2G)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1210,8 +1362,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(PROJECT_DIR)/Vendor/Nimble/build/Debug-iphoneos",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/OnAirLog-dqlhujtpoqrgmyfatlndydkwokyj/Build/Products/Debug",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(BUILT_PRODUCTS_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1276,8 +1428,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(PROJECT_DIR)/Vendor/Nimble/build/Debug-iphoneos",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/OnAirLog-dqlhujtpoqrgmyfatlndydkwokyj/Build/Products/Debug",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(BUILT_PRODUCTS_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1328,8 +1480,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = OnAirLog802.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Atsushi Nagase (3W9WBJZU24)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1384,8 +1535,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = OnAirLog802.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LittleApps Inc. (3Y8APYUG2G)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
