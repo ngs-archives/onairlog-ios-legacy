@@ -36,10 +36,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
+    self.load()
     var error: NSError?
     self.fetchedResultsController.performFetch(&error)
     self.tableView.reloadData()
-    self.load()
   }
 
   // MARK: - Segues
@@ -204,7 +204,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
   }
 
   func shouldAutoLoad() -> Bool {
-    return !self.apiClient.isLoading && isTimeline() && !self.isScrolling
+    return !self.apiClient.isLoading && isTimeline() && !self.isScrolling && self.isViewLoaded() && self.view.window != nil
   }
 
   override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
