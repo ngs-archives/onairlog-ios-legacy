@@ -7,13 +7,11 @@ env:
   global:
     - LANG=en_US.UTF-8
     - LC_ALL=en_US.UTF-8
-    - RUN_UNIT_TEST_WITH_IOS_SIM=YES
   matrix:
     - APP_TYPE=813
     - APP_TYPE=802
 before_install:
   - brew update
-  - brew install ios-sim
   - if brew outdated | grep -qx xctool; then brew upgrade xctool; fi
 script:
   - bundle exec rake test

@@ -56,7 +56,7 @@ namespace :env do
 end
 
 task :test do
-  system "xctool -scheme OnAirLogTests -workspace #{WORKSPACE} -sdk iphonesimulator -configuration Debug clean test -freshSimulator -freshInstall ONLY_ACTIVE_ARCH=NO"
+  system "xctool -scheme OnAirLogTests -workspace #{WORKSPACE} -sdk iphonesimulator -configuration Debug build test"
 end
 
 

@@ -1,5 +1,5 @@
 //
-//  SpecHelper.swift
+//  TestHelper.swift
 //  OnAirLog
 //
 //  Created by Atsushi Nagase on 10/6/14.
@@ -9,7 +9,7 @@
 import Foundation
 
 func testBundle() -> NSBundle {
-  return NSBundle(forClass: SongSpec.self)
+  return NSBundle(forClass: SongTests.self)
 }
 
 func fixturePath(name: String) -> String? {
