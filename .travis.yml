@@ -14,8 +14,9 @@ install:
   - bundle exec rake setup
 script:
   - bundle exec rake test
-after_success:
   - bundle exec rake distribute
+after_script:
+  - bundle exec rake clean
 notifications:
   on_success: always
   on_failure: always
