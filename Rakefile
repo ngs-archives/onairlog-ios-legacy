@@ -142,7 +142,14 @@ namespace :profiles do
       cupertino 'profiles:download:all', type: :distribution
     end
   end
-  desc 'Cleans mobileprovision files'
+  desc 'Install mobileprovision files'
+  task :install => :dotenv do
+    cmd = CommandBuilder.new :'/bin/sh'
+    cmd << File.expand_path('install-mobileprovisioning.sh', 'Scripts')
+    cmd.system!
+  end
+
+  desc 'Clean mobileprovision files'
   task :clean => :dotenv do
     rmtree PROFILES_PATH
   end
