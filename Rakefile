@@ -29,7 +29,12 @@ def provisioning_profile
 end
 
 def run_cupertino command
-  system %Q{bundle exec ios #{command} -u #{ENV['APPLE_USER']} -p #{ENV['APPLE_PASSWORD']}}
+  system_exit_on_fail %Q{bundle exec ios #{command} -u #{ENV['APPLE_USER']} -p #{ENV['APPLE_PASSWORD']}}
+end
+
+def system_exit_on_fail cmd
+  system cmd
+  exit $?.exitstatus if $?.exitstatus > 0
 end
 
 namespace :pod do
@@ -56,28 +61,28 @@ namespace :env do
 end
 
 task :test do
-  system "xctool -scheme OnAirLogTests -workspace #{WORKSPACE} -sdk iphonesimulator -configuration Debug build test"
+  system_exit_on_fail "xctool -scheme OnAirLogTests -workspace #{WORKSPACE} -sdk iphonesimulator -configuration Debug build test"
 end
 
 
 namespace :ipa do
   desc 'Build .ipa file'
   task :build => :dotenv do
-    system %Q{bundle exec ipa --verbose -t build -w #{WORKSPACE} -c Release -s #{scheme} --sdk iphoneos -d #{BUILD_DIR} -m #{provisioning_profile}}
+    system_exit_on_fail %Q{bundle exec ipa --verbose -t build -w #{WORKSPACE} -c Release -s #{scheme} --sdk iphoneos -d #{BUILD_DIR} -m #{provisioning_profile}}
   end
 end
 
 namespace :profiles do
   desc 'Download all mobileprovision files'
   task :download => :dotenv do
-    system %Q{rm -rf #{PROFILES_PATH} && mkdir -p #{PROFILES_PATH}}
+    system_exit_on_fail %Q{rm -rf #{PROFILES_PATH} && mkdir -p #{PROFILES_PATH}}
     Dir.chdir(PROFILES_PATH) do
       run_cupertino "profiles:download:all --type distribution"
     end
   end
   desc 'Cleans mobileprovision files'
   task :clean do
-    system %Q{rm -f #{PROFILES_PATH}/*.mobileprovision}
+    system_exit_on_fail %Q{rm -f #{PROFILES_PATH}/*.mobileprovision}
   end
 end
 
@@ -86,7 +91,7 @@ namespace :certificate do
     "#{ENV['S3_CERTIFICATE_BUCKET']}:"
   end
   def sync src, dest
-    system %Q{bundle exec s3sync sync #{src} #{dest}}
+    system_exit_on_fail %Q{bundle exec s3sync sync #{src} #{dest}}
   end
   desc 'Download certificates from S3'
   task :download => :dotenv do
