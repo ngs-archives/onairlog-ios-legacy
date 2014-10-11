@@ -1,8 +1,4 @@
 language: objective-c
-install:
-  - bundle install --path=vendor/bundle --binstubs=vendor/bin
-  - bundle exec rake setup
-  - bundle exec rake certificate:add
 env:
   global:
     - LANG=en_US.UTF-8
@@ -13,11 +9,12 @@ env:
 before_install:
   - brew update
   - if brew outdated | grep -qx xctool; then brew upgrade xctool; fi
+install:
+  - /bin/sh Scripts/travis-install.sh
 script:
   - bundle exec rake test
 after_success:
-  - bundle exec rake ipa:build
-  - bundle exec rake ipa:distribute:s3
+  - /bin/sh Scripts/travis-after_success.sh
 notifications:
   on_success: always
   on_failure: always
