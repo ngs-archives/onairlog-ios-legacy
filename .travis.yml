@@ -10,11 +10,12 @@ before_install:
   - brew update
   - if brew outdated | grep -qx xctool; then brew upgrade xctool; fi
 install:
-  - /bin/sh Scripts/travis-install.sh
+  - bundle install --path=vendor/bundle --binstubs=vendor/bin
+  - bundle exec rake setup
 script:
   - bundle exec rake test
 after_success:
-  - /bin/sh Scripts/travis-after_success.sh
+  - bundle exec rake distribute
 notifications:
   on_success: always
   on_failure: always

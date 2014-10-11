@@ -11,6 +11,7 @@ CERTIFICATES_PATH = File.expand_path 'Certificates'
 PROFILES_PATH = File.expand_path 'MobileProvisionings'
 BUILD_DIR = File.expand_path 'build'
 KEYCHAIN_NAME = 'ios-build.keychain'
+KEYCHAIN_PASSWORD = (0...20).map { ('a'..'z').to_a[rand(26)] }.join
 
 class CommandBuilder
   def system!
@@ -19,14 +20,101 @@ class CommandBuilder
   end
 end
 
+module InfoPlist
+  extend self
+
+  def file
+    File.expand_path "OnAirLogApp/#{app_type}/Info.plist"
+  end
+
+  def [](key)
+    output = %x[/usr/libexec/PlistBuddy -c "Print #{key}" #{file}].strip
+    raise "The key `#{key}' does not exist in `#{file}'." if output.include?('Does Not Exist')
+    output
+  end
+
+  def set(key, value, file = "#{file}")
+    %x[/usr/libexec/PlistBuddy -c 'Set :#{key} "#{value}"' '#{file}'].strip
+  end
+  def []=(key, value)
+    set(key, value)
+  end
+
+  def build_version
+    self['CFBundleVersion']
+  end
+  def build_version=(revision)
+    self['CFBundleVersion'] = revision
+  end
+
+  def marketing_version
+    self['CFBundleShortVersionString']
+  end
+  def marketing_version=(version)
+    self['CFBundleShortVersionString'] = version
+  end
+
+  def marketing_and_build_version
+    "#{marketing_version} (#{build_version})"
+  end
+
+  def bump_minor_version
+    segments = Gem::Version.new(marketing_version).segments
+    segments[1] = "%02d" % (segments[1].to_i + 1)
+    version = segments.join('.')
+    self.marketing_version = version
+    segments[1]
+  end
+
+  def bump_major_version
+    segments = Gem::Version.new(marketing_version).segments
+    segments[0] = segments[0].to_i + 1
+    segments[1] = "00"
+    version = segments.join('.')
+    self.marketing_version = version
+    segments[0]
+  end
+
+  def bump_release_version
+    if bump_minor_version.to_i.odd?
+      bump_minor_version
+    end
+  end
+
+  def update_build_number
+    n = ENV['TRAVIS_JOB_ID'] || %x{git rev-parse --short HEAD}.strip
+    self.build_version = n
+  end
+
+  def commit
+    system("git commit #{file} -m 'Bump to #{marketing_and_build_version}'")
+  end
+end
+
+def repo_slug
+  ENV['TRAVIS_REPO_SLUG'] || %x{git config remote.origin.url}.strip.match(%r{([^\/:]+/.+)\.git$})[1]
+end
+
+def repo_url
+  "https://github.com/#{repo_slug}"
+end
+
+def branch_url
+  "#{repo_url}/commit/#{branch_name}"
+end
+
+def pull_request_url
+  pr_number ? "#{repo_url}/pull/#{pr_number}" : nil
+end
+
 def app_type
   ENV['APP_TYPE'] || '813'
 end
 
 def bundle_exec command, args = {}
-  cmd = CommandBuilder.new :bundle
-  command = command.to_s.split ' ' unless command.is_a? Array
+  cmd = CommandBuilder.new :bundle, ['-', ' ', '--', ' ']
   cmd << 'exec'
+  command = command.to_s.split ' ' unless command.is_a? Array
   command.each{|c| cmd << c.to_s }
   args.each {|k, v| cmd[k.to_sym] = v }
   cmd
@@ -36,8 +124,32 @@ def scheme
   "#{APP_NAME}#{app_type}"
 end
 
+def branch_name
+  ENV['TRAVIS_BRANCH'] || %x{git rev-parse --abbrev-ref HEAD}.strip
+end
+
+def commit_hash
+  ENV['TRAVIS_COMMIT'] || %x{git rev-parse HEAD}.strip
+end
+
+def ipa_file
+  File.join BUILD_DIR, "#{scheme}.ipa"
+end
+
+def dsym_archive
+  File.join BUILD_DIR, "#{scheme}.app.dSYM.zip"
+end
+
 def production?
-  false
+  (ENV['TRAVIS_TAG'] || '').match(/^v\d+\.\d+\.\d+$/) || ENV['DISTRIBUTE_ITUNES_CONNECT']
+end
+
+def pr_number
+  ENV["TRAVIS_PULL_REQUEST"]
+end
+
+def pull_request?
+  !(pr_number || '').match(/^\d+$/).nil?
 end
 
 def provisioning_profile
@@ -60,12 +172,13 @@ def shenzhen command, args = {}
   cmd.system!
 end
 
-def security command, args = {}
+def security command, args = {}, keychain_name = nil
   cmd = CommandBuilder.new :security
   command = command.to_s.split ' ' unless command.is_a? Array
   command.each {|c| cmd << c.to_s }
   args.each {|k, v| cmd[k.to_sym] = v }
-  cmd
+  cmd << keychain_name.to_s unless keychain_name.nil?
+  cmd.system!
 end
 
 def xctool command, args = {}
@@ -79,14 +192,76 @@ def xctool command, args = {}
   }.merge args
   args.each {|k, v| cmd[k.to_sym] = v }
   command.each {|c| cmd << c.to_s }
-  cmd
+  cmd.system!
+end
+
+def release_notes
+  release_date = DateTime.now.strftime("%Y/%m/%d %H:%M:%S")
+  build_version = InfoPlist.marketing_and_build_version
+  res = <<RELEASENOTE
+Build: #{build_version}
+Uploaded: #{release_date}
+Branch: #{branch_url}
+
+RELEASENOTE
+
+  if pull_request?
+    res << "Pull Request: #{pull_request_url}\n"
+    res << %x[git log --date=short --pretty=format:"* %h - %s (%cd) <%an>" --no-merges #{branch_name}..]
+  elsif branch_name == "master"
+    res << %x[git log --date=short --pretty=format:"* %h - %s (%cd) <%an>" --no-merges $(git describe --abbrev=0 --tags)..]
+  else
+    res << %x[git log --date=short --pretty=format:"* %h - %s (%cd) <%an>" --no-merges]
+  end
+
+  res
+end
+
+desc 'Print release notes'
+task :releasenotes do
+  puts release_notes
+end
+
+namespace :version do
+  desc 'Print current version'
+  task :current do
+    puts InfoPlist.marketing_and_build_version
+  end
+
+  namespace :update do
+    desc 'Update build number'
+    task :build do
+      InfoPlist.update_build_number
+    end
+  end
+
+  namespace :bump do
+    desc 'Bump minor version (0.XX)'
+    task :minor => :'version:update:build' do
+      InfoPlist.bump_minor_version
+      InfoPlist.commit
+    end
+
+    desc 'Bump major version (X.00)'
+    task :major => :'version:update:build' do
+      InfoPlist.bump_major_version
+      InfoPlist.commit
+    end
+
+    desc 'Bump release version (0.XY)'
+    task :release => :'version:update:build' do
+      InfoPlist.bump_release_version
+      InfoPlist.commit
+    end
+  end
+
 end
 
 namespace :pod do
   desc 'Install CocoaPods libraries'
   task :install => :dotenv do
     require 'cocoapods'
-    Pod::Command.run %w{install}
+    Pod::Command.run %w{install --no-integrate}
   end
 end
 
@@ -105,10 +280,17 @@ namespace :env do
   end
 end
 
-task :test do
-  xctool 'build test'
+desc 'Run tests'
+task :test => :'test:build' do
+  xctool :test
 end
 
+namespace :test do
+  desc 'Build tests'
+  task :build => :'env:export' do
+    xctool :build
+  end
+end
 
 namespace :ipa do
   desc 'Build .ipa file'
@@ -124,11 +306,38 @@ namespace :ipa do
   end
   namespace :distribute do
     desc 'Publish .ipa file to Amazon S3'
-    task :s3 do
+    task :s3 => :dotenv do
       shenzhen 'distribute:s3', {
-        file: File.join(BUILD_DIR, "#{scheme}.ipa"),
-        dsym: File.join(BUILD_DIR, "#{scheme}.dsym.zip"),
-        acl: 'private'
+        file: ipa_file,
+        dsym: dsym_archive,
+        bucket: ENV['S3_IPA_BUCKET'],
+        path: "#{scheme}/{CFBundleShortVersionString}/{CFBundleVersion}",
+        'source-dir' => BUILD_DIR,
+      }
+    end
+    desc 'Publish .ipa file to TestFlight'
+    task :testflight => :dotenv do
+      shenzhen 'distribute:testflight', {
+        file: ipa_file,
+        dsym: dsym_archive,
+        api_token: ENV['TESTFLIGHT_API_TOKEN'],
+        team_token: ENV['TESTFLIGHT_TEAM_TOKEN'],
+        notify: nil,
+        replace: nil,
+        lists: pull_request? ? 'OnAirLog-Dev' : 'OnAirLog-Testers',
+        notes: release_notes
+      }
+    end
+    desc 'Publish .ipa file to iTunes Connect'
+    task :itunesconnect => :dotenv do
+      shenzhen 'distribute:itunesconnect', {
+        file: ipa_file,
+        account: ENV['APPLE_USER'],
+        password: ENV['APPLE_PASSWORD'],
+        upload: nil,
+        warnings: nil,
+        errors: nil,
+        verbose: nil
       }
     end
   end
@@ -148,7 +357,6 @@ namespace :profiles do
     cmd << File.expand_path('install-mobileprovisioning.sh', 'Scripts')
     cmd.system!
   end
-
   desc 'Clean mobileprovision files'
   task :clean => :dotenv do
     rmtree PROFILES_PATH
@@ -176,21 +384,22 @@ namespace :certificate do
       security ['import', "#{CERTIFICATES_PATH}/#{name}"], {
         k: KEYCHAIN_NAME,
         T: '/usr/bin/codesign'
-      }.merge(args).system!
+      }.merge(args)
     end
-    cmd = security 'create-keychain', p: 'travis'
-    cmd << KEYCHAIN_NAME
-    cmd.system!
+    security 'create-keychain', { p: KEYCHAIN_PASSWORD }, KEYCHAIN_NAME
     import 'apple.cer'
     import 'ios_distribution.cer'
     import 'ios_distribution.p12', P: ENV['CERTIFICATE_PASSPHRASE']
-    security('default-keychain', s: KEYCHAIN_NAME).system!
+    security 'default-keychain', s: KEYCHAIN_NAME
+    security 'unlock-keychain', { p: KEYCHAIN_PASSWORD }, KEYCHAIN_NAME
   end
   desc 'Remove certificates'
   task :remove => :dotenv do
-    security(['delete-keychain', KEYCHAIN_NAME]).system!
+    security 'delete-keychain', {}, KEYCHAIN_NAME
   end
 end
 
-task :setup => ['pod:install', 'env:export', 'certificate:download']
-
+task :setup => [:'pod:install', :'env:export', :'certificate:download', :'version:update:build', :'certificate:add', :'profiles:download', :'profiles:install']
+task :distribute => [:'ipa:build', :'ipa:distribute:s3', production? ? :'ipa:distribute:itunesconnect' : :'ipa:distribute:testflight']
+desc 'Print current version'
+task :version => 'version:current'
