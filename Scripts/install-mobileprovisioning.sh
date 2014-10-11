@@ -1,9 +1,11 @@
 #!/bin/sh
 set -eu
+BASE=~/Library/MobileDevice/Provisioning\ Profiles
+mkdir -p "$BASE"
 for file in MobileProvisionings/*.*provision*; do
   uuid=`grep UUID -A1 -a "$file" | grep -io "[-A-Z0-9]\{36\}"`
   extension="${file##*.}"
   echo "$file -> $uuid"
-  cp "$file" $HOME/Library/MobileDevice/Provisioning\ Profiles/"$uuid.$extension"
+  cp -f "$file" "$BASE/$uuid.$extension"
 done
-
+ls -lsa "$BASE"
