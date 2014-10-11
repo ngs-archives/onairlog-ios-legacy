@@ -1,8 +1,9 @@
-require "rubygems/version"
-require "rake/clean"
-require "date"
+require 'rubygems/version'
+require 'rake/clean'
+require 'date'
 require 'dotenv/tasks'
 require 'command-builder'
+require 'base64'
 
 APP_NAME = "OnAirLog"
 SDK = "iphoneos"
@@ -11,7 +12,9 @@ CERTIFICATES_PATH = File.expand_path 'Certificates'
 PROFILES_PATH = File.expand_path 'MobileProvisionings'
 BUILD_DIR = File.expand_path 'build'
 KEYCHAIN_NAME = 'ios-build.keychain'
-KEYCHAIN_PASSWORD = (0...20).map { ('a'..'z').to_a[rand(26)] }.join
+
+CLEAN.include BUILD_DIR, PROFILES_PATH, CERTIFICATES_PATH, 'OnAirLog/Environment.swift'
+CLOBBER.include BUILD_DIR, PROFILES_PATH, CERTIFICATES_PATH, 'OnAirLog/Environment.swift'
 
 class CommandBuilder
   def system!
@@ -20,11 +23,11 @@ class CommandBuilder
   end
 end
 
-module InfoPlist
-  extend self
+class InfoPlist
+  attr_accessor :file
 
-  def file
-    File.expand_path "OnAirLogApp/#{app_type}/Info.plist"
+  def initialize file
+    @file = file
   end
 
   def [](key)
@@ -86,8 +89,8 @@ module InfoPlist
     self.build_version = n
   end
 
-  def commit
-    system("git commit #{file} -m 'Bump to #{marketing_and_build_version}'")
+  def self.commit
+    system("git commit #{mainInfoPlist.file} #{widgetInfoPlist} -m 'Bump to #{marketing_and_build_version}'")
   end
 end
 
@@ -156,17 +159,23 @@ def provisioning_profile
   "#{PROFILES_PATH}/#{scheme}#{production? ? 'Distribution' : 'AdHoc'}"
 end
 
+def apple_password
+  Base64.decode64(ENV['APPLE_PASSWORD']).strip
+end
+
 def cupertino command, args = {}
   bundle_exec([:ios, command], args.merge(
     username: ENV['APPLE_USER'],
-    password: ENV['APPLE_PASSWORD']
+    password: apple_password
   )).system!
 end
 
 def shenzhen command, args = {}
   cmd = bundle_exec :ipa
-  cmd << :trace
-  cmd << :verbose
+  if ENV['VERBOSE']
+    cmd << :trace
+    cmd << :verbose
+  end
   cmd << command.to_s
   args.each {|k, v| cmd[k.to_sym] = v }
   cmd.system!
@@ -197,7 +206,7 @@ end
 
 def release_notes
   release_date = DateTime.now.strftime("%Y/%m/%d %H:%M:%S")
-  build_version = InfoPlist.marketing_and_build_version
+  build_version = mainInfoPlist.marketing_and_build_version
   res = <<RELEASENOTE
 Build: #{build_version}
 Uploaded: #{release_date}
@@ -217,6 +226,14 @@ RELEASENOTE
   res
 end
 
+def mainInfoPlist
+  @mainInfoPlist ||= InfoPlist.new File.expand_path "OnAirLogApp/#{app_type}/Info.plist"
+end
+
+def widgetInfoPlist
+  @widgetInfoPlist ||= InfoPlist.new File.expand_path "NowOnAirWidget/#{app_type}/Info.plist"
+end
+
 desc 'Print release notes'
 task :releasenotes do
   puts release_notes
@@ -225,32 +242,36 @@ end
 namespace :version do
   desc 'Print current version'
   task :current do
-    puts InfoPlist.marketing_and_build_version
+    puts mainInfoPlist.marketing_and_build_version
   end
 
   namespace :update do
     desc 'Update build number'
     task :build do
-      InfoPlist.update_build_number
+      mainInfoPlist.update_build_number
+      widgetInfoPlist.update_build_number
     end
   end
 
   namespace :bump do
     desc 'Bump minor version (0.XX)'
     task :minor => :'version:update:build' do
-      InfoPlist.bump_minor_version
+      mainInfoPlist.bump_minor_version
+      widgetInfoPlist.bump_minor_version
       InfoPlist.commit
     end
 
     desc 'Bump major version (X.00)'
     task :major => :'version:update:build' do
-      InfoPlist.bump_major_version
+      mainInfoPlist.bump_major_version
+      widgetInfoPlist.bump_major_version
       InfoPlist.commit
     end
 
     desc 'Bump release version (0.XY)'
     task :release => :'version:update:build' do
-      InfoPlist.bump_release_version
+      mainInfoPlist.bump_release_version
+      widgetInfoPlist.bump_release_version
       InfoPlist.commit
     end
   end
@@ -333,11 +354,10 @@ namespace :ipa do
       shenzhen 'distribute:itunesconnect', {
         file: ipa_file,
         account: ENV['APPLE_USER'],
-        password: ENV['APPLE_PASSWORD'],
+        password: apple_password,
         upload: nil,
         warnings: nil,
         errors: nil,
-        verbose: nil
       }
     end
   end
@@ -353,8 +373,9 @@ namespace :profiles do
   end
   desc 'Install mobileprovision files'
   task :install => :dotenv do
+    ENV['PROVISIONING_SUFFIX'] = app_type + ( production? ? 'Distribution' : 'AdHoc' )
     cmd = CommandBuilder.new :'/bin/sh'
-    cmd << File.expand_path('install-mobileprovisioning.sh', 'Scripts')
+    cmd << File.expand_path('Scripts/install-mobileprovisioning.sh')
     cmd.system!
   end
   desc 'Clean mobileprovision files'
@@ -380,18 +401,21 @@ namespace :certificate do
   end
   desc 'Add certificates'
   task :add => :download do
-    def import name, args = {}
-      security ['import', "#{CERTIFICATES_PATH}/#{name}"], {
+    def import_file file, args = {}
+      security ['import', file], {
         k: KEYCHAIN_NAME,
+        A: nil,
         T: '/usr/bin/codesign'
       }.merge(args)
     end
-    security 'create-keychain', { p: KEYCHAIN_PASSWORD }, KEYCHAIN_NAME
-    import 'apple.cer'
-    import 'ios_distribution.cer'
-    import 'ios_distribution.p12', P: ENV['CERTIFICATE_PASSPHRASE']
+    keychains = %x{security list-keychains}.gsub(/[\n"]/, "").strip.split(/[\s]+/)
+    unless keychains.include? File.expand_path("~/Library/Keychains/#{KEYCHAIN_NAME}")
+      security 'create-keychain', { p: ENV['KEYCHAIN_PASSWORD'] }, KEYCHAIN_NAME
+    end
+    Dir.glob("#{CERTIFICATES_PATH}/*.cer"){|c| import_file c }
+    Dir.glob("#{CERTIFICATES_PATH}/*.p12"){|c| import_file c, P: ENV['CERTIFICATE_PASSPHRASE'] }
     security 'default-keychain', s: KEYCHAIN_NAME
-    security 'unlock-keychain', { p: KEYCHAIN_PASSWORD }, KEYCHAIN_NAME
+    security 'unlock-keychain', { p: ENV['KEYCHAIN_PASSWORD'] }, KEYCHAIN_NAME
   end
   desc 'Remove certificates'
   task :remove => :dotenv do
@@ -399,7 +423,7 @@ namespace :certificate do
   end
 end
 
-task :setup => [:'pod:install', :'env:export', :'certificate:download', :'version:update:build', :'certificate:add', :'profiles:download', :'profiles:install']
+task :setup => [:'version:update:build', :'env:export', :'certificate:download', :'certificate:add', :'profiles:download', :'profiles:install', :'pod:install']
 task :distribute => [:'ipa:build', :'ipa:distribute:s3', production? ? :'ipa:distribute:itunesconnect' : :'ipa:distribute:testflight']
 desc 'Print current version'
 task :version => 'version:current'
