@@ -2,7 +2,7 @@ require "rubygems/version"
 require "rake/clean"
 require "date"
 require 'dotenv/tasks'
-require 's3sync/sync'
+require 'command-builder'
 
 APP_NAME = "OnAirLog"
 SDK = "iphoneos"
@@ -12,8 +12,24 @@ PROFILES_PATH = File.expand_path 'MobileProvisionings'
 BUILD_DIR = File.expand_path 'build'
 KEYCHAIN_NAME = 'ios-build.keychain'
 
+class CommandBuilder
+  def system!
+    system to_s
+    exit $?.exitstatus if $?.exitstatus > 0
+  end
+end
+
 def app_type
   ENV['APP_TYPE'] || '813'
+end
+
+def bundle_exec command, args = {}
+  cmd = CommandBuilder.new :bundle
+  command = command.to_s.split ' ' unless command.is_a? Array
+  cmd << 'exec'
+  command.each{|c| cmd << c.to_s }
+  args.each {|k, v| cmd[k.to_sym] = v }
+  cmd
 end
 
 def scheme
@@ -28,13 +44,42 @@ def provisioning_profile
   "#{PROFILES_PATH}/#{scheme}#{production? ? 'Distribution' : 'AdHoc'}"
 end
 
-def run_cupertino command
-  system_exit_on_fail %Q{bundle exec ios #{command} -u #{ENV['APPLE_USER']} -p #{ENV['APPLE_PASSWORD']}}
+def cupertino command, args = {}
+  bundle_exec([:ios, command], args.merge(
+    username: ENV['APPLE_USER'],
+    password: ENV['APPLE_PASSWORD']
+  )).system!
 end
 
-def system_exit_on_fail cmd
-  system cmd
-  exit $?.exitstatus if $?.exitstatus > 0
+def shenzhen command, args = {}
+  cmd = bundle_exec :ipa
+  cmd << :trace
+  cmd << :verbose
+  cmd << command.to_s
+  args.each {|k, v| cmd[k.to_sym] = v }
+  cmd.system!
+end
+
+def security command, args = {}
+  cmd = CommandBuilder.new :security
+  command = command.to_s.split ' ' unless command.is_a? Array
+  command.each {|c| cmd << c.to_s }
+  args.each {|k, v| cmd[k.to_sym] = v }
+  cmd
+end
+
+def xctool command, args = {}
+  cmd = CommandBuilder.new :xctool, '- - '.split('')
+  command = command.to_s.split ' ' unless command.is_a? Array
+  args = {
+    scheme: 'OnAirLogTests',
+    workspace: WORKSPACE,
+    sdk: 'iphonesimulator',
+    configuration: 'Debug'
+  }.merge args
+  args.each {|k, v| cmd[k.to_sym] = v }
+  command.each {|c| cmd << c.to_s }
+  cmd
 end
 
 namespace :pod do
@@ -61,28 +106,45 @@ namespace :env do
 end
 
 task :test do
-  system_exit_on_fail "xctool -scheme OnAirLogTests -workspace #{WORKSPACE} -sdk iphonesimulator -configuration Debug build test"
+  xctool 'build test'
 end
 
 
 namespace :ipa do
   desc 'Build .ipa file'
-  task :build => :dotenv do
-    system_exit_on_fail %Q{bundle exec ipa --verbose -t build -w #{WORKSPACE} -c Release -s #{scheme} --sdk iphoneos -d #{BUILD_DIR} -m #{provisioning_profile}}
+  task :build => :'env:export' do
+    shenzhen :build, {
+      workspace: WORKSPACE,
+      configuration: 'Release',
+      scheme: scheme,
+      sdk: 'iphoneos',
+      destination: BUILD_DIR,
+      embed: provisioning_profile
+    }
+  end
+  namespace :distribute do
+    desc 'Publish .ipa file to Amazon S3'
+    task :s3 do
+      shenzhen 'distribute:s3', {
+        file: File.join(BUILD_DIR, "#{scheme}.ipa"),
+        dsym: File.join(BUILD_DIR, "#{scheme}.dsym.zip"),
+        acl: 'private'
+      }
+    end
   end
 end
 
 namespace :profiles do
   desc 'Download all mobileprovision files'
-  task :download => :dotenv do
-    system_exit_on_fail %Q{rm -rf #{PROFILES_PATH} && mkdir -p #{PROFILES_PATH}}
+  task :download => :clean do
+    mkpath PROFILES_PATH
     Dir.chdir(PROFILES_PATH) do
-      run_cupertino "profiles:download:all --type distribution"
+      cupertino 'profiles:download:all', type: :distribution
     end
   end
   desc 'Cleans mobileprovision files'
-  task :clean do
-    system_exit_on_fail %Q{rm -f #{PROFILES_PATH}/*.mobileprovision}
+  task :clean => :dotenv do
+    rmtree PROFILES_PATH
   end
 end
 
@@ -91,7 +153,7 @@ namespace :certificate do
     "#{ENV['S3_CERTIFICATE_BUCKET']}:"
   end
   def sync src, dest
-    system_exit_on_fail %Q{bundle exec s3sync sync #{src} #{dest}}
+    bundle_exec([:s3sync, :sync, src, dest]).system!
   end
   desc 'Download certificates from S3'
   task :download => :dotenv do
@@ -103,18 +165,25 @@ namespace :certificate do
   end
   desc 'Add certificates'
   task :add => :download do
-    passphrase = ENV['CERTIFICATE_PASSPHRASE']
-    %x{security create-keychain -p travis #{KEYCHAIN_NAME}}
-    %x{security import #{CERTIFICATES_PATH}/apple.cer -k #{KEYCHAIN_NAME} -T /usr/bin/codesign}
-    %x{security import #{CERTIFICATES_PATH}/ios_distribution.cer -k #{KEYCHAIN_NAME} -T /usr/bin/codesign}
-    %x{security import #{CERTIFICATES_PATH}/ios_distribution.p12 -k #{KEYCHAIN_NAME} -P #{passphrase} -T /usr/bin/codesign}
-    %x{security default-keychain -s #{KEYCHAIN_NAME}}
+    def import name, args = {}
+      security ['import', "#{CERTIFICATES_PATH}/#{name}"], {
+        k: KEYCHAIN_NAME,
+        T: '/usr/bin/codesign'
+      }.merge(args).system!
+    end
+    cmd = security 'create-keychain', p: 'travis'
+    cmd << KEYCHAIN_NAME
+    cmd.system!
+    import 'apple.cer'
+    import 'ios_distribution.cer'
+    import 'ios_distribution.p12', P: ENV['CERTIFICATE_PASSPHRASE']
+    security('default-keychain', s: KEYCHAIN_NAME).system!
   end
   desc 'Remove certificates'
   task :remove => :dotenv do
-    sh "security delete-keychain #{KEYCHAIN_NAME}"
+    security(['delete-keychain', KEYCHAIN_NAME]).system!
   end
 end
 
-task :setup => ['pod:install', 'env:export']
+task :setup => ['pod:install', 'env:export', 'certificate:download']
 

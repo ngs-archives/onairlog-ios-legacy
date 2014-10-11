@@ -16,7 +16,8 @@ before_install:
 script:
   - bundle exec rake test
 after_success:
-  - echo "TODO"
+  - bundle exec rake ipa:build
+  - bundle exec rake ipa:distribute:s3
 notifications:
   on_success: always
   on_failure: always
