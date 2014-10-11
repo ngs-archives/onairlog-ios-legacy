@@ -11,7 +11,7 @@ import XCTest
 
 class SongTests: XCTestCase {
 
-  let FAKE_TIME = 1412544120
+  let FAKE_TIME = 1412544120.0
 
   var _song: Song? = nil
   var song: Song {
