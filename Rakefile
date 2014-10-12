@@ -85,7 +85,7 @@ class InfoPlist
   end
 
   def update_build_number
-    n = ENV['TRAVIS_JOB_ID'] || %x{git rev-parse --short HEAD}.strip
+    n = ENV['TRAVIS_BUILD_NUM'] || %x{git rev-parse --short HEAD}.strip
     self.build_version = n
   end
 
@@ -343,7 +343,6 @@ namespace :ipa do
         dsym: dsym_archive,
         api_token: ENV['TESTFLIGHT_API_TOKEN'],
         team_token: ENV['TESTFLIGHT_TEAM_TOKEN'],
-        notify: nil,
         replace: nil,
         lists: pull_request? ? 'OnAirLog-Dev' : 'OnAirLog-Testers',
         notes: release_notes
