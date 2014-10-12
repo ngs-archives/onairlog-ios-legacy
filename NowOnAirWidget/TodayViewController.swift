@@ -34,15 +34,21 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   }
 
   func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
+    let tracker = GAI.sharedInstance().defaultTracker
+    tracker.set(kGAIScreenName, value: "Today Widget")
+    tracker.send(GAIDictionaryBuilder.createAppView().build())
     self.apiClient?.load(0,
       success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         if self.updateSong() {
           completionHandler(.NewData)
+          tracker.send(GAIDictionaryBuilder.createEventWithCategory("widget", action: "new-data", label: self.song?.songID.stringValue, value: 1).build())
         } else {
+          tracker.send(GAIDictionaryBuilder.createEventWithCategory("widget", action: "no-data", label: self.song?.songID.stringValue, value: 1).build())
           completionHandler(.NoData)
         }
       },
       failure: { (task: NSURLSessionDataTask!,  error: NSError!) -> Void in
+        tracker.send(GAIDictionaryBuilder.createEventWithCategory("widget", action: "failed", label: self.song?.songID.stringValue, value: 1).build())
         completionHandler(.Failed)
       }
     )
@@ -73,10 +79,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
   @IBAction func didViewTapped(sender: AnyObject) {
     if song?.songID != nil {
+      let tracker = GAI.sharedInstance().defaultTracker
+      tracker.send(GAIDictionaryBuilder.createEventWithCategory("widget", action: "tapped", label: self.song?.songID.stringValue, value: 1).build())
       let url = NSURL(scheme: kOnAirLogAppScheme, host: kOnAirLogAppHost, path: NSString(format: "/song/%@", song!.songID!))
-      self.extensionContext?.openURL(url, completionHandler: { (success: Bool) -> Void in
-
-      })
+      self.extensionContext?.openURL(url, completionHandler: { (success: Bool) -> Void in })
     }
   }
   

@@ -22,14 +22,22 @@ class DatePickerViewController: UIViewController {
     self.preferredContentSize = CGSizeMake(320.0, self.datePicker.frame.size.height)
     self.progressOverlayView.hidden = true
   }
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    let tracker = GAI.sharedInstance().defaultTracker
+    tracker.set(kGAIScreenName, value: "Date Picker Screen")
+    tracker.send(GAIDictionaryBuilder.createAppView().build())
+  }
   @IBOutlet weak var datePicker: UIDatePicker!
   @IBAction func cancelButtonTapped(sender: AnyObject) {
     self.dismissViewControllerAnimated(true, completion: {})
   }
   @IBAction func doneButtonTapped(sender: AnyObject) {
+    let tracker = GAI.sharedInstance().defaultTracker
     let dateFrom = self.datePicker.date
     let dateTo = dateFrom.dateByAddingTimeInterval(3600)
     let pred = NSPredicate(format: "timeStamp <= %@ AND timeStamp >= %@", dateTo, dateFrom)
+    tracker.send(GAIDictionaryBuilder.createEventWithCategory("filter", action: "date_picked", label: dateFrom.description, value: 1).build())
     let song: Song? = Song.findFirstWithPredicate(pred, sortedBy: "songID", ascending: false)
     if song != nil {
       self.masterViewController?.scrollToSong(song)

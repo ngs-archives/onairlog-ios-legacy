@@ -10,6 +10,9 @@
 #define MR_SHORTHAND
 #import <MagicalRecord/CoreData+MagicalRecord.h>
 #import <AFNetworking/AFNetworking.h>
+#import <GoogleAnalytics-iOS-SDK/GAI.h>
+#import <GoogleAnalytics-iOS-SDK/GAIFields.h>
+#import <GoogleAnalytics-iOS-SDK/GAIDictionaryBuilder.h>
 
 @implementation ShortenURL
 
@@ -31,6 +34,7 @@
   AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
   manager.responseSerializer = [AFJSONResponseSerializer serializer];
   manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+  id tracker = [[GAI sharedInstance] defaultTracker];
   NSDictionary *params = @{ @"access_token": accessToken, @"longUrl": originalURL.absoluteString };
   [manager
    GET:@"https://api-ssl.bitly.com/v3/shorten" parameters:params
@@ -40,6 +44,11 @@
         ![responseObject[@"data"] isKindOfClass:[NSDictionary class]] ||
         ![responseObject[@"data"][@"url"] isKindOfClass:[NSString class]]
         ) {
+       [tracker send:
+        [[GAIDictionaryBuilder
+          createExceptionWithDescription:
+          [NSString stringWithFormat:@"Invalid data (%@): %@", originalURL, responseObject]
+          withFatal:@NO] build]];
        completionHandler(nil);
        return;
      }
@@ -49,12 +58,21 @@
      newRecord.shortenURL = urlString;
      newRecord.originalURL = originalURL.absoluteString;
      [newRecord.managedObjectContext save:&error];
-     if(!error)
+     if(!error) {
        completionHandler([NSURL URLWithString:urlString]);
-     else
+     } else {
+       [tracker send:
+        [[GAIDictionaryBuilder
+          createExceptionWithDescription:error.localizedDescription
+          withFatal:@NO] build]];
        completionHandler(nil);
+     }
    }
    failure:^(NSURLSessionDataTask *task, NSError *error) {
+     [tracker send:
+      [[GAIDictionaryBuilder
+        createExceptionWithDescription:error.localizedDescription
+        withFatal:@NO] build]];
      completionHandler(nil);
    }];
   return NO;
