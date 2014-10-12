@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6244" systemVersion="14A379a" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="ShortenURL" representedClassName="ShortenURL" syncable="YES">
+        <attribute name="originalURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shortenURL" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Song" representedClassName="Song" syncable="YES">
+        <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="favoritedAt" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="sectionIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="songID" optional="YES" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="timeStamp" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Song" positionX="3139" positionY="987" width="128" height="135"/>
+        <element name="ShortenURL" positionX="3141" positionY="1035" width="128" height="75"/>
+    </elements>
+</model>

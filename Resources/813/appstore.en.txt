@@ -1,0 +1,19 @@
+This software provides informations of aired songs on J-WAVE FM ( http://www.j-wave.co.jp/ ) , Tokyo, Japan.
+
+Displays most recent songs in timeline and Today Extension.
+
+----
+
+Developer: Atsushi NAGASE
+http://ngs.io/
+
+Version history
+---------------
+
+### 2.0.0
+
+iOS 8 Support including Today Extension.
+
+### 1.0.0
+
+Initial release.
