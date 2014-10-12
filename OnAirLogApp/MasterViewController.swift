@@ -170,6 +170,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
   }
   @IBAction func filterTypeSegmentChange(sender: AnyObject) {
+    GAI.sharedInstance().defaultTracker.send(
+      GAIDictionaryBuilder.createEventWithCategory("timeline",
+        action: "segment-change", label: isTimeline() ? "timeline" : "favorites" ,
+        value: 1).build())
     if isTimeline() {
       self.tableView.addSubview(self.refreshControl!)
     } else {
@@ -231,6 +235,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
       }
     }
     if sinceID > 0  {
+      GAI.sharedInstance().defaultTracker.send(
+        GAIDictionaryBuilder.createEventWithCategory("timeline",
+          action: "load-more", label: NSString(format: "since = %@", sinceID.description),
+          value: 1).build())
       self.load(sinceID: sinceID)
     }
   }
@@ -274,6 +282,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
   }
 
   func refresh(sender :AnyObject?) {
+    GAI.sharedInstance().defaultTracker.send(
+      GAIDictionaryBuilder.createEventWithCategory("timeline",
+        action: "refresh", label: nil, value: 1).build())
     refreshControl?.beginRefreshing()
     self.load()
   }

@@ -14,6 +14,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
   var shareButtonItem: UIBarButtonItem?
   var progressButtonItem: UIBarButtonItem?
   var shorteningInProgress = false
+  var currentTrackID: AnyObject? = nil
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var artistLabel: UILabel!
   @IBOutlet weak var timeStampLabel: UILabel!
@@ -38,6 +39,14 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
     if searchResults == nil && song != nil {
+      // Screen tracking
+      let tracker = GAI.sharedInstance().defaultTracker
+      let songField = GAIFields.customDimensionForIndex(1)
+      tracker.set(kGAIScreenName, value: "Detail Screen")
+      tracker.set(songField, value: self.song!.songID.stringValue)
+      tracker.send(GAIDictionaryBuilder.createAppView().set(songField, forKey: "song").build())
+      tracker.send(GAIDictionaryBuilder.createEventWithCategory("detail", action: "view", label: song?.songID.stringValue, value: 1).build())
+      //
       let manager = AFHTTPSessionManager()
       manager.responseSerializer = AFJSONResponseSerializer()
       manager.requestSerializer = AFHTTPRequestSerializer()
@@ -53,6 +62,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
           self.searchResults = []
           self.tableView.reloadData()
+          tracker.send(GAIDictionaryBuilder.createExceptionWithDescription(
+            NSString(format: "%@: %@", url.description, error.description), withFatal: false).build())
         }
       )
     }
@@ -98,9 +109,14 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
   func toggleFavorite(sender: AnyObject?) {
     if self.song == nil { return }
     let song = self.song!
+    var error: NSError? = nil
     song.isFavorited = !song.isFavorited
-    if song.managedObjectContext.save(nil) {
+    if song.managedObjectContext.save(&error) {
       self.updateFavoriteButton()
+    }
+    if error != nil {
+      GAI.sharedInstance().defaultTracker.send(
+        GAIDictionaryBuilder.createExceptionWithDescription(error?.description, withFatal: true).build())
     }
   }
 
@@ -114,6 +130,9 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let items = [NSString(format: "%@ %@ %@", song.title, song.artist, song.dateTimeFormatted()), shareURL]
         let av = UIActivityViewController(activityItems: items, applicationActivities: nil)
         self.presentViewController(av, animated: true) {}
+        GAI.sharedInstance().defaultTracker.send(
+          GAIDictionaryBuilder.createEventWithCategory("share",
+            action: "show", label: song.songID.stringValue, value: 1).build())
         self.shorteningInProgress = false
         self.updateBarButtonItems()
     }
@@ -165,11 +184,18 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
       SKStoreProductParameterAffiliateToken:"10l87J",
       SKStoreProductParameterCampaignToken:kOnAirLogCampaignToken
     ]
+    self.currentTrackID = trackID
+    GAI.sharedInstance().defaultTracker.send(
+      GAIDictionaryBuilder.createEventWithCategory("store-view",
+        action: "show", label: trackID.stringValue, value: 1).build())
     vc.loadProductWithParameters(params, completionBlock: nil)
     self.presentViewController(vc, animated: true, completion: nil)
   }
   func productViewControllerDidFinish(viewController: SKStoreProductViewController!) {
     viewController.dismissViewControllerAnimated(true, completion: nil)
+    GAI.sharedInstance().defaultTracker.send(
+      GAIDictionaryBuilder.createEventWithCategory("store-view",
+        action: "dismiss", label: self.currentTrackID?.stringValue, value: 1).build())
   }
   
 }

@@ -10,6 +10,9 @@
 #import "Song.h"
 #define MR_SHORTHAND
 #import <MagicalRecord/CoreData+MagicalRecord.h>
+#import <GoogleAnalytics-iOS-SDK/GAI.h>
+#import <GoogleAnalytics-iOS-SDK/GAIFields.h>
+#import <GoogleAnalytics-iOS-SDK/GAIDictionaryBuilder.h>
 
 static NSString *ITUNES_LINK_FORMAT = @"https://itunes.apple.com/WebObjects/MZStore.woa/wa/search?mt=1&term=%@&uo=4&at=10l87J";
 
@@ -38,6 +41,11 @@ static NSString *ITUNES_LINK_FORMAT = @"https://itunes.apple.com/WebObjects/MZSt
   } else if(!self.favoritedAt) {
     self.favoritedAt = [NSDate date];
   }
+  [[[GAI sharedInstance] defaultTracker] send:
+   [[GAIDictionaryBuilder
+     createEventWithCategory:@"favorites"
+     action:isFavorited ? @"favorited" : @"unfavorited"
+     label:self.songID.stringValue value:@1] build]];
 }
 
 - (void)updateAttributes:(NSDictionary *)attributes {

@@ -15,6 +15,7 @@ class SongAPIClient {
 
   func load(sinceID: Int, success: (NSURLSessionDataTask!, AnyObject!) -> Void, failure: (NSURLSessionDataTask!, NSError!) -> Void ) {
     if isLoading { return }
+    let tracker = GAI.sharedInstance().defaultTracker
     let url = NSURL(scheme: "http", host: kOnAirLogAPIHost, path: "/")
     let manager = SongAPISessionManager(baseURL: url)
     isLoading = true
@@ -39,11 +40,15 @@ class SongAPIClient {
             if error == nil {
               success(task, responseObject)
             } else {
+              tracker.send(GAIDictionaryBuilder.createExceptionWithDescription(
+                error!.localizedDescription, withFatal: false).build())
               failure(task, error)
             }
         })
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         self.isLoading = false
+        tracker.send(GAIDictionaryBuilder.createExceptionWithDescription(
+          error!.localizedDescription, withFatal: false).build())
         failure(task, error)
     }
   }
