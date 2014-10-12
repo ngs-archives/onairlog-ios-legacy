@@ -144,7 +144,7 @@ def dsym_archive
 end
 
 def production?
-  (ENV['TRAVIS_TAG'] || '').match(/^v\d+\.\d+\.\d+$/) || ENV['DISTRIBUTE_ITUNES_CONNECT']
+  (ENV['TRAVIS_TAG'] || '').match(/^v\d+\.\d+\.\d+/) || ENV['DISTRIBUTE_ITUNES_CONNECT']
 end
 
 def pr_number
