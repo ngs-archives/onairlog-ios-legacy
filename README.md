@@ -1,7 +1,7 @@
 OnAirLog for iOS
 ================
 
-[![Build Status](https://travis-ci.org/ngs/onairlog-ios.svg)](https://travis-ci.org/ngs/onairlog-ios)
+[![Build Status](https://travis-ci.org/ngs/onairlog-ios.svg?branch=master)](https://travis-ci.org/ngs/onairlog-ios)
 
 FM で放送された楽曲を検索できる、シンプルな iOS アプリ。
 
