@@ -27,3 +27,5 @@ Pods/
 OnAirLog/Environment.swift
 *.xccheckout
 .env
+Certificates/
+*.mobileprovision*

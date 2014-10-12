@@ -1,5 +1,5 @@
 # vim: set ft=rb
-source 'git@github.com:CocoaPods/Specs.git'
+source 'git://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
 pod "AFNetworking"

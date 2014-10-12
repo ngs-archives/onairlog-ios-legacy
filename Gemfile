@@ -1,6 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'dotenv'
 gem 'cocoapods'
-gem 'shenzhen'
+gem 'command-builder'
+gem 'cupertino'
+gem 'dotenv'
+gem 'nokogiri', '~> 1.5.9'
 gem 'rake'
+gem 's3sync'
+gem 'shenzhen'
