@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
   }
 
   func applicationWillTerminate(application: UIApplication) {
-    NSManagedObjectContext.contextForCurrentThread().saveToPersistentStoreAndWait()
+    NSManagedObjectContext.MR_defaultContext().saveToPersistentStoreAndWait()
   }
 
   // MARK: - Split view

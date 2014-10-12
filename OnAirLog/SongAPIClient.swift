@@ -28,8 +28,7 @@ class SongAPIClient {
         let serializer = manager.responseSerializer as SongAPIResponseSerializer
         self.totalPages = serializer.totalPages
         let songs = serializer.songs
-        // FIXME: use saveBlock:completion:
-        MagicalRecord.saveUsingCurrentThreadContextWithBlock({ (context: NSManagedObjectContext!) -> Void in
+        MagicalRecord.saveWithBlock({ (context: NSManagedObjectContext!) -> Void in
           for var i = 0; i < songs?.count; i++ {
             let songDict = songs![i] as? NSDictionary
             Song.findOrCreateWithAttributes(songDict, inContext: context)
