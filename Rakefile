@@ -85,7 +85,7 @@ class InfoPlist
   end
 
   def update_build_number
-    n = ENV['TRAVIS_BUILD_NUM'] || %x{git rev-parse --short HEAD}.strip
+    n = ENV['TRAVIS_BUILD_NUMBER'] || %x{git rev-parse --short HEAD}.strip
     self.build_version = n
   end
 
@@ -332,21 +332,23 @@ namespace :ipa do
         file: ipa_file,
         dsym: dsym_archive,
         bucket: ENV['S3_IPA_BUCKET'],
-        path: "#{scheme}/{CFBundleShortVersionString}/{CFBundleVersion}",
+        path: "#{scheme}/{CFBundleShortVersionString}/#{ production? ? 'distribute' : 'adhoc' }/{CFBundleVersion}",
         'source-dir' => BUILD_DIR,
       }
     end
     desc 'Publish .ipa file to TestFlight'
     task :testflight => :dotenv do
-      shenzhen 'distribute:testflight', {
-        file: ipa_file,
-        dsym: dsym_archive,
-        api_token: ENV['TESTFLIGHT_API_TOKEN'],
-        team_token: ENV['TESTFLIGHT_TEAM_TOKEN'],
-        replace: nil,
-        lists: pull_request? ? 'OnAirLog-Dev' : 'OnAirLog-Testers',
-        notes: release_notes
-      }
+      if production?
+        puts 'Skipping TestFlight for production'
+      else
+        shenzhen 'distribute:testflight', {
+          file: ipa_file,
+          dsym: dsym_archive,
+          replace: nil,
+          lists: pull_request? ? 'OnAirLog-Dev' : 'OnAirLog-Testers',
+          notes: release_notes
+        }
+      end
     end
     desc 'Publish .ipa file to iTunes Connect'
     task :itunesconnect => :dotenv do
@@ -423,6 +425,6 @@ namespace :certificate do
 end
 
 task :setup => [:'version:update:build', :'env:export', :'certificate:download', :'certificate:add', :'profiles:download', :'profiles:install', :'pod:install']
-task :distribute => [:'ipa:build', :'ipa:distribute:s3', production? ? :'ipa:distribute:itunesconnect' : :'ipa:distribute:testflight']
+task :distribute => [:'ipa:build', :'ipa:distribute:s3', :'ipa:distribute:testflight']
 desc 'Print current version'
 task :version => 'version:current'
