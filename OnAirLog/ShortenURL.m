@@ -53,7 +53,7 @@
        return;
      }
      NSString *urlString = responseObject[@"data"][@"url"];
-     ShortenURL *newRecord = [self createEntity];
+     ShortenURL *newRecord = [self MR_createEntity];
      NSError *error = nil;
      newRecord.shortenURL = urlString;
      newRecord.originalURL = originalURL.absoluteString;

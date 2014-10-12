@@ -130,7 +130,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
   var fetchedResultsController: NSFetchedResultsController {
     if _fetchedResultsController == nil {
-      _fetchedResultsController = Song.fetchAllSortedBy("songID", ascending: false, withPredicate: predicate(), groupBy: "sectionIdentifier", delegate: self)
+      _fetchedResultsController = Song.fetchAllSortedBy("songID", ascending: false, withPredicate: predicate(), groupBy: "sectionIdentifier", delegate: self, inContext: NSManagedObjectContext.MR_defaultContext())
       }
       return _fetchedResultsController!
   }
