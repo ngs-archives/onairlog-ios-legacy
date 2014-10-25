@@ -8,12 +8,12 @@
 
 import Foundation
 
-class SongAPIClient {
-  var totalPages = -1
-  var isLoading = false
-  var sinceDate: NSDate? = nil
+public class SongAPIClient {
+  public var totalPages = -1
+  public var isLoading = false
+  public var sinceDate: NSDate? = nil
 
-  func load(sinceID: Int, success: (NSURLSessionDataTask!, AnyObject!) -> Void, failure: (NSURLSessionDataTask!, NSError!) -> Void ) {
+  public func load(sinceID: Int, success: (NSURLSessionDataTask!, AnyObject!) -> Void, failure: (NSURLSessionDataTask!, NSError!) -> Void ) {
     if isLoading { return }
     let tracker = GAI.sharedInstance().defaultTracker
     let url = NSURL(scheme: "http", host: kOnAirLogAPIHost, path: "/")
@@ -52,7 +52,7 @@ class SongAPIClient {
     }
   }
 
-  func queryParams() -> NSDictionary {
+  public func queryParams() -> NSDictionary {
     var params: NSMutableDictionary = NSMutableDictionary()
     if sinceDate != nil {
       let fmtd = NSDateFormatter()

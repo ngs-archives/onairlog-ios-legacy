@@ -20,6 +20,20 @@
                ReferencedContainer = "container:OnAirLog.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "85C8D69919EAEEE900F81894"
+               BuildableName = "OnAirLogTests.xctest"
+               BlueprintName = "OnAirLogTests"
+               ReferencedContainer = "container:OnAirLog.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -33,6 +47,16 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "85F5244419DD87F5003105F0"
+               BuildableName = "OnAirLogTests.xctest"
+               BlueprintName = "OnAirLogTests"
+               ReferencedContainer = "container:OnAirLog.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "85C8D69919EAEEE900F81894"
                BuildableName = "OnAirLogTests.xctest"
                BlueprintName = "OnAirLogTests"
                ReferencedContainer = "container:OnAirLog.xcodeproj">
@@ -76,6 +100,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "85F5244419DD87F5003105F0"
+            BuildableName = "OnAirLogTests.xctest"
+            BlueprintName = "OnAirLogTests"
+            ReferencedContainer = "container:OnAirLog.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
