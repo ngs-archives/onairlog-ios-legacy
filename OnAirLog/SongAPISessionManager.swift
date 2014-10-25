@@ -24,7 +24,7 @@ class SongAPISessionManager: AFHTTPSessionManager {
     setup()
   }
 
-  func setup() {
+  public setup() {
     requestSerializer = AFHTTPRequestSerializer()
     responseSerializer = SongAPIResponseSerializer(readingOptions: NSJSONReadingOptions.AllowFragments)
   }
