@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A379a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -23,7 +23,7 @@
         <!--Detail-->
         <scene sceneID="yUG-lL-AsK">
             <objects>
-                <viewController title="Detail" id="JEX-9P-axG" customClass="DetailViewController" customModule="OnAirLog802" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailViewController" title="Detail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JEX-9P-axG" customClass="DetailViewController" customModule="OnAirLog802" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SYR-Wa-9uf"/>
                         <viewControllerLayoutGuide type="bottom" id="GAO-Cl-Wes"/>
@@ -367,6 +367,7 @@
         <scene sceneID="r7l-gg-dq7">
             <objects>
                 <navigationController id="vC3-pB-5Vb" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Xn2-77-iJd"/>
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="DjV-YW-jjY">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -380,6 +381,95 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SLD-UC-DBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-45" y="129"/>
+        </scene>
+        <!--Results-->
+        <scene sceneID="itX-ZO-Wfk">
+            <objects>
+                <tableViewController storyboardIdentifier="searchResultsController" title="Results" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="n4E-Eh-RGM" customClass="SearchResultsController" customModule="OnAirLog802" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="AJm-KZ-qRH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="fW3-op-c1P" customClass="SongTableViewCell" customModule="OnAirLog802" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fW3-op-c1P" id="HFh-jp-exh">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" misplaced="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xyS-4q-VUZ">
+                                            <rect key="frame" x="16" y="8" width="537" height="14"/>
+                                            <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" misplaced="YES" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZf-jQ-SeN">
+                                            <rect key="frame" x="16" y="38" width="554" height="14"/>
+                                            <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="11"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" misplaced="YES" text="12:34" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3x-Hp-VDJ">
+                                            <rect key="frame" x="555" y="8" width="35" height="14"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="35" id="JAk-eD-KsM"/>
+                                                <constraint firstAttribute="height" constant="14" id="WjR-pV-Bc5"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="center" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="02q-qs-Y4g">
+                                            <rect key="frame" x="568" y="29" width="22" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="22" id="fqa-nX-zUO"/>
+                                                <constraint firstAttribute="height" constant="22" id="oDn-Oe-cJY"/>
+                                            </constraints>
+                                            <state key="normal" image="726-star-toolbar">
+                                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="toggleFavorite:" destination="fW3-op-c1P" eventType="touchUpInside" id="BhN-SG-nkc"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="JZf-jQ-SeN" firstAttribute="leading" secondItem="HFh-jp-exh" secondAttribute="leadingMargin" constant="8" id="1XM-hs-en4"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="02q-qs-Y4g" secondAttribute="trailing" constant="2" id="1kv-Sq-dgY"/>
+                                        <constraint firstItem="JZf-jQ-SeN" firstAttribute="top" secondItem="c3x-Hp-VDJ" secondAttribute="bottom" constant="16" id="LRG-VD-iDa"/>
+                                        <constraint firstItem="JZf-jQ-SeN" firstAttribute="trailing" secondItem="02q-qs-Y4g" secondAttribute="leading" constant="2" id="Mam-oa-21s"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="c3x-Hp-VDJ" secondAttribute="trailing" constant="2" id="Mmv-Rt-zop"/>
+                                        <constraint firstItem="c3x-Hp-VDJ" firstAttribute="leading" secondItem="xyS-4q-VUZ" secondAttribute="trailing" constant="2" id="OGi-NT-cYv"/>
+                                        <constraint firstItem="c3x-Hp-VDJ" firstAttribute="top" secondItem="HFh-jp-exh" secondAttribute="topMargin" id="Xct-mH-NFG"/>
+                                        <constraint firstItem="c3x-Hp-VDJ" firstAttribute="bottom" secondItem="xyS-4q-VUZ" secondAttribute="bottom" id="h0E-qI-fQu"/>
+                                        <constraint firstItem="02q-qs-Y4g" firstAttribute="top" secondItem="c3x-Hp-VDJ" secondAttribute="bottom" constant="7" id="isW-a6-6hX"/>
+                                        <constraint firstItem="xyS-4q-VUZ" firstAttribute="leading" secondItem="HFh-jp-exh" secondAttribute="leadingMargin" constant="8" id="s7N-r3-Mwq"/>
+                                        <constraint firstItem="c3x-Hp-VDJ" firstAttribute="top" secondItem="xyS-4q-VUZ" secondAttribute="top" id="yMU-uf-Gr7"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="JZf-jQ-SeN" secondAttribute="bottom" constant="-0.5" id="yRl-rt-q9n"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="favoriteButton" destination="02q-qs-Y4g" id="aAO-Jn-GCo"/>
+                                    <outlet property="subtitleLabel" destination="JZf-jQ-SeN" id="rAQ-Zp-mzY"/>
+                                    <outlet property="timeStampLabel" destination="c3x-Hp-VDJ" id="A8j-mA-xRV"/>
+                                    <outlet property="titleLabel" destination="xyS-4q-VUZ" id="cLn-Qc-BUZ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="n4E-Eh-RGM" id="oTE-mI-Zrn"/>
+                            <outlet property="delegate" destination="n4E-Eh-RGM" id="Zpo-El-8v5"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="mSC-ar-f1U"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DWd-qq-1bw" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-45" y="876"/>
         </scene>
     </scenes>
     <resources>

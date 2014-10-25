@@ -198,5 +198,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         action: "dismiss", label: self.currentTrackID?.stringValue, value: 1).build())
   }
   
+  @IBAction func dismissViewController(sender: AnyObject) {
+    self.dismissViewControllerAnimated(true, completion: { () -> Void in })
+  }
 }
 
