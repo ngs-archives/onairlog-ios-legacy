@@ -18,6 +18,12 @@
 		85069DED19DE00C7004F5C8F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85069DEA19DE00C7004F5C8F /* MainInterface.storyboard */; };
 		85069DEE19DE00C7004F5C8F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85069DEB19DE00C7004F5C8F /* TodayViewController.swift */; };
 		85069DEF19DE00C7004F5C8F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85069DEB19DE00C7004F5C8F /* TodayViewController.swift */; };
+		851CF99119F34CDB0071C7FF /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851CF99019F34CDB0071C7FF /* BaseTableViewController.swift */; };
+		851CF99219F34CDB0071C7FF /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851CF99019F34CDB0071C7FF /* BaseTableViewController.swift */; };
+		851CF99419F350470071C7FF /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851CF99319F350470071C7FF /* SearchResultsController.swift */; };
+		851CF99519F350470071C7FF /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851CF99319F350470071C7FF /* SearchResultsController.swift */; };
+		851CF99719F35CE10071C7FF /* SearchResultsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851CF99619F35CE10071C7FF /* SearchResultsControllerTests.swift */; };
+		851CF9A419F37CD30071C7FF /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A78D19E0FDB5002D5737 /* AppConfig.swift */; };
 		852A0FE419E089FB00B65500 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 852A0FBD19E0885600B65500 /* LaunchScreen.xib */; };
 		852A0FE619E08A0500B65500 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852A0FBC19E0885600B65500 /* AppDelegate.swift */; };
 		852A0FE719E08A0600B65500 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852A0FBC19E0885600B65500 /* AppDelegate.swift */; };
@@ -162,6 +168,9 @@
 		85069DEA19DE00C7004F5C8F /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		85069DEB19DE00C7004F5C8F /* TodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		850EE6FA19E43A67006439F3 /* NowOnAirWidget802.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NowOnAirWidget802.entitlements; sourceTree = "<group>"; };
+		851CF99019F34CDB0071C7FF /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
+		851CF99319F350470071C7FF /* SearchResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
+		851CF99619F35CE10071C7FF /* SearchResultsControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsControllerTests.swift; sourceTree = "<group>"; };
 		852A0FB719E0885600B65500 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		852A0FB819E0885600B65500 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		852A0FBA19E0885600B65500 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -306,6 +315,8 @@
 				852A0FC819E0885600B65500 /* MasterViewController.swift */,
 				852A0FCE19E0885600B65500 /* SongTableViewCell.swift */,
 				85C1CC6A19E2F03200BF9EEA /* DatePickerViewController.swift */,
+				851CF99019F34CDB0071C7FF /* BaseTableViewController.swift */,
+				851CF99319F350470071C7FF /* SearchResultsController.swift */,
 			);
 			path = OnAirLogApp;
 			sourceTree = "<group>";
@@ -362,6 +373,7 @@
 				85E9A79B19E11575002D5737 /* OnAirLogTests-Bridging-Header.h */,
 				85B18E6A19E1EBCD00FF4D27 /* TestHelper.swift */,
 				857E4FCB19E87C34008EA69D /* SongTests.swift */,
+				851CF99619F35CE10071C7FF /* SearchResultsControllerTests.swift */,
 			);
 			path = OnAirLogTests;
 			sourceTree = "<group>";
@@ -386,7 +398,9 @@
 				B3FDE7ECF51D472EA0A843F7 /* Frameworks */,
 				C9397576B91BB395C9D2322D /* Pods */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		85F5241519DD877E003105F0 /* Products */ = {
 			isa = PBXGroup;
@@ -529,6 +543,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "LittleApps Inc.";
 				TargetAttributes = {
 					85069DBB19DE006A004F5C8F = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -737,8 +752,10 @@
 				852A0FF019E08A5400B65500 /* DetailViewController.swift in Sources */,
 				852A0FF419E095E700B65500 /* SongTableViewCell.swift in Sources */,
 				85C1CC6B19E2F03200BF9EEA /* DatePickerViewController.swift in Sources */,
+				851CF99119F34CDB0071C7FF /* BaseTableViewController.swift in Sources */,
 				852A0FE619E08A0500B65500 /* AppDelegate.swift in Sources */,
 				85E9A7A619E11B59002D5737 /* SongAPIClient.swift in Sources */,
+				851CF99419F350470071C7FF /* SearchResultsController.swift in Sources */,
 				8548E65F19E0D2D500001AF5 /* Environment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -747,7 +764,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				851CF9A419F37CD30071C7FF /* AppConfig.swift in Sources */,
 				857E4FCD19E87ECA008EA69D /* TestHelper.swift in Sources */,
+				851CF99719F35CE10071C7FF /* SearchResultsControllerTests.swift in Sources */,
 				857E4FCC19E87C34008EA69D /* SongTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -766,8 +785,10 @@
 				852A0FF119E08A5500B65500 /* DetailViewController.swift in Sources */,
 				852A0FF519E095E700B65500 /* SongTableViewCell.swift in Sources */,
 				85C1CC6C19E2F03200BF9EEA /* DatePickerViewController.swift in Sources */,
+				851CF99219F34CDB0071C7FF /* BaseTableViewController.swift in Sources */,
 				852A0FE719E08A0600B65500 /* AppDelegate.swift in Sources */,
 				85E9A7A719E11B59002D5737 /* SongAPIClient.swift in Sources */,
+				851CF99519F350470071C7FF /* SearchResultsController.swift in Sources */,
 				8548E66219E0D2E000001AF5 /* Environment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1317,7 +1338,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = OnAirLog802.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Atsushi Nagase (3W9WBJZU24)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1372,7 +1393,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = OnAirLog802.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: LittleApps Inc. (3Y8APYUG2G)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

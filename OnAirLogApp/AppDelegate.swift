@@ -14,13 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
   var window: UIWindow?
   var masterViewController: MasterViewController?
+  var dbInitialized = false
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    // Magical Record
-    let dbURL = NSFileManager.defaultManager()
-      .containerURLForSecurityApplicationGroupIdentifier(kOnAirLogDocumentContainerDomain)?
-      .URLByAppendingPathComponent("OnAirLog.sqlite")
-    MagicalRecord.setupCoreDataStackWithStoreAtURL(dbURL)
 
     // Google Analytics
     let gai = GAI.sharedInstance()
@@ -78,6 +74,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
       }
     }
     return false
+  }
+
+  // MARK: - Magical Record
+
+  func initializeDB() {
+    if !dbInitialized {
+      let dbURL = NSFileManager.defaultManager()
+        .containerURLForSecurityApplicationGroupIdentifier(kOnAirLogDocumentContainerDomain)?
+        .URLByAppendingPathComponent("OnAirLog.sqlite")
+      MagicalRecord.setupCoreDataStackWithStoreAtURL(dbURL)
+      dbInitialized = true
+    }
   }
   
 }

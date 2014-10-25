@@ -82,7 +82,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
       let tracker = GAI.sharedInstance().defaultTracker
       tracker.send(GAIDictionaryBuilder.createEventWithCategory("widget", action: "tapped", label: self.song?.songID.stringValue, value: 1).build())
       let url = NSURL(scheme: kOnAirLogAppScheme, host: kOnAirLogAppHost, path: NSString(format: "/song/%@", song!.songID!))
-      self.extensionContext?.openURL(url, completionHandler: { (success: Bool) -> Void in })
+      self.extensionContext?.openURL(url!, completionHandler: { (success: Bool) -> Void in })
     }
   }
   

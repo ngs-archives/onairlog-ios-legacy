@@ -10,6 +10,10 @@ http://ngs.io/
 Version history
 ---------------
 
+### 2.1.0
+
+New feature: text search (artist + title).
+
 ### 2.0.0
 
 iOS 8 Support including Today Extension.
