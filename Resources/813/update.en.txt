@@ -1,1 +1,1 @@
-iOS 8 Support including Today Extension.
+New feature: text search (artist + title).
