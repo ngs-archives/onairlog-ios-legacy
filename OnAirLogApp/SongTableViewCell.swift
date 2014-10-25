@@ -19,14 +19,14 @@ class SongTableViewCell: UITableViewCell {
   @IBAction func toggleFavorite(sender: AnyObject) {
     if self.song != nil {
       self.song?.isFavorited = !self.song!.isFavorited
-      self.song?.managedObjectContext.saveToPersistentStoreAndWait()
+      self.song?.managedObjectContext?.saveToPersistentStoreAndWait()
     }
   }
 
   override func layoutSubviews() {
     super.layoutSubviews()
     let imgName = self.song?.isFavorited == true ? "726-star-toolbar-selected" : "726-star-toolbar"
-    let img = UIImage(named: imgName).imageWithRenderingMode(.AlwaysTemplate)
+    let img = UIImage(named: imgName)?.imageWithRenderingMode(.AlwaysTemplate)
     self.favoriteButton.setImage(img, forState: .Normal)
   }
 
