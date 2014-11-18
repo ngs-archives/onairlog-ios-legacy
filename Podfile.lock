@@ -55,4 +55,4 @@ SPEC CHECKSUMS:
   GoogleAnalytics-iOS-SDK: d9e198b1f955259a72886769be7377cdfcdb2250
   MagicalRecord: 59e5cec04ba1f9c9d4b70c2ec0a3ea8dceeb352e
 
-COCOAPODS: 0.34.1
+COCOAPODS: 0.34.4

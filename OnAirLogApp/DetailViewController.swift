@@ -160,14 +160,14 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     let cell = tableView.dequeueReusableCellWithIdentifier("ItemCell") as UITableViewCell
     let item = searchResults![indexPath.row]
     let imageURL = NSURL(string: item["artworkUrl100"] as String)
-    cell.imageView.setImageWithURLRequest(NSURLRequest(URL: imageURL!),
+    cell.imageView?.setImageWithURLRequest(NSURLRequest(URL: imageURL!),
       placeholderImage: nil,
       success: { (req: NSURLRequest!, res: NSHTTPURLResponse!, img: UIImage!) -> Void in
-        cell.imageView.image = img
+        cell.imageView?.image = img
         cell.setNeedsLayout()
       },
       failure: { (req: NSURLRequest!, res: NSHTTPURLResponse!, error: NSError!) -> Void in })
-    cell.textLabel.text = item["trackName"] as? String
+    cell.textLabel?.text = item["trackName"] as? String
     cell.detailTextLabel?.text = item["artistName"] as? String
     return cell
   }
