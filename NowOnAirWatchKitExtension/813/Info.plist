@@ -4,8 +4,6 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
-	<key>CFBundleDisplayName</key>
-	<string>NowOnAirWatchKitExtension813</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -17,11 +15,11 @@
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>2.2.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
@@ -34,5 +32,7 @@
 	</dict>
 	<key>RemoteInterfacePrincipalClass</key>
 	<string>$(PRODUCT_MODULE_NAME).InterfaceController</string>
+	<key>CFBundleDisplayName</key>
+	<string>Now On Air 813</string>
 </dict>
 </plist>
