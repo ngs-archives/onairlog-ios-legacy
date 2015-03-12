@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>2.2.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
@@ -27,6 +27,8 @@
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
 	<string>org.ngsdev.iphone.OnAirLog813</string>
+	<key>CFBundleDisplayName</key>
+	<string>Now On Air 813</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 </dict>
