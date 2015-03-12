@@ -53,11 +53,27 @@
 		854E7C5519E51F1C00E57AFA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 854E7C5319E51F1C00E57AFA /* Images.xcassets */; };
 		8556746719E4CE5B00BE400E /* ShortenURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8556746619E4CE5B00BE400E /* ShortenURL.m */; };
 		8556746819E4CE5B00BE400E /* ShortenURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8556746619E4CE5B00BE400E /* ShortenURL.m */; };
+		85639BEA1AB1E7390097A98D /* SongAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A7A519E11B59002D5737 /* SongAPIClient.swift */; };
+		85639BEB1AB1E7390097A98D /* SongAPIResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD888919E1398F009F8DCF /* SongAPIResponseSerializer.swift */; };
+		85639BEC1AB1E7390097A98D /* SongAPISessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD888419E12FBC009F8DCF /* SongAPISessionManager.swift */; };
+		85639BEE1AB1E7390097A98D /* OnAirLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A78119E0FA91002D5737 /* OnAirLog.xcdatamodeld */; };
+		85639BEF1AB1E7390097A98D /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B18E6519E1BDF600FF4D27 /* Song.m */; };
+		85639BF11AB1E7390097A98D /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DCB69C1AB1D0C00051602C /* NotificationController.swift */; };
+		85639BF21AB1E7390097A98D /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DCB69A1AB1D0C00051602C /* InterfaceController.swift */; };
+		85639BF41AB1E7390097A98D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 850279721AB1D409002421D3 /* libPods.a */; };
+		85639C091AB1E9A60097A98D /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548E65A19E0D2D500001AF5 /* Environment.swift */; };
+		85639C0A1AB1E9AE0097A98D /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A78F19E0FE28002D5737 /* AppConfig.swift */; };
+		85639C0B1AB1EA2C0097A98D /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DCB69A1AB1D0C00051602C /* InterfaceController.swift */; };
+		85639C0E1AB1EA9E0097A98D /* NowOnAirWatchKitApp802.app in Resources */ = {isa = PBXBuildFile; fileRef = 85639C031AB1E73D0097A98D /* NowOnAirWatchKitApp802.app */; };
+		85639C111AB1EE470097A98D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 859731491AB1E299003C4518 /* Images.xcassets */; };
+		85639C121AB1EE540097A98D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 859731431AB1E1B8003C4518 /* Images.xcassets */; };
+		85639C131AB1EE590097A98D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 859731401AB1E1B7003C4518 /* Images.xcassets */; };
+		85639C141AB1F2620097A98D /* NowOnAirWatchKitExtension802.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 85639BFA1AB1E7390097A98D /* NowOnAirWatchKitExtension802.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		857E4FCC19E87C34008EA69D /* SongTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857E4FCB19E87C34008EA69D /* SongTests.swift */; };
 		857E4FCD19E87ECA008EA69D /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B18E6A19E1EBCD00FF4D27 /* TestHelper.swift */; };
-		859731471AB1E26D003C4518 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 859731431AB1E1B8003C4518 /* Images.xcassets */; };
-		859731511AB1E2A3003C4518 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8597314F1AB1E299003C4518 /* Interface.storyboard */; };
 		859731521AB1E2AC003C4518 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8597314C1AB1E299003C4518 /* Images.xcassets */; };
+		85B0D2081AB1F66700302B2E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85B0D2061AB1F66700302B2E /* Interface.storyboard */; };
+		85B0D20C1AB1F67900302B2E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85B0D20A1AB1F67900302B2E /* Interface.storyboard */; };
 		85B18E6619E1BDF600FF4D27 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B18E6519E1BDF600FF4D27 /* Song.m */; };
 		85B18E6719E1BDF600FF4D27 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B18E6519E1BDF600FF4D27 /* Song.m */; };
 		85B18E6819E1BDF600FF4D27 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B18E6519E1BDF600FF4D27 /* Song.m */; };
@@ -73,7 +89,6 @@
 		85CD888B19E1398F009F8DCF /* SongAPIResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD888919E1398F009F8DCF /* SongAPIResponseSerializer.swift */; };
 		85CD888C19E1398F009F8DCF /* SongAPIResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD888919E1398F009F8DCF /* SongAPIResponseSerializer.swift */; };
 		85CD888D19E1398F009F8DCF /* SongAPIResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD888919E1398F009F8DCF /* SongAPIResponseSerializer.swift */; };
-		85DCB69B1AB1D0C00051602C /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DCB69A1AB1D0C00051602C /* InterfaceController.swift */; };
 		85DCB69D1AB1D0C00051602C /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DCB69C1AB1D0C00051602C /* NotificationController.swift */; };
 		85DCB6A31AB1D0C00051602C /* NowOnAirWatchKitApp813.app in Resources */ = {isa = PBXBuildFile; fileRef = 85DCB6A21AB1D0C00051602C /* NowOnAirWatchKitApp813.app */; };
 		85DCB6B01AB1D0C00051602C /* NowOnAirWatchKitExtension813.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 85DCB6951AB1D0C00051602C /* NowOnAirWatchKitExtension813.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -122,6 +137,20 @@
 			remoteGlobalIDString = 85069DD219DE007A004F5C8F;
 			remoteInfo = NowOnAirWidget802;
 		};
+		85639C0C1AB1EA8F0097A98D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 85F5240A19DD871B003105F0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 85639BFC1AB1E73D0097A98D;
+			remoteInfo = NowOnAirWatchKitApp802;
+		};
+		85639C151AB1F2620097A98D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 85F5240A19DD871B003105F0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 85639BE61AB1E7390097A98D;
+			remoteInfo = NowOnAirWatchKitExtension802;
+		};
 		857E4F4F19E81860008EA69D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 85F5240A19DD871B003105F0 /* Project object */;
@@ -155,7 +184,7 @@
 			containerPortal = 85F5240A19DD871B003105F0 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 85DCB6941AB1D0C00051602C;
-			remoteInfo = "NowOnAirWatchKitExtension813";
+			remoteInfo = NowOnAirWatchKitExtension813;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -179,6 +208,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				85069DDE19DE007A004F5C8F /* NowOnAirWidget802.appex in Embed App Extensions */,
+				85639C141AB1F2620097A98D /* NowOnAirWatchKitExtension802.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -218,6 +248,10 @@
 		854E7C5319E51F1C00E57AFA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8556746519E4CE5B00BE400E /* ShortenURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortenURL.h; sourceTree = "<group>"; };
 		8556746619E4CE5B00BE400E /* ShortenURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortenURL.m; sourceTree = "<group>"; };
+		85639BFA1AB1E7390097A98D /* NowOnAirWatchKitExtension802.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NowOnAirWatchKitExtension802.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		85639C031AB1E73D0097A98D /* NowOnAirWatchKitApp802.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowOnAirWatchKitApp802.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		85639C051AB1E7E10097A98D /* NowOnAirWatchKitExtension813.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NowOnAirWatchKitExtension813.entitlements; sourceTree = "<group>"; };
+		85639C081AB1E9690097A98D /* NowOnAirWatchKitExtension802.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NowOnAirWatchKitExtension802.entitlements; sourceTree = "<group>"; };
 		857E4FBB19E87794008EA69D /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		857E4FC619E87A5B008EA69D /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		857E4FCB19E87C34008EA69D /* SongTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTests.swift; sourceTree = "<group>"; };
@@ -231,7 +265,8 @@
 		8597314A1AB1E299003C4518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8597314C1AB1E299003C4518 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8597314D1AB1E299003C4518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		859731501AB1E299003C4518 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Interface.storyboard; sourceTree = "<group>"; };
+		85B0D2071AB1F66700302B2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Interface.storyboard; sourceTree = "<group>"; };
+		85B0D20B1AB1F67900302B2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Interface.storyboard; sourceTree = "<group>"; };
 		85B18E6419E1BDF600FF4D27 /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
 		85B18E6519E1BDF600FF4D27 /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
 		85B18E6A19E1EBCD00FF4D27 /* TestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHelper.swift; sourceTree = "<group>"; };
@@ -277,6 +312,14 @@
 			files = (
 				85069DE619DE0085004F5C8F /* libPods.a in Frameworks */,
 				85069DD419DE007A004F5C8F /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85639BF31AB1E7390097A98D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85639BF41AB1E7390097A98D /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +390,8 @@
 		850EE6FB19E44314006439F3 /* Entitlements */ = {
 			isa = PBXGroup;
 			children = (
+				85639C081AB1E9690097A98D /* NowOnAirWatchKitExtension802.entitlements */,
+				85639C051AB1E7E10097A98D /* NowOnAirWatchKitExtension813.entitlements */,
 				850EE6FA19E43A67006439F3 /* NowOnAirWidget802.entitlements */,
 				85C1CC6E19E4355300BF9EEA /* NowOnAirWidget813.entitlements */,
 				85E9A79A19E0FFA2002D5737 /* OnAirLog802.entitlements */,
@@ -432,6 +477,7 @@
 		859731481AB1E299003C4518 /* 802 */ = {
 			isa = PBXGroup;
 			children = (
+				85B0D2061AB1F66700302B2E /* Interface.storyboard */,
 				859731491AB1E299003C4518 /* Images.xcassets */,
 				8597314A1AB1E299003C4518 /* Info.plist */,
 			);
@@ -441,6 +487,7 @@
 		8597314B1AB1E299003C4518 /* 813 */ = {
 			isa = PBXGroup;
 			children = (
+				85B0D20A1AB1F67900302B2E /* Interface.storyboard */,
 				8597314C1AB1E299003C4518 /* Images.xcassets */,
 				8597314D1AB1E299003C4518 /* Info.plist */,
 			);
@@ -492,7 +539,6 @@
 		85DCB6A61AB1D0C00051602C /* NowOnAirWatchKitApp */ = {
 			isa = PBXGroup;
 			children = (
-				8597314F1AB1E299003C4518 /* Interface.storyboard */,
 				859731481AB1E299003C4518 /* 802 */,
 				8597314B1AB1E299003C4518 /* 813 */,
 			);
@@ -527,6 +573,8 @@
 				85069DD319DE007A004F5C8F /* NowOnAirWidget802.appex */,
 				85DCB6951AB1D0C00051602C /* NowOnAirWatchKitExtension813.appex */,
 				85DCB6A21AB1D0C00051602C /* NowOnAirWatchKitApp813.app */,
+				85639BFA1AB1E7390097A98D /* NowOnAirWatchKitExtension802.appex */,
+				85639C031AB1E73D0097A98D /* NowOnAirWatchKitApp802.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -592,6 +640,39 @@
 			productReference = 85069DD319DE007A004F5C8F /* NowOnAirWidget802.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		85639BE61AB1E7390097A98D /* NowOnAirWatchKitExtension802 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 85639BF71AB1E7390097A98D /* Build configuration list for PBXNativeTarget "NowOnAirWatchKitExtension802" */;
+			buildPhases = (
+				85639BE91AB1E7390097A98D /* Sources */,
+				85639BF31AB1E7390097A98D /* Frameworks */,
+				85639BF51AB1E7390097A98D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				85639C0D1AB1EA8F0097A98D /* PBXTargetDependency */,
+			);
+			name = NowOnAirWatchKitExtension802;
+			productName = NowOnAirWatchKitExtension813;
+			productReference = 85639BFA1AB1E7390097A98D /* NowOnAirWatchKitExtension802.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		85639BFC1AB1E73D0097A98D /* NowOnAirWatchKitApp802 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 85639C001AB1E73D0097A98D /* Build configuration list for PBXNativeTarget "NowOnAirWatchKitApp802" */;
+			buildPhases = (
+				85639BFD1AB1E73D0097A98D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NowOnAirWatchKitApp802;
+			productName = NowOnAirWatchKitApp813;
+			productReference = 85639C031AB1E73D0097A98D /* NowOnAirWatchKitApp802.app */;
+			productType = "com.apple.product-type.application.watchapp";
+		};
 		85DCB6941AB1D0C00051602C /* NowOnAirWatchKitExtension813 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 85DCB6B41AB1D0C00051602C /* Build configuration list for PBXNativeTarget "NowOnAirWatchKitExtension813" */;
@@ -606,7 +687,7 @@
 				85DCB6A51AB1D0C00051602C /* PBXTargetDependency */,
 			);
 			name = NowOnAirWatchKitExtension813;
-			productName = "NowOnAirWatchKitExtension813";
+			productName = NowOnAirWatchKitExtension813;
 			productReference = 85DCB6951AB1D0C00051602C /* NowOnAirWatchKitExtension813.appex */;
 			productType = "com.apple.product-type.watchkit-extension";
 		};
@@ -682,6 +763,7 @@
 			dependencies = (
 				85069DDD19DE007A004F5C8F /* PBXTargetDependency */,
 				85069DE019DE007A004F5C8F /* PBXTargetDependency */,
+				85639C161AB1F2620097A98D /* PBXTargetDependency */,
 			);
 			name = OnAirLog802;
 			productName = OnAirLog802;
@@ -720,6 +802,17 @@
 								enabled = 0;
 							};
 						};
+					};
+					85639BE61AB1E7390097A98D = {
+						DevelopmentTeam = 3Y8APYUG2G;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					85639BFC1AB1E73D0097A98D = {
+						DevelopmentTeam = 3Y8APYUG2G;
 					};
 					85DCB6941AB1D0C00051602C = {
 						CreatedOnToolsVersion = 6.2;
@@ -788,6 +881,8 @@
 				85069DD219DE007A004F5C8F /* NowOnAirWidget802 */,
 				85DCB6941AB1D0C00051602C /* NowOnAirWatchKitExtension813 */,
 				85DCB6A11AB1D0C00051602C /* NowOnAirWatchKitApp813 */,
+				85639BE61AB1E7390097A98D /* NowOnAirWatchKitExtension802 */,
+				85639BFC1AB1E73D0097A98D /* NowOnAirWatchKitApp802 */,
 			);
 		};
 /* End PBXProject section */
@@ -809,11 +904,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		85639BF51AB1E7390097A98D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85639C0E1AB1EA9E0097A98D /* NowOnAirWatchKitApp802.app in Resources */,
+				85639C121AB1EE540097A98D /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85639BFD1AB1E73D0097A98D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85639C111AB1EE470097A98D /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		85DCB6931AB1D0C00051602C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				85DCB6A31AB1D0C00051602C /* NowOnAirWatchKitApp813.app in Resources */,
+				85639C131AB1EE590097A98D /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -821,7 +934,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				859731511AB1E2A3003C4518 /* Interface.storyboard in Resources */,
 				859731521AB1E2AC003C4518 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -831,9 +943,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				852A0FED19E08A4000B65500 /* Main.storyboard in Resources */,
-				859731471AB1E26D003C4518 /* Images.xcassets in Resources */,
 				854E7C5419E51F1C00E57AFA /* Images.xcassets in Resources */,
 				852A0FE419E089FB00B65500 /* LaunchScreen.xib in Resources */,
+				85B0D20C1AB1F67900302B2E /* Interface.storyboard in Resources */,
 				852A0FEA19E08A2F00B65500 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -853,6 +965,7 @@
 				85E9A7A219E11690002D5737 /* LaunchScreen.xib in Resources */,
 				854E7C5519E51F1C00E57AFA /* Images.xcassets in Resources */,
 				852A0FEC19E08A4000B65500 /* Main.storyboard in Resources */,
+				85B0D2081AB1F66700302B2E /* Interface.storyboard in Resources */,
 				852A0FE819E08A2900B65500 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -923,6 +1036,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		85639BE91AB1E7390097A98D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85639C0A1AB1E9AE0097A98D /* AppConfig.swift in Sources */,
+				85639C091AB1E9A60097A98D /* Environment.swift in Sources */,
+				85639BEA1AB1E7390097A98D /* SongAPIClient.swift in Sources */,
+				85639BEB1AB1E7390097A98D /* SongAPIResponseSerializer.swift in Sources */,
+				85639BEC1AB1E7390097A98D /* SongAPISessionManager.swift in Sources */,
+				85639BEE1AB1E7390097A98D /* OnAirLog.xcdatamodeld in Sources */,
+				85639BEF1AB1E7390097A98D /* Song.m in Sources */,
+				85639BF11AB1E7390097A98D /* NotificationController.swift in Sources */,
+				85639BF21AB1E7390097A98D /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		85DCB6911AB1D0C00051602C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -933,9 +1062,9 @@
 				850279751AB1D460002421D3 /* Environment.swift in Sources */,
 				850279761AB1D460002421D3 /* OnAirLog.xcdatamodeld in Sources */,
 				850279771AB1D460002421D3 /* Song.m in Sources */,
+				85639C0B1AB1EA2C0097A98D /* InterfaceController.swift in Sources */,
 				850279741AB1D44D002421D3 /* AppConfig.swift in Sources */,
 				85DCB69D1AB1D0C00051602C /* NotificationController.swift in Sources */,
-				85DCB69B1AB1D0C00051602C /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1017,6 +1146,16 @@
 			target = 85069DD219DE007A004F5C8F /* NowOnAirWidget802 */;
 			targetProxy = 85069DDF19DE007A004F5C8F /* PBXContainerItemProxy */;
 		};
+		85639C0D1AB1EA8F0097A98D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 85639BFC1AB1E73D0097A98D /* NowOnAirWatchKitApp802 */;
+			targetProxy = 85639C0C1AB1EA8F0097A98D /* PBXContainerItemProxy */;
+		};
+		85639C161AB1F2620097A98D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 85639BE61AB1E7390097A98D /* NowOnAirWatchKitExtension802 */;
+			targetProxy = 85639C151AB1F2620097A98D /* PBXContainerItemProxy */;
+		};
 		857E4F5019E81860008EA69D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 85F5241319DD877E003105F0 /* OnAirLog813 */;
@@ -1063,10 +1202,19 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		8597314F1AB1E299003C4518 /* Interface.storyboard */ = {
+		85B0D2061AB1F66700302B2E /* Interface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				859731501AB1E299003C4518 /* Base */,
+				85B0D2071AB1F66700302B2E /* Base */,
+			);
+			name = Interface.storyboard;
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		85B0D20A1AB1F67900302B2E /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				85B0D20B1AB1F67900302B2E /* Base */,
 			);
 			name = Interface.storyboard;
 			path = Base.lproj;
@@ -1293,6 +1441,199 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "NowOnAirWidget/NowOnAirWidget-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		85639BF81AB1E7390097A98D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97F457047E456234A0108F25 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = NowOnAirWatchKitExtension802.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/NowOnAirWatchKitExtension/802/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "NowOnAirWatchKitExtension/NowOnAirWKExtension-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		85639BF91AB1E7390097A98D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F0BFFCE75623911906443C9 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = NowOnAirWatchKitExtension802.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/NowOnAirWatchKitExtension/802/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "NowOnAirWatchKitExtension/NowOnAirWKExtension-Bridging-Header.h";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		85639C011AB1E73D0097A98D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97F457047E456234A0108F25 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IBSC_MODULE = NowOnAirWatchKitExtension813;
+				INFOPLIST_FILE = "$(SRCROOT)/NowOnAirWatchKitApp/802/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = NowOnAirWatchKitApp802;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		85639C021AB1E73D0097A98D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F0BFFCE75623911906443C9 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IBSC_MODULE = NowOnAirWatchKitExtension813;
+				INFOPLIST_FILE = "$(SRCROOT)/NowOnAirWatchKitApp/802/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = NowOnAirWatchKitApp802;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1755,6 +2096,7 @@
 				CODE_SIGN_ENTITLEMENTS = OnAirLog802.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1810,6 +2152,7 @@
 				CODE_SIGN_ENTITLEMENTS = OnAirLog802.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1853,6 +2196,24 @@
 			buildConfigurations = (
 				85069DE219DE007A004F5C8F /* Debug */,
 				85069DE319DE007A004F5C8F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		85639BF71AB1E7390097A98D /* Build configuration list for PBXNativeTarget "NowOnAirWatchKitExtension802" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85639BF81AB1E7390097A98D /* Debug */,
+				85639BF91AB1E7390097A98D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		85639C001AB1E73D0097A98D /* Build configuration list for PBXNativeTarget "NowOnAirWatchKitApp802" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85639C011AB1E73D0097A98D /* Debug */,
+				85639C021AB1E73D0097A98D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
