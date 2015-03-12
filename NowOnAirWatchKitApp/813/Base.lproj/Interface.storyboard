@@ -14,13 +14,18 @@
                             <color key="textColor" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                             <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                         </label>
-                        <label width="0.90000000000000002" alignment="center" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" numberOfLines="0" id="wD7-9T-BtB">
+                        <label width="0.90000000000000002" alignment="center" text="LabelLabelLabelLabelL" numberOfLines="0" id="wD7-9T-BtB">
                             <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                         </label>
                         <label width="0.90000000000000002" alignment="center" text="Label" numberOfLines="0" id="0j0-UT-69f">
                             <color key="textColor" red="1" green="1" blue="1" alpha="0.70000000000000007" colorSpace="calibratedRGB"/>
                             <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                         </label>
+                        <button alignment="center" verticalAlignment="bottom" backgroundImage="01-refresh" id="KTM-Ig-e9G">
+                            <connections>
+                                <action selector="refreshAction:" destination="AgC-eL-Hgc" id="Crz-YR-b5A"/>
+                            </connections>
+                        </button>
                     </items>
                     <connections>
                         <outlet property="artistLabel" destination="0j0-UT-69f" id="5Wt-E5-p9H"/>
