@@ -1,1 +1,1 @@
-New feature: text search (artist + title).
+Apple Watch Support.
