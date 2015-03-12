@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "85DCB6A11AB1D0C00051602C"
-               BuildableName = "OnAirLog813 WatchKit App.app"
-               BlueprintName = "OnAirLog813 WatchKit App"
+               BuildableName = "NowOnAirWatchKitApp813.app"
+               BlueprintName = "NowOnAirWatchKitApp813"
                ReferencedContainer = "container:OnAirLog.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,8 +43,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "85DCB6941AB1D0C00051602C"
-               BuildableName = "OnAirLog813 WatchKit Extension.appex"
-               BlueprintName = "OnAirLog813 WatchKit Extension"
+               BuildableName = "NowOnAirWatchKitExtension813.appex"
+               BlueprintName = "NowOnAirWatchKitExtension813"
                ReferencedContainer = "container:OnAirLog.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -61,8 +61,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "85DCB6A11AB1D0C00051602C"
-            BuildableName = "OnAirLog813 WatchKit App.app"
-            BlueprintName = "OnAirLog813 WatchKit App"
+            BuildableName = "NowOnAirWatchKitApp813.app"
+            BlueprintName = "NowOnAirWatchKitApp813"
             ReferencedContainer = "container:OnAirLog.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -76,7 +76,7 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES"
-      notificationPayloadFile = "OnAirLog813 WatchKit Extension/PushNotificationPayload.apns">
+      notificationPayloadFile = "NowOnAirWatchKitExtension/PushNotificationPayload.apns">
       <RemoteRunnable
          runnableDebuggingMode = "2"
          BundleIdentifier = "com.apple.springboard"
@@ -84,8 +84,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "85DCB6A11AB1D0C00051602C"
-            BuildableName = "OnAirLog813 WatchKit App.app"
-            BlueprintName = "OnAirLog813 WatchKit App"
+            BuildableName = "NowOnAirWatchKitApp813.app"
+            BlueprintName = "NowOnAirWatchKitApp813"
             ReferencedContainer = "container:OnAirLog.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
@@ -93,8 +93,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "85DCB6A11AB1D0C00051602C"
-            BuildableName = "OnAirLog813 WatchKit App.app"
-            BlueprintName = "OnAirLog813 WatchKit App"
+            BuildableName = "NowOnAirWatchKitApp813.app"
+            BlueprintName = "NowOnAirWatchKitApp813"
             ReferencedContainer = "container:OnAirLog.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -114,8 +114,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "85DCB6A11AB1D0C00051602C"
-            BuildableName = "OnAirLog813 WatchKit App.app"
-            BlueprintName = "OnAirLog813 WatchKit App"
+            BuildableName = "NowOnAirWatchKitApp813.app"
+            BlueprintName = "NowOnAirWatchKitApp813"
             ReferencedContainer = "container:OnAirLog.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
@@ -123,8 +123,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "85DCB6A11AB1D0C00051602C"
-            BuildableName = "OnAirLog813 WatchKit App.app"
-            BlueprintName = "OnAirLog813 WatchKit App"
+            BuildableName = "NowOnAirWatchKitApp813.app"
+            BlueprintName = "NowOnAirWatchKitApp813"
             ReferencedContainer = "container:OnAirLog.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
