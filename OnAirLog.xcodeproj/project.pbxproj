@@ -55,6 +55,9 @@
 		8556746819E4CE5B00BE400E /* ShortenURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8556746619E4CE5B00BE400E /* ShortenURL.m */; };
 		857E4FCC19E87C34008EA69D /* SongTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857E4FCB19E87C34008EA69D /* SongTests.swift */; };
 		857E4FCD19E87ECA008EA69D /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B18E6A19E1EBCD00FF4D27 /* TestHelper.swift */; };
+		859731471AB1E26D003C4518 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 859731431AB1E1B8003C4518 /* Images.xcassets */; };
+		859731511AB1E2A3003C4518 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8597314F1AB1E299003C4518 /* Interface.storyboard */; };
+		859731521AB1E2AC003C4518 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8597314C1AB1E299003C4518 /* Images.xcassets */; };
 		85B18E6619E1BDF600FF4D27 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B18E6519E1BDF600FF4D27 /* Song.m */; };
 		85B18E6719E1BDF600FF4D27 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B18E6519E1BDF600FF4D27 /* Song.m */; };
 		85B18E6819E1BDF600FF4D27 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B18E6519E1BDF600FF4D27 /* Song.m */; };
@@ -72,11 +75,8 @@
 		85CD888D19E1398F009F8DCF /* SongAPIResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD888919E1398F009F8DCF /* SongAPIResponseSerializer.swift */; };
 		85DCB69B1AB1D0C00051602C /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DCB69A1AB1D0C00051602C /* InterfaceController.swift */; };
 		85DCB69D1AB1D0C00051602C /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DCB69C1AB1D0C00051602C /* NotificationController.swift */; };
-		85DCB69F1AB1D0C00051602C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85DCB69E1AB1D0C00051602C /* Images.xcassets */; };
-		85DCB6A31AB1D0C00051602C /* OnAirLog813 WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = 85DCB6A21AB1D0C00051602C /* OnAirLog813 WatchKit App.app */; };
-		85DCB6AB1AB1D0C00051602C /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85DCB6A91AB1D0C00051602C /* Interface.storyboard */; };
-		85DCB6AD1AB1D0C00051602C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85DCB6AC1AB1D0C00051602C /* Images.xcassets */; };
-		85DCB6B01AB1D0C00051602C /* OnAirLog813 WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 85DCB6951AB1D0C00051602C /* OnAirLog813 WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		85DCB6A31AB1D0C00051602C /* NowOnAirWatchKitApp813.app in Resources */ = {isa = PBXBuildFile; fileRef = 85DCB6A21AB1D0C00051602C /* NowOnAirWatchKitApp813.app */; };
+		85DCB6B01AB1D0C00051602C /* NowOnAirWatchKitExtension813.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 85DCB6951AB1D0C00051602C /* NowOnAirWatchKitExtension813.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		85E9A78319E0FA91002D5737 /* OnAirLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A78119E0FA91002D5737 /* OnAirLog.xcdatamodeld */; };
 		85E9A78419E0FA94002D5737 /* OnAirLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A78119E0FA91002D5737 /* OnAirLog.xcdatamodeld */; };
 		85E9A78519E0FA95002D5737 /* OnAirLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A78119E0FA91002D5737 /* OnAirLog.xcdatamodeld */; };
@@ -148,14 +148,14 @@
 			containerPortal = 85F5240A19DD871B003105F0 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 85DCB6A11AB1D0C00051602C;
-			remoteInfo = "OnAirLog813 WatchKit App";
+			remoteInfo = NowOnAirWatchKitApp813;
 		};
 		85DCB6AE1AB1D0C00051602C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 85F5240A19DD871B003105F0 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 85DCB6941AB1D0C00051602C;
-			remoteInfo = "OnAirLog813 WatchKit Extension";
+			remoteInfo = "NowOnAirWatchKitExtension813";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -167,7 +167,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				85069DC919DE006A004F5C8F /* NowOnAirWidget813.appex in Embed App Extensions */,
-				85DCB6B01AB1D0C00051602C /* OnAirLog813 WatchKit Extension.appex in Embed App Extensions */,
+				85DCB6B01AB1D0C00051602C /* NowOnAirWatchKitExtension813.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -188,7 +188,6 @@
 /* Begin PBXFileReference section */
 		6F0BFFCE75623911906443C9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		850279721AB1D409002421D3 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
-		8502797B1AB1D630002421D3 /* OnAirLog813 WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "OnAirLog813 WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		85069D9419DDF9AE004F5C8F /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		85069DBC19DE006A004F5C8F /* NowOnAirWidget813.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NowOnAirWidget813.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		85069DBD19DE006A004F5C8F /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = Library/Frameworks/NotificationCenter.framework; sourceTree = DEVELOPER_DIR; };
@@ -222,6 +221,17 @@
 		857E4FBB19E87794008EA69D /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		857E4FC619E87A5B008EA69D /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		857E4FCB19E87C34008EA69D /* SongTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTests.swift; sourceTree = "<group>"; };
+		859731401AB1E1B7003C4518 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		859731411AB1E1B7003C4518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		859731431AB1E1B8003C4518 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		859731441AB1E1B8003C4518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		859731451AB1E1B8003C4518 /* NowOnAirWKExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NowOnAirWKExtension-Bridging-Header.h"; sourceTree = "<group>"; };
+		859731461AB1E1B8003C4518 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		859731491AB1E299003C4518 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8597314A1AB1E299003C4518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8597314C1AB1E299003C4518 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8597314D1AB1E299003C4518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		859731501AB1E299003C4518 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Interface.storyboard; sourceTree = "<group>"; };
 		85B18E6419E1BDF600FF4D27 /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
 		85B18E6519E1BDF600FF4D27 /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
 		85B18E6A19E1EBCD00FF4D27 /* TestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHelper.swift; sourceTree = "<group>"; };
@@ -231,16 +241,10 @@
 		85C1CC6E19E4355300BF9EEA /* NowOnAirWidget813.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NowOnAirWidget813.entitlements; sourceTree = "<group>"; };
 		85CD888419E12FBC009F8DCF /* SongAPISessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongAPISessionManager.swift; sourceTree = "<group>"; };
 		85CD888919E1398F009F8DCF /* SongAPIResponseSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongAPIResponseSerializer.swift; sourceTree = "<group>"; };
-		85DCB6951AB1D0C00051602C /* OnAirLog813 WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "OnAirLog813 WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		85DCB6981AB1D0C00051602C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		85DCB6991AB1D0C00051602C /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		85DCB6951AB1D0C00051602C /* NowOnAirWatchKitExtension813.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NowOnAirWatchKitExtension813.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		85DCB69A1AB1D0C00051602C /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		85DCB69C1AB1D0C00051602C /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
-		85DCB69E1AB1D0C00051602C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		85DCB6A21AB1D0C00051602C /* OnAirLog813 WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OnAirLog813 WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		85DCB6A81AB1D0C00051602C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		85DCB6AA1AB1D0C00051602C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
-		85DCB6AC1AB1D0C00051602C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		85DCB6A21AB1D0C00051602C /* NowOnAirWatchKitApp813.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowOnAirWatchKitApp813.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E9A74019E0D603002D5737 /* OnAirLogApp-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OnAirLogApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		85E9A74119E0D620002D5737 /* NowOnAirWidget-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NowOnAirWidget-Bridging-Header.h"; sourceTree = "<group>"; };
 		85E9A78219E0FA91002D5737 /* OnAirLog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OnAirLog.xcdatamodel; sourceTree = "<group>"; };
@@ -407,6 +411,42 @@
 			path = OnAirLog;
 			sourceTree = "<group>";
 		};
+		8597313F1AB1E1B7003C4518 /* 802 */ = {
+			isa = PBXGroup;
+			children = (
+				859731401AB1E1B7003C4518 /* Images.xcassets */,
+				859731411AB1E1B7003C4518 /* Info.plist */,
+			);
+			path = 802;
+			sourceTree = "<group>";
+		};
+		859731421AB1E1B8003C4518 /* 813 */ = {
+			isa = PBXGroup;
+			children = (
+				859731431AB1E1B8003C4518 /* Images.xcassets */,
+				859731441AB1E1B8003C4518 /* Info.plist */,
+			);
+			path = 813;
+			sourceTree = "<group>";
+		};
+		859731481AB1E299003C4518 /* 802 */ = {
+			isa = PBXGroup;
+			children = (
+				859731491AB1E299003C4518 /* Images.xcassets */,
+				8597314A1AB1E299003C4518 /* Info.plist */,
+			);
+			path = 802;
+			sourceTree = "<group>";
+		};
+		8597314B1AB1E299003C4518 /* 813 */ = {
+			isa = PBXGroup;
+			children = (
+				8597314C1AB1E299003C4518 /* Images.xcassets */,
+				8597314D1AB1E299003C4518 /* Info.plist */,
+			);
+			path = 813;
+			sourceTree = "<group>";
+		};
 		85B18E7019E1F18400FF4D27 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,43 +476,27 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		85DCB6961AB1D0C00051602C /* OnAirLog813 WatchKit Extension */ = {
+		85DCB6961AB1D0C00051602C /* NowOnAirWatchKitExtension */ = {
 			isa = PBXGroup;
 			children = (
-				8502797B1AB1D630002421D3 /* OnAirLog813 WatchKit Extension.entitlements */,
+				8597313F1AB1E1B7003C4518 /* 802 */,
+				859731421AB1E1B8003C4518 /* 813 */,
+				859731451AB1E1B8003C4518 /* NowOnAirWKExtension-Bridging-Header.h */,
+				859731461AB1E1B8003C4518 /* PushNotificationPayload.apns */,
 				85DCB69A1AB1D0C00051602C /* InterfaceController.swift */,
 				85DCB69C1AB1D0C00051602C /* NotificationController.swift */,
-				85DCB69E1AB1D0C00051602C /* Images.xcassets */,
-				85DCB6971AB1D0C00051602C /* Supporting Files */,
 			);
-			path = "OnAirLog813 WatchKit Extension";
+			path = NowOnAirWatchKitExtension;
 			sourceTree = "<group>";
 		};
-		85DCB6971AB1D0C00051602C /* Supporting Files */ = {
+		85DCB6A61AB1D0C00051602C /* NowOnAirWatchKitApp */ = {
 			isa = PBXGroup;
 			children = (
-				85DCB6981AB1D0C00051602C /* Info.plist */,
-				85DCB6991AB1D0C00051602C /* PushNotificationPayload.apns */,
+				8597314F1AB1E299003C4518 /* Interface.storyboard */,
+				859731481AB1E299003C4518 /* 802 */,
+				8597314B1AB1E299003C4518 /* 813 */,
 			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		85DCB6A61AB1D0C00051602C /* OnAirLog813 WatchKit App */ = {
-			isa = PBXGroup;
-			children = (
-				85DCB6A91AB1D0C00051602C /* Interface.storyboard */,
-				85DCB6AC1AB1D0C00051602C /* Images.xcassets */,
-				85DCB6A71AB1D0C00051602C /* Supporting Files */,
-			);
-			path = "OnAirLog813 WatchKit App";
-			sourceTree = "<group>";
-		};
-		85DCB6A71AB1D0C00051602C /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				85DCB6A81AB1D0C00051602C /* Info.plist */,
-			);
-			name = "Supporting Files";
+			path = NowOnAirWatchKitApp;
 			sourceTree = "<group>";
 		};
 		85F5240919DD871B003105F0 = {
@@ -483,8 +507,8 @@
 				852A0FB519E0885600B65500 /* OnAirLogApp */,
 				85069DE919DE00C7004F5C8F /* NowOnAirWidget */,
 				85BC706F19DF908A00653771 /* OnAirLogTests */,
-				85DCB6961AB1D0C00051602C /* OnAirLog813 WatchKit Extension */,
-				85DCB6A61AB1D0C00051602C /* OnAirLog813 WatchKit App */,
+				85DCB6961AB1D0C00051602C /* NowOnAirWatchKitExtension */,
+				85DCB6A61AB1D0C00051602C /* NowOnAirWatchKitApp */,
 				85F5241519DD877E003105F0 /* Products */,
 				B3FDE7ECF51D472EA0A843F7 /* Frameworks */,
 				C9397576B91BB395C9D2322D /* Pods */,
@@ -501,8 +525,8 @@
 				85F5245619DD88A6003105F0 /* OnAirLog802.app */,
 				85069DBC19DE006A004F5C8F /* NowOnAirWidget813.appex */,
 				85069DD319DE007A004F5C8F /* NowOnAirWidget802.appex */,
-				85DCB6951AB1D0C00051602C /* OnAirLog813 WatchKit Extension.appex */,
-				85DCB6A21AB1D0C00051602C /* OnAirLog813 WatchKit App.app */,
+				85DCB6951AB1D0C00051602C /* NowOnAirWatchKitExtension813.appex */,
+				85DCB6A21AB1D0C00051602C /* NowOnAirWatchKitApp813.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -568,9 +592,9 @@
 			productReference = 85069DD319DE007A004F5C8F /* NowOnAirWidget802.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		85DCB6941AB1D0C00051602C /* OnAirLog813 WatchKit Extension */ = {
+		85DCB6941AB1D0C00051602C /* NowOnAirWatchKitExtension813 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 85DCB6B41AB1D0C00051602C /* Build configuration list for PBXNativeTarget "OnAirLog813 WatchKit Extension" */;
+			buildConfigurationList = 85DCB6B41AB1D0C00051602C /* Build configuration list for PBXNativeTarget "NowOnAirWatchKitExtension813" */;
 			buildPhases = (
 				85DCB6911AB1D0C00051602C /* Sources */,
 				85DCB6921AB1D0C00051602C /* Frameworks */,
@@ -581,14 +605,14 @@
 			dependencies = (
 				85DCB6A51AB1D0C00051602C /* PBXTargetDependency */,
 			);
-			name = "OnAirLog813 WatchKit Extension";
-			productName = "OnAirLog813 WatchKit Extension";
-			productReference = 85DCB6951AB1D0C00051602C /* OnAirLog813 WatchKit Extension.appex */;
+			name = NowOnAirWatchKitExtension813;
+			productName = "NowOnAirWatchKitExtension813";
+			productReference = 85DCB6951AB1D0C00051602C /* NowOnAirWatchKitExtension813.appex */;
 			productType = "com.apple.product-type.watchkit-extension";
 		};
-		85DCB6A11AB1D0C00051602C /* OnAirLog813 WatchKit App */ = {
+		85DCB6A11AB1D0C00051602C /* NowOnAirWatchKitApp813 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 85DCB6B11AB1D0C00051602C /* Build configuration list for PBXNativeTarget "OnAirLog813 WatchKit App" */;
+			buildConfigurationList = 85DCB6B11AB1D0C00051602C /* Build configuration list for PBXNativeTarget "NowOnAirWatchKitApp813" */;
 			buildPhases = (
 				85DCB6A01AB1D0C00051602C /* Resources */,
 			);
@@ -596,9 +620,9 @@
 			);
 			dependencies = (
 			);
-			name = "OnAirLog813 WatchKit App";
-			productName = "OnAirLog813 WatchKit App";
-			productReference = 85DCB6A21AB1D0C00051602C /* OnAirLog813 WatchKit App.app */;
+			name = NowOnAirWatchKitApp813;
+			productName = NowOnAirWatchKitApp813;
+			productReference = 85DCB6A21AB1D0C00051602C /* NowOnAirWatchKitApp813.app */;
 			productType = "com.apple.product-type.application.watchapp";
 		};
 		85F5241319DD877E003105F0 /* OnAirLog813 */ = {
@@ -762,8 +786,8 @@
 				85F5244419DD87F5003105F0 /* OnAirLogTests */,
 				85069DBB19DE006A004F5C8F /* NowOnAirWidget813 */,
 				85069DD219DE007A004F5C8F /* NowOnAirWidget802 */,
-				85DCB6941AB1D0C00051602C /* OnAirLog813 WatchKit Extension */,
-				85DCB6A11AB1D0C00051602C /* OnAirLog813 WatchKit App */,
+				85DCB6941AB1D0C00051602C /* NowOnAirWatchKitExtension813 */,
+				85DCB6A11AB1D0C00051602C /* NowOnAirWatchKitApp813 */,
 			);
 		};
 /* End PBXProject section */
@@ -789,8 +813,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85DCB6A31AB1D0C00051602C /* OnAirLog813 WatchKit App.app in Resources */,
-				85DCB69F1AB1D0C00051602C /* Images.xcassets in Resources */,
+				85DCB6A31AB1D0C00051602C /* NowOnAirWatchKitApp813.app in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -798,8 +821,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85DCB6AB1AB1D0C00051602C /* Interface.storyboard in Resources */,
-				85DCB6AD1AB1D0C00051602C /* Images.xcassets in Resources */,
+				859731511AB1E2A3003C4518 /* Interface.storyboard in Resources */,
+				859731521AB1E2AC003C4518 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -808,6 +831,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				852A0FED19E08A4000B65500 /* Main.storyboard in Resources */,
+				859731471AB1E26D003C4518 /* Images.xcassets in Resources */,
 				854E7C5419E51F1C00E57AFA /* Images.xcassets in Resources */,
 				852A0FE419E089FB00B65500 /* LaunchScreen.xib in Resources */,
 				852A0FEA19E08A2F00B65500 /* Images.xcassets in Resources */,
@@ -1010,12 +1034,12 @@
 		};
 		85DCB6A51AB1D0C00051602C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 85DCB6A11AB1D0C00051602C /* OnAirLog813 WatchKit App */;
+			target = 85DCB6A11AB1D0C00051602C /* NowOnAirWatchKitApp813 */;
 			targetProxy = 85DCB6A41AB1D0C00051602C /* PBXContainerItemProxy */;
 		};
 		85DCB6AF1AB1D0C00051602C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 85DCB6941AB1D0C00051602C /* OnAirLog813 WatchKit Extension */;
+			target = 85DCB6941AB1D0C00051602C /* NowOnAirWatchKitExtension813 */;
 			targetProxy = 85DCB6AE1AB1D0C00051602C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1039,12 +1063,13 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		85DCB6A91AB1D0C00051602C /* Interface.storyboard */ = {
+		8597314F1AB1E299003C4518 /* Interface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				85DCB6AA1AB1D0C00051602C /* Base */,
+				859731501AB1E299003C4518 /* Base */,
 			);
 			name = Interface.storyboard;
+			path = Base.lproj;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1308,8 +1333,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IBSC_MODULE = OnAirLog813_WatchKit_Extension;
-				INFOPLIST_FILE = "OnAirLog813 WatchKit App/Info.plist";
+				IBSC_MODULE = NowOnAirWatchKitExtension813;
+				INFOPLIST_FILE = NowOnAirWatchKitApp/813/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1350,8 +1375,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IBSC_MODULE = OnAirLog813_WatchKit_Extension;
-				INFOPLIST_FILE = "OnAirLog813 WatchKit App/Info.plist";
+				IBSC_MODULE = NowOnAirWatchKitExtension813;
+				INFOPLIST_FILE = NowOnAirWatchKitApp/813/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1381,7 +1406,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = "OnAirLog813 WatchKit Extension/OnAirLog813 WatchKit Extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = NowOnAirWatchKitExtension813.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -1400,7 +1425,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "OnAirLog813 WatchKit Extension/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/NowOnAirWatchKitExtension/813/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1412,7 +1437,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "OnAirLog813 WatchKit Extension/NowOnAirWKExtension-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "NowOnAirWatchKitExtension/NowOnAirWKExtension-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1435,7 +1460,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = "OnAirLog813 WatchKit Extension/OnAirLog813 WatchKit Extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = NowOnAirWatchKitExtension813.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -1448,7 +1473,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "OnAirLog813 WatchKit Extension/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/NowOnAirWatchKitExtension/813/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1460,7 +1485,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "OnAirLog813 WatchKit Extension/NowOnAirWKExtension-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "NowOnAirWatchKitExtension/NowOnAirWKExtension-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1836,7 +1861,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		85DCB6B11AB1D0C00051602C /* Build configuration list for PBXNativeTarget "OnAirLog813 WatchKit App" */ = {
+		85DCB6B11AB1D0C00051602C /* Build configuration list for PBXNativeTarget "NowOnAirWatchKitApp813" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				85DCB6B21AB1D0C00051602C /* Debug */,
@@ -1845,7 +1870,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		85DCB6B41AB1D0C00051602C /* Build configuration list for PBXNativeTarget "OnAirLog813 WatchKit Extension" */ = {
+		85DCB6B41AB1D0C00051602C /* Build configuration list for PBXNativeTarget "NowOnAirWatchKitExtension813" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				85DCB6B51AB1D0C00051602C /* Debug */,
