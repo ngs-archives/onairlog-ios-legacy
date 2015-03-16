@@ -47,20 +47,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     let pc = url.pathComponents
     if url.host! == kOnAirLogAppHost && pc?.count == 3 && pc![1] as String == "song" {
       let songID = pc![2] as String
-      let song = Song.findFirstByAttribute("songID", withValue: songID)
-      if song == nil {
+      if self.showSongDetail(songID) {
+        tracker.send(GAIDictionaryBuilder.createEventWithCategory("handleOpenURL", action: "song", label: songID, value: 1).build())
+        return true
+      } else {
         tracker.send(GAIDictionaryBuilder.createEventWithCategory("handleOpenURL", action: "invalid", label: url.absoluteString, value: 1).build())
-        return false
       }
-      tracker.send(GAIDictionaryBuilder.createEventWithCategory("handleOpenURL", action: "song", label: songID, value: 1).build())
-      self.masterViewController?.performSegueWithIdentifier("showDetail", sender: song)
-      return true
     }
     return false
   }
 
   func applicationWillTerminate(application: UIApplication) {
     NSManagedObjectContext.MR_defaultContext().saveToPersistentStoreAndWait()
+  }
+
+  func application(application: UIApplication!, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]!, reply: (([NSObject : AnyObject]!) -> Void)!) {
+    let tracker = GAI.sharedInstance().defaultTracker
+    let songID = userInfo["songID"] as? String
+    if songID != nil {
+      if self.showSongDetail(songID!) {
+        tracker.send(GAIDictionaryBuilder.createEventWithCategory("handleWatchKitExtensionRequest", action: "song", label: songID!, value: 1).build())
+      } else {
+        tracker.send(GAIDictionaryBuilder.createEventWithCategory("handleWatchKitExtensionRequest", action: "invalid", label: songID!, value: 1).build())
+      }
+    }
+  }
+
+  func showSongDetail(songID: String) -> Bool {
+    let song = Song.findFirstByAttribute("songID", withValue: songID)
+    if song == nil {
+      return false
+    }
+    self.masterViewController?.performSegueWithIdentifier("showDetail", sender: song)
+    return true
   }
 
   // MARK: - Split view
