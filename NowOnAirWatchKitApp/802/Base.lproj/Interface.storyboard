@@ -46,12 +46,25 @@
                         <imageView width="100" height="100" alignment="center" contentMode="scaleAspectFit" id="kwp-CS-wRi">
                             <variation key="device=watch38mm" height="80" width="80"/>
                         </imageView>
-                        <button alignment="center" verticalAlignment="bottom" backgroundImage="01-refresh" id="gce-tf-EqC">
-                            <connections>
-                                <action selector="refreshAction:" destination="AgC-eL-Hgc" id="XXq-di-M6a"/>
-                            </connections>
-                        </button>
                     </items>
+                    <menu key="menu" id="tKQ-Ue-Fed">
+                        <items>
+                            <menuItem title="Favorite" image="star-38" id="lJP-Hh-b7h">
+                                <variation key="device=watch38mm" image="star-38"/>
+                                <variation key="device=watch42mm" image="star-42"/>
+                                <connections>
+                                    <action selector="favoriteMenuAction" destination="AgC-eL-Hgc" id="fhw-LU-vH2"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="View Song" image="music-38" id="yWr-lg-KTN">
+                                <variation key="device=watch38mm" image="music-38"/>
+                                <variation key="device=watch42mm" image="music-42"/>
+                                <connections>
+                                    <action selector="viewMenuAction" destination="AgC-eL-Hgc" id="JlX-wN-czn"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
                         <outlet property="artistLabel" destination="dVV-54-56N" id="NnD-fe-v5E"/>
                         <outlet property="artworkImage" destination="kwp-CS-wRi" id="Ao7-rP-1EQ"/>

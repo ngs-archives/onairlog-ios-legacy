@@ -41,10 +41,20 @@ class InterfaceController: WKInterfaceController {
     self.refresh()
   }
 
-  @IBAction func refreshAction(sender: WKInterfaceButton) {
+  @IBAction func viewMenuAction() {
     let tracker = GAI.sharedInstance().defaultTracker
-    tracker.send(GAIDictionaryBuilder.createEventWithCategory("watch", action: "refresh", label: self.song?.songID.stringValue, value: 1).build())
-    self.refresh()
+    tracker.send(GAIDictionaryBuilder.createEventWithCategory("watch", action: "view-song", label: self.song?.songID.stringValue, value: 1).build())
+    let opened = WKInterfaceController.openParentApplication(["songID": NSString(format: "%@", self.song!.songID)],
+      reply: { (reply, error) in
+    })
+  }
+
+  @IBAction func favoriteMenuAction() {
+    if self.song != nil && self.song?.isFavorited != true {
+      self.song?.isFavorited = true
+      var error: NSError? = nil
+      self.song?.managedObjectContext?.save(&error)
+    }
   }
 
   override func didDeactivate() {

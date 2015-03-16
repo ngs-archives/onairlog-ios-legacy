@@ -73,8 +73,8 @@
 		857E4FCC19E87C34008EA69D /* SongTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857E4FCB19E87C34008EA69D /* SongTests.swift */; };
 		857E4FCD19E87ECA008EA69D /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B18E6A19E1EBCD00FF4D27 /* TestHelper.swift */; };
 		859731521AB1E2AC003C4518 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8597314C1AB1E299003C4518 /* Images.xcassets */; };
-		85B0D2101AB1F9A500302B2E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85B0D20D1AB1F7C500302B2E /* Images.xcassets */; };
-		85B0D2111AB1F9A500302B2E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85B0D20D1AB1F7C500302B2E /* Images.xcassets */; };
+		85ADA94A1AB6DE410009BB71 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85ADA9491AB6DE410009BB71 /* Images.xcassets */; };
+		85ADA94B1AB6DE410009BB71 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85ADA9491AB6DE410009BB71 /* Images.xcassets */; };
 		85B0D2131AB1FA0300302B2E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85B0D20A1AB1F67900302B2E /* Interface.storyboard */; };
 		85B18E6619E1BDF600FF4D27 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B18E6519E1BDF600FF4D27 /* Song.m */; };
 		85B18E6719E1BDF600FF4D27 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B18E6519E1BDF600FF4D27 /* Song.m */; };
@@ -267,9 +267,9 @@
 		8597314A1AB1E299003C4518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8597314C1AB1E299003C4518 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8597314D1AB1E299003C4518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85ADA9491AB6DE410009BB71 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		85B0D2071AB1F66700302B2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Interface.storyboard; sourceTree = "<group>"; };
 		85B0D20B1AB1F67900302B2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Interface.storyboard; sourceTree = "<group>"; };
-		85B0D20D1AB1F7C500302B2E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		85B18E6419E1BDF600FF4D27 /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
 		85B18E6519E1BDF600FF4D27 /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
 		85B18E6A19E1EBCD00FF4D27 /* TestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHelper.swift; sourceTree = "<group>"; };
@@ -542,9 +542,9 @@
 		85DCB6A61AB1D0C00051602C /* NowOnAirWatchKitApp */ = {
 			isa = PBXGroup;
 			children = (
+				85ADA9491AB6DE410009BB71 /* Images.xcassets */,
 				859731481AB1E299003C4518 /* 802 */,
 				8597314B1AB1E299003C4518 /* 813 */,
-				85B0D20D1AB1F7C500302B2E /* Images.xcassets */,
 			);
 			path = NowOnAirWatchKitApp;
 			sourceTree = "<group>";
@@ -921,9 +921,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85ADA94B1AB6DE410009BB71 /* Images.xcassets in Resources */,
 				85639C111AB1EE470097A98D /* Images.xcassets in Resources */,
 				8557E3921AB682D7009F5F37 /* Interface.storyboard in Resources */,
-				85B0D2111AB1F9A500302B2E /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -940,9 +940,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85ADA94A1AB6DE410009BB71 /* Images.xcassets in Resources */,
 				85B0D2131AB1FA0300302B2E /* Interface.storyboard in Resources */,
 				859731521AB1E2AC003C4518 /* Images.xcassets in Resources */,
-				85B0D2101AB1F9A500302B2E /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
