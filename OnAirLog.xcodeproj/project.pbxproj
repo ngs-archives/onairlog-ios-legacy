@@ -53,6 +53,7 @@
 		854E7C5519E51F1C00E57AFA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 854E7C5319E51F1C00E57AFA /* Images.xcassets */; };
 		8556746719E4CE5B00BE400E /* ShortenURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8556746619E4CE5B00BE400E /* ShortenURL.m */; };
 		8556746819E4CE5B00BE400E /* ShortenURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8556746619E4CE5B00BE400E /* ShortenURL.m */; };
+		8557E3921AB682D7009F5F37 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85B0D2061AB1F66700302B2E /* Interface.storyboard */; };
 		85639BEA1AB1E7390097A98D /* SongAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A7A519E11B59002D5737 /* SongAPIClient.swift */; };
 		85639BEB1AB1E7390097A98D /* SongAPIResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD888919E1398F009F8DCF /* SongAPIResponseSerializer.swift */; };
 		85639BEC1AB1E7390097A98D /* SongAPISessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD888419E12FBC009F8DCF /* SongAPISessionManager.swift */; };
@@ -75,7 +76,6 @@
 		85B0D2101AB1F9A500302B2E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85B0D20D1AB1F7C500302B2E /* Images.xcassets */; };
 		85B0D2111AB1F9A500302B2E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85B0D20D1AB1F7C500302B2E /* Images.xcassets */; };
 		85B0D2131AB1FA0300302B2E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85B0D20A1AB1F67900302B2E /* Interface.storyboard */; };
-		85B0D2141AB1FA0900302B2E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85B0D2061AB1F66700302B2E /* Interface.storyboard */; };
 		85B18E6619E1BDF600FF4D27 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B18E6519E1BDF600FF4D27 /* Song.m */; };
 		85B18E6719E1BDF600FF4D27 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B18E6519E1BDF600FF4D27 /* Song.m */; };
 		85B18E6819E1BDF600FF4D27 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B18E6519E1BDF600FF4D27 /* Song.m */; };
@@ -922,7 +922,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85639C111AB1EE470097A98D /* Images.xcassets in Resources */,
-				85B0D2141AB1FA0900302B2E /* Interface.storyboard in Resources */,
+				8557E3921AB682D7009F5F37 /* Interface.storyboard in Resources */,
 				85B0D2111AB1F9A500302B2E /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

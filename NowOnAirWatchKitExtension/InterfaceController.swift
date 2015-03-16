@@ -13,8 +13,9 @@ import Foundation
 class InterfaceController: WKInterfaceController {
   var song: Song? = nil
   var apiClient: SongAPIClient? = nil
-  
-  @IBOutlet weak var timestampLabel: WKInterfaceLabel!
+
+  @IBOutlet weak var artworkImage: WKInterfaceImage!
+  @IBOutlet weak var timestampLabel: WKInterfaceLabel?
   @IBOutlet weak var titleLabel: WKInterfaceLabel!
   @IBOutlet weak var artistLabel: WKInterfaceLabel!
   override func awakeWithContext(context: AnyObject?) {
@@ -31,7 +32,7 @@ class InterfaceController: WKInterfaceController {
     gai.trackerWithTrackingId(kOnAirLogGATrackingId)
     self.updateSong()
   }
-  
+
   override func willActivate() {
     super.willActivate()
     let tracker = GAI.sharedInstance().defaultTracker
@@ -39,18 +40,18 @@ class InterfaceController: WKInterfaceController {
     tracker.send(GAIDictionaryBuilder.createAppView().build())
     self.refresh()
   }
-  
+
   @IBAction func refreshAction(sender: WKInterfaceButton) {
     let tracker = GAI.sharedInstance().defaultTracker
     tracker.send(GAIDictionaryBuilder.createEventWithCategory("watch", action: "refresh", label: self.song?.songID.stringValue, value: 1).build())
     self.refresh()
   }
-  
+
   override func didDeactivate() {
     // This method is called when watch view controller is no longer visible
     super.didDeactivate()
   }
-  
+
   func refresh() {
     let tracker = GAI.sharedInstance().defaultTracker
     self.apiClient?.load(0,
@@ -66,7 +67,7 @@ class InterfaceController: WKInterfaceController {
       }
     )
   }
-  
+
   func updateSong() -> Bool {
     let newSong = Song.MR_findFirstOrderedByAttribute("songID", ascending: false)
     if newSong != nil {
@@ -76,13 +77,71 @@ class InterfaceController: WKInterfaceController {
       song = newSong
       self.titleLabel.setText(song!.title)
       self.artistLabel.setText(song!.artist)
-      self.timestampLabel.setText(song!.timeFormatted())
+      if self.timestampLabel != nil {
+        self.timestampLabel!.setText(song!.timeFormatted())
+      }
+      self.artworkImage.setImageNamed("Artwork")
+      self.updateImage()
       return true
     }
     self.titleLabel.setText("")
     self.artistLabel.setText("")
-    self.timestampLabel.setText("")
+    if self.timestampLabel != nil {
+      self.timestampLabel!.setText("")
+    }
     return false
   }
-  
+
+  func updateImage() {
+    let tracker = GAI.sharedInstance().defaultTracker
+    let manager = AFHTTPSessionManager()
+    manager.responseSerializer = AFJSONResponseSerializer(readingOptions: NSJSONReadingOptions.AllowFragments)
+    manager.requestSerializer = AFHTTPRequestSerializer()
+    let url = NSString(format: "http://%@/song/%@.json", kOnAirLogAPIHost, song!.songID)
+    manager.GET(url, parameters: nil,
+      success: { (task: NSURLSessionDataTask!, response: AnyObject!) -> Void in
+        var json = response as? NSDictionary
+        json = json == nil ? nil : json!["results"] as? NSDictionary
+        json = json == nil ? nil : json!["song"] as? NSDictionary
+        let itunes = json == nil ? nil : json!["itunes"] as? Array<AnyObject>
+        if itunes?.count > 0 {
+          let item = itunes?.first as NSDictionary!
+          let artwork = item["artworkUrl100"] as? NSString
+          if artwork != nil {
+            self.cacheImage(artwork!)
+          } else {
+            WKInterfaceDevice.currentDevice().removeCachedImageWithName("Artwork")
+            self.artworkImage.setImageNamed("Artwork")
+          }
+        }
+      },
+      failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        tracker.send(GAIDictionaryBuilder.createExceptionWithDescription(
+          NSString(format: "%@: %@", url.description, error.description), withFatal: false).build())
+      }
+    )
+  }
+
+  func cacheImage(url: NSString) {
+    let tracker = GAI.sharedInstance().defaultTracker
+    let manager = AFHTTPSessionManager()
+    manager.responseSerializer = AFImageResponseSerializer() as AFImageResponseSerializer
+    manager.requestSerializer = AFHTTPRequestSerializer()
+    manager.GET(url, parameters: nil,
+      success: { (task: NSURLSessionDataTask!, response: AnyObject!) -> Void in
+        let image = response as? UIImage
+        if image != nil {
+          WKInterfaceDevice.currentDevice().addCachedImage(image!, name: "Artwork")
+          self.artworkImage.setImageNamed("Artwork")
+        } else {
+          WKInterfaceDevice.currentDevice().removeCachedImageWithName("Artwork")
+          self.artworkImage.setImageNamed("Artwork")
+        }
+      },
+      failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        tracker.send(GAIDictionaryBuilder.createExceptionWithDescription(
+          NSString(format: "%@: %@", url.description, error.description), withFatal: false).build())
+      }
+    )
+  }
 }
