@@ -11,10 +11,12 @@
                 <glanceController topTemplateType="body1Medium" id="w4s-h3-L2V" customClass="InterfaceController" customModule="NowOnAirWatchKitExtension802">
                     <items>
                         <label alignment="left" alpha="0.69999999999999996" text="Label" minimumScaleFactor="0.5" id="tw6-2E-3fW"/>
-                        <label alignment="left" text="1234" minimumScaleFactor="0.5" id="DAm-1A-mj9"/>
+                        <label alignment="left" text="123412341234123412341234" minimumScaleFactor="0.5" id="DAm-1A-mj9"/>
                         <group alignment="left" id="smX-NZ-VOE">
                             <items>
-                                <imageView width="1" height="1" alignment="left" contentMode="scaleAspectFit" id="19F-eF-7Y2"/>
+                                <imageView width="100" height="100" alignment="center" verticalAlignment="bottom" contentMode="scaleAspectFit" id="19F-eF-7Y2">
+                                    <variation key="device=watch38mm" height="80" width="80"/>
+                                </imageView>
                             </items>
                         </group>
                     </items>
