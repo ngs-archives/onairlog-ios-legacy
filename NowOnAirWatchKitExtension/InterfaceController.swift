@@ -13,6 +13,7 @@ import Foundation
 class InterfaceController: WKInterfaceController {
   var song: Song? = nil
   var apiClient: SongAPIClient? = nil
+  var refreshIntervalTimer: NSTimer? = nil
 
   @IBOutlet weak var artworkImage: WKInterfaceImage!
   @IBOutlet weak var timestampLabel: WKInterfaceLabel?
@@ -49,6 +50,17 @@ class InterfaceController: WKInterfaceController {
     })
   }
 
+  func startRefreshInterval() {
+    if(refreshIntervalTimer == nil) {
+      refreshIntervalTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "refresh", userInfo: nil, repeats: false)
+    }
+  }
+
+  func stopRefreshInterval() {
+    refreshIntervalTimer?.invalidate()
+    refreshIntervalTimer = nil
+  }
+
   @IBAction func favoriteMenuAction() {
     if self.song != nil && self.song?.isFavorited != true {
       self.song?.isFavorited = true
@@ -58,11 +70,12 @@ class InterfaceController: WKInterfaceController {
   }
 
   override func didDeactivate() {
-    // This method is called when watch view controller is no longer visible
+    self.stopRefreshInterval()
     super.didDeactivate()
   }
 
   func refresh() {
+    refreshIntervalTimer = nil
     let tracker = GAI.sharedInstance().defaultTracker
     self.apiClient?.load(0,
       success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
@@ -71,10 +84,13 @@ class InterfaceController: WKInterfaceController {
         } else {
           tracker.send(GAIDictionaryBuilder.createEventWithCategory("watch", action: "no-data", label: self.song?.songID.stringValue, value: 1).build())
         }
+        self.startRefreshInterval()
       },
       failure: { (task: NSURLSessionDataTask!,  error: NSError!) -> Void in
         tracker.send(GAIDictionaryBuilder.createEventWithCategory("watch", action: "failed", label: self.song?.songID.stringValue, value: 1).build())
+        self.startRefreshInterval()
       }
+
     )
   }
 
