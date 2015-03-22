@@ -3,6 +3,11 @@ machine:
     LANG: en_US.UTF-8
     XCODE_SCHEME: OnAirLogTests
     XCODE_WORKSPACE: OnAirLog.xcworkspace
+    BUILD_URL: "https://circleci.com/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_BUILD_NUM"
+    RELEASE_NOTE: "Auto build from $BUILD_URL"
+general:
+  artifacts:
+    - Distribution
 dependencies:
   post:
     - echo 'export PATH=$HOME/$CIRCLE_PROJECT_REPONAME/vendor/bundle/ruby/2.0.0/bin:$PATH' >> ~/.bashrc
@@ -11,16 +16,23 @@ test:
     - /bin/bash Scripts/import-circle-keychain.sh
     - bundle exec rake env:export
   post:
-    - /bin/bash Scripts/build-archive.sh:
+    - /bin/bash Scripts/build-adhoc.sh:
         environment:
-          XCODE_SCHEME: OnAirLog813
-          ARCHIVE_PATH: $CIRCLE_ARTIFACTS/OnAirLog813.xcarchive
-          PROFILE_UUID: $ONAIRLOG813_PROFILE_UUID
           APPNAME: OnAirLog813
-    - /bin/bash Scripts/build-archive.sh:
+    - /bin/bash  Scripts/distribute-deploygate.sh:
         environment:
-          XCODE_SCHEME: OnAirLog802
-          ARCHIVE_PATH: $CIRCLE_ARTIFACTS/OnAirLog802.xcarchive
-          PROFILE_UUID: $ONAIRLOG802_PROFILE_UUID
+          APPNAME: OnAirLog813
+          DEPLOYGATE_DISTRIBUTION_KEY: $ONAIRLOG813_DEPLOYGATE_DISTRIBUTION_KEY
+    # - /bin/bash Scripts/build-adhoc.sh:
+    #    environment:
+    #      APPNAME: OnAirLog802
+    # - /bin/bash  Scripts/distribute-deploygate.sh:
+    #    environment:
+    #      APPNAME: OnAirLog802
+    #      DEPLOYGATE_DISTRIBUTION_KEY: $ONAIRLOG802_DEPLOYGATE_DISTRIBUTION_KEY
+    - /bin/bash Scripts/build-release.sh:
+        environment:
+          APPNAME: OnAirLog813
+    - /bin/bash Scripts/build-release.sh:
+        environment:
           APPNAME: OnAirLog802
-

@@ -18,7 +18,7 @@ security list-keychain -s $KEYCHAIN
 security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN
 rm -rf $DIR
 
-bundle exec ios profiles:download:all --type distribution -u "$ITUNES_CONNECT_USER" -p "$ITUNES_CONNECT_PASSWORD" >/dev/null 2>&1
+bundle exec ios profiles:download:all --type distribution -u "$ITUNES_CONNECT_ACCOUNT" -p "$ITUNES_CONNECT_PASSWORD" >/dev/null 2>&1
 mkdir MobileProvisionings
 mv *.mobileprovision MobileProvisionings
 /bin/sh ./Scripts/install-mobileprovisioning.sh
