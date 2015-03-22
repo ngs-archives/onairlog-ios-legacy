@@ -45,8 +45,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
   func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
     let tracker = GAI.sharedInstance().defaultTracker
     let pc = url.pathComponents
-    if url.host! == kOnAirLogAppHost && pc.count == 3 && pc[1] as String == "song" {
-      let songID = pc[2] as String
+    if url.host! == kOnAirLogAppHost && pc?.count == 3 && pc![1] as String == "song" {
+      let songID = pc![2] as String
       let song = Song.findFirstByAttribute("songID", withValue: songID)
       if song == nil {
         tracker.send(GAIDictionaryBuilder.createEventWithCategory("handleOpenURL", action: "invalid", label: url.absoluteString, value: 1).build())

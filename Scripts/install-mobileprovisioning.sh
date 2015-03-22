@@ -2,7 +2,7 @@
 set -eu
 BASE=~/Library/MobileDevice/Provisioning\ Profiles
 mkdir -p "$BASE"
-for file in MobileProvisionings/*$PROVISIONING_SUFFIX.*provision*; do
+for file in MobileProvisionings/*.mobileprovision; do
   uuid=`grep UUID -A1 -a "$file" | grep -io "[-A-Z0-9]\{36\}"`
   extension="${file##*.}"
   echo "$file -> $uuid"
