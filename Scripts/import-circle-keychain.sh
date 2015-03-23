@@ -2,6 +2,7 @@
 set -eu
 DIR=tmp/certs
 KEYCHAIN=$HOME/Library/Keychains/ios-build.keychain
+KEYCHAIN_PASSWORD=`openssl rand -base64 48`
 rm -rf $DIR
 mkdir -p $DIR
 echo $APPLE_AUTHORITY_BASE64 | base64 -D > $DIR/apple.cer
