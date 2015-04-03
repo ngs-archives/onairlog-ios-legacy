@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "85639BFC1AB1E73D0097A98D"
-               BuildableName = "NowOnAirWatchKitApp802.app"
-               BlueprintName = "NowOnAirWatchKitApp802"
+               BuildableName = "NowOnAirWKApp802.app"
+               BlueprintName = "NowOnAirWKApp802"
                ReferencedContainer = "container:OnAirLog.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,8 +43,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "85639BE61AB1E7390097A98D"
-               BuildableName = "NowOnAirWatchKitExtension802.appex"
-               BlueprintName = "NowOnAirWatchKitExtension802"
+               BuildableName = "NowOnAirWKExtension802.appex"
+               BlueprintName = "NowOnAirWKExtension802"
                ReferencedContainer = "container:OnAirLog.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -61,8 +61,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "85639BFC1AB1E73D0097A98D"
-            BuildableName = "NowOnAirWatchKitApp802.app"
-            BlueprintName = "NowOnAirWatchKitApp802"
+            BuildableName = "NowOnAirWKApp802.app"
+            BlueprintName = "NowOnAirWKApp802"
             ReferencedContainer = "container:OnAirLog.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -85,8 +85,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "85639BFC1AB1E73D0097A98D"
-            BuildableName = "NowOnAirWatchKitApp802.app"
-            BlueprintName = "NowOnAirWatchKitApp802"
+            BuildableName = "NowOnAirWKApp802.app"
+            BlueprintName = "NowOnAirWKApp802"
             ReferencedContainer = "container:OnAirLog.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
@@ -94,8 +94,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "85639BFC1AB1E73D0097A98D"
-            BuildableName = "NowOnAirWatchKitApp802.app"
-            BlueprintName = "NowOnAirWatchKitApp802"
+            BuildableName = "NowOnAirWKApp802.app"
+            BlueprintName = "NowOnAirWKApp802"
             ReferencedContainer = "container:OnAirLog.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -116,8 +116,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "85639BFC1AB1E73D0097A98D"
-            BuildableName = "NowOnAirWatchKitApp802.app"
-            BlueprintName = "NowOnAirWatchKitApp802"
+            BuildableName = "NowOnAirWKApp802.app"
+            BlueprintName = "NowOnAirWKApp802"
             ReferencedContainer = "container:OnAirLog.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
@@ -125,8 +125,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "85639BFC1AB1E73D0097A98D"
-            BuildableName = "NowOnAirWatchKitApp802.app"
-            BlueprintName = "NowOnAirWatchKitApp802"
+            BuildableName = "NowOnAirWKApp802.app"
+            BlueprintName = "NowOnAirWKApp802"
             ReferencedContainer = "container:OnAirLog.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

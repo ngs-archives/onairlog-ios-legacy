@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "85DCB6941AB1D0C00051602C"
-               BuildableName = "NowOnAirWatchKitExtension813.appex"
-               BlueprintName = "NowOnAirWatchKitExtension813"
+               BuildableName = "NowOnAirWKExtension813.appex"
+               BlueprintName = "NowOnAirWKExtension813"
                ReferencedContainer = "container:OnAirLog.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -48,8 +48,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "85DCB6941AB1D0C00051602C"
-            BuildableName = "NowOnAirWatchKitExtension813.appex"
-            BlueprintName = "NowOnAirWatchKitExtension813"
+            BuildableName = "NowOnAirWKExtension813.appex"
+            BlueprintName = "NowOnAirWKExtension813"
             ReferencedContainer = "container:OnAirLog.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
