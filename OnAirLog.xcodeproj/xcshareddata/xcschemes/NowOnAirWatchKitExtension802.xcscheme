@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "85639BE61AB1E7390097A98D"
-               BuildableName = "NowOnAirWatchKitExtension802.appex"
-               BlueprintName = "NowOnAirWatchKitExtension802"
+               BuildableName = "NowOnAirWKExtension802.appex"
+               BlueprintName = "NowOnAirWKExtension802"
                ReferencedContainer = "container:OnAirLog.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
