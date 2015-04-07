@@ -27,6 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     // AFNetworking
     AFNetworkActivityIndicatorManager.sharedManager().enabled = true
 
+    // Circuit
+    CircuitDeepLink.sharedInstance().setAppId("a0000004021")
+
     // Appearance
     UIView.appearance().tintColor = kOnAirLogTintColor
 
@@ -39,6 +42,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     let masterNavigationController = splitViewController.viewControllers[0] as UINavigationController
     let controller = masterNavigationController.topViewController as MasterViewController
     self.masterViewController = controller
+    return true
+  }
+
+  func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+    CircuitDeepLink.sharedInstance().routeUsingUrl(url)
     return true
   }
 
