@@ -29,5 +29,7 @@
 	<string>org.ngsdev.iphone.OnAirLog802</string>
 	<key>WKWatchKitApp</key>
 	<true/>
+	<key>CFBundleDisplayName</key>
+	<string>Now On Air 802</string>
 </dict>
 </plist>
