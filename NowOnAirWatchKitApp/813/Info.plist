@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Now On Air 813</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -19,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2.2.0.3</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -27,8 +29,6 @@
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
 	<string>org.ngsdev.iphone.OnAirLog813</string>
-	<key>CFBundleDisplayName</key>
-	<string>Now On Air 813</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 </dict>
