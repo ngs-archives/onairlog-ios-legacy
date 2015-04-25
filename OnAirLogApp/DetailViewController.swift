@@ -44,26 +44,27 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
       let songField = GAIFields.customDimensionForIndex(1)
       tracker.set(kGAIScreenName, value: "Detail Screen")
       tracker.set(songField, value: self.song!.songID.stringValue)
-      tracker.send(GAIDictionaryBuilder.createAppView().set(songField, forKey: "song").build())
-      tracker.send(GAIDictionaryBuilder.createEventWithCategory("detail", action: "view", label: song?.songID.stringValue, value: 1).build())
+      tracker.send(GAIDictionaryBuilder.createAppView().set(songField, forKey: "song").build() as [NSObject : AnyObject])
+      tracker.send(GAIDictionaryBuilder.createEventWithCategory("detail", action: "view", label: song?.songID.stringValue, value: 1).build() as [NSObject : AnyObject])
       //
       let manager = AFHTTPSessionManager()
       manager.responseSerializer = AFJSONResponseSerializer(readingOptions: NSJSONReadingOptions.AllowFragments)
       manager.requestSerializer = AFHTTPRequestSerializer()
       let url = NSString(format: "http://%@/song/%@.json", kOnAirLogAPIHost, song!.songID)
-      manager.GET(url, parameters: nil,
+      manager.GET(url as String, parameters: nil,
         success: { (task: NSURLSessionDataTask!, response: AnyObject!) -> Void in
           var json = response as? NSDictionary
           json = json == nil ? nil : json!["results"] as? NSDictionary
           json = json == nil ? nil : json!["song"] as? NSDictionary
-          self.searchResults = (json == nil) ? [] : json!["itunes"] as Array<NSDictionary>
+          self.searchResults = (json == nil) ? [] : json!["itunes"] as! Array<NSDictionary>
           self.tableView.reloadData()
         },
         failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
           self.searchResults = []
           self.tableView.reloadData()
           tracker.send(GAIDictionaryBuilder.createExceptionWithDescription(
-            NSString(format: "%@: %@", url.description, error.description), withFatal: false).build())
+            NSString(format: "%@: %@", url.description, error.description) as String, withFatal: false).build() as [NSObject : AnyObject])
+          return
         }
       )
     }
@@ -116,7 +117,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     if error != nil {
       GAI.sharedInstance().defaultTracker.send(
-        GAIDictionaryBuilder.createExceptionWithDescription(error?.description, withFatal: true).build())
+        GAIDictionaryBuilder.createExceptionWithDescription(error?.description, withFatal: true).build() as [NSObject : AnyObject])
     }
   }
 
@@ -132,7 +133,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.presentViewController(av, animated: true) {}
         GAI.sharedInstance().defaultTracker.send(
           GAIDictionaryBuilder.createEventWithCategory("share",
-            action: "show", label: song.songID.stringValue, value: 1).build())
+            action: "show", label: song.songID.stringValue, value: 1).build() as [NSObject : AnyObject])
         self.shorteningInProgress = false
         self.updateBarButtonItems()
     }
@@ -155,11 +156,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     if searchResults == nil {
-      return tableView.dequeueReusableCellWithIdentifier("ActivityCell") as UITableViewCell
+      return tableView.dequeueReusableCellWithIdentifier("ActivityCell") as! UITableViewCell
     }
-    let cell = tableView.dequeueReusableCellWithIdentifier("ItemCell") as UITableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("ItemCell") as! UITableViewCell
     let item = searchResults![indexPath.row]
-    let imageURL = NSURL(string: item["artworkUrl100"] as String)
+    let imageURL = NSURL(string: item["artworkUrl100"] as! String)
     cell.imageView!.setImageWithURLRequest(NSURLRequest(URL: imageURL!),
       placeholderImage: nil,
       success: { (req: NSURLRequest!, res: NSHTTPURLResponse!, img: UIImage!) -> Void in
@@ -187,7 +188,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     self.currentTrackID = trackID
     GAI.sharedInstance().defaultTracker.send(
       GAIDictionaryBuilder.createEventWithCategory("store-view",
-        action: "show", label: trackID.stringValue, value: 1).build())
+        action: "show", label: trackID.stringValue, value: 1).build() as [NSObject : AnyObject])
     vc.loadProductWithParameters(params, completionBlock: nil)
     self.presentViewController(vc, animated: true, completion: nil)
   }
@@ -195,7 +196,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     viewController.dismissViewControllerAnimated(true, completion: nil)
     GAI.sharedInstance().defaultTracker.send(
       GAIDictionaryBuilder.createEventWithCategory("store-view",
-        action: "dismiss", label: self.currentTrackID?.stringValue, value: 1).build())
+        action: "dismiss", label: self.currentTrackID?.stringValue, value: 1).build() as [NSObject : AnyObject])
   }
   
   @IBAction func dismissViewController(sender: AnyObject) {

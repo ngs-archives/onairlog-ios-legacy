@@ -1,27 +1,27 @@
 PODS:
-  - AFNetworking (2.4.1):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
+  - AFNetworking (2.5.3):
+    - AFNetworking/NSURLConnection (= 2.5.3)
+    - AFNetworking/NSURLSession (= 2.5.3)
+    - AFNetworking/Reachability (= 2.5.3)
+    - AFNetworking/Security (= 2.5.3)
+    - AFNetworking/Serialization (= 2.5.3)
+    - AFNetworking/UIKit (= 2.5.3)
+  - AFNetworking/NSURLConnection (2.5.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-    - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.4.1):
+  - AFNetworking/NSURLSession (2.5.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.4.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.4.1)
-  - AFNetworking/Security (2.4.1)
-  - AFNetworking/Serialization (2.4.1)
-  - AFNetworking/UIKit (2.4.1):
+  - AFNetworking/Reachability (2.5.3)
+  - AFNetworking/Security (2.5.3)
+  - AFNetworking/Serialization (2.5.3)
+  - AFNetworking/UIKit (2.5.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - BlocksKit (2.2.5):
-    - BlocksKit/All
+    - BlocksKit/All (= 2.2.5)
   - BlocksKit/All (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
@@ -35,7 +35,9 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
-  - GoogleAnalytics-iOS-SDK (3.0.9)
+  - GoogleAnalytics-iOS-SDK (3.10):
+    - GoogleAnalytics-iOS-SDK/Core (= 3.10)
+  - GoogleAnalytics-iOS-SDK/Core (3.10)
   - MagicalRecord/Shorthand (2.3.0-beta.5)
 
 DEPENDENCIES:
@@ -49,10 +51,15 @@ EXTERNAL SOURCES:
     :git: git@github.com:magicalpanda/MagicalRecord.git
     :tag: v2.3.0-beta.5
 
-SPEC CHECKSUMS:
-  AFNetworking: 41d45d2c14219af0fa5addf3cfd433a002c13c9f
-  BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
-  GoogleAnalytics-iOS-SDK: 3b0994bef22ed2e176a9e2a4d1660c7c2542eb47
-  MagicalRecord: edcc27277d4c15874cc565fb5d91576c146cb2f1
+CHECKOUT OPTIONS:
+  MagicalRecord:
+    :git: git@github.com:magicalpanda/MagicalRecord.git
+    :tag: v2.3.0-beta.5
 
-COCOAPODS: 0.34.4
+SPEC CHECKSUMS:
+  AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
+  BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
+  GoogleAnalytics-iOS-SDK: 4f98a376c1d61e6ac4ca47951655820314856eef
+  MagicalRecord: 5b7e807bc07c5d642af1f7d894b7fe0d3c317ca2
+
+COCOAPODS: 0.36.0

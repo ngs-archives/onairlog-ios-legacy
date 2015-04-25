@@ -45,7 +45,7 @@ public class SearchResultsController: BaseTableViewController, UISearchResultsUp
   }
 
   override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let song: Song! = self.fetchedResultsController.objectAtIndexPath(indexPath) as Song
+    let song: Song! = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Song
     self.masterViewController?.performSegueWithIdentifier("showDetail", sender: song)
   }
 
