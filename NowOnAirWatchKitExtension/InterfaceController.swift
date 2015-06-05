@@ -24,6 +24,7 @@ class InterfaceController: WKInterfaceController {
     let dbURL = NSFileManager.defaultManager()
       .containerURLForSecurityApplicationGroupIdentifier(kOnAirLogDocumentContainerDomain)?
       .URLByAppendingPathComponent("OnAirLog.sqlite")
+    MagicalRecord.enableShorthandMethods()
     MagicalRecord.setupCoreDataStackWithStoreAtURL(dbURL)
     self.apiClient = SongAPIClient()
     // Google Analytics
@@ -38,13 +39,13 @@ class InterfaceController: WKInterfaceController {
     super.willActivate()
     let tracker = GAI.sharedInstance().defaultTracker
     tracker.set(kGAIScreenName, value: "Watch App")
-    tracker.send(GAIDictionaryBuilder.createAppView().build())
+    tracker.send(GAIDictionaryBuilder.createScreenView().build() as [NSObject : AnyObject])
     self.refresh()
   }
 
   @IBAction func viewMenuAction() {
     let tracker = GAI.sharedInstance().defaultTracker
-    tracker.send(GAIDictionaryBuilder.createEventWithCategory("watch", action: "view-song", label: self.song?.songID.stringValue, value: 1).build())
+    tracker.send(GAIDictionaryBuilder.createEventWithCategory("watch", action: "view-song", label: self.song?.songID.stringValue, value: 1).build() as [NSObject : AnyObject])
     let opened = WKInterfaceController.openParentApplication(["songID": NSString(format: "%@", self.song!.songID)],
       reply: { (reply, error) in
     })
@@ -80,14 +81,14 @@ class InterfaceController: WKInterfaceController {
     self.apiClient?.load(0,
       success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         if self.updateSong() {
-          tracker.send(GAIDictionaryBuilder.createEventWithCategory("watch", action: "new-data", label: self.song?.songID.stringValue, value: 1).build())
+          tracker.send(GAIDictionaryBuilder.createEventWithCategory("watch", action: "new-data", label: self.song?.songID.stringValue, value: 1).build() as [NSObject : AnyObject])
         } else {
-          tracker.send(GAIDictionaryBuilder.createEventWithCategory("watch", action: "no-data", label: self.song?.songID.stringValue, value: 1).build())
+          tracker.send(GAIDictionaryBuilder.createEventWithCategory("watch", action: "no-data", label: self.song?.songID.stringValue, value: 1).build() as [NSObject : AnyObject])
         }
         self.startRefreshInterval()
       },
       failure: { (task: NSURLSessionDataTask!,  error: NSError!) -> Void in
-        tracker.send(GAIDictionaryBuilder.createEventWithCategory("watch", action: "failed", label: self.song?.songID.stringValue, value: 1).build())
+        tracker.send(GAIDictionaryBuilder.createEventWithCategory("watch", action: "failed", label: self.song?.songID.stringValue, value: 1).build() as [NSObject : AnyObject])
         self.startRefreshInterval()
       }
 
@@ -124,14 +125,14 @@ class InterfaceController: WKInterfaceController {
     manager.responseSerializer = AFJSONResponseSerializer(readingOptions: NSJSONReadingOptions.AllowFragments)
     manager.requestSerializer = AFHTTPRequestSerializer()
     let url = NSString(format: "http://%@/song/%@.json", kOnAirLogAPIHost, song!.songID)
-    manager.GET(url, parameters: nil,
+    manager.GET(url as String, parameters: nil,
       success: { (task: NSURLSessionDataTask!, response: AnyObject!) -> Void in
         var json = response as? NSDictionary
         json = json == nil ? nil : json!["results"] as? NSDictionary
         json = json == nil ? nil : json!["song"] as? NSDictionary
         let itunes = json == nil ? nil : json!["itunes"] as? Array<AnyObject>
         if itunes?.count > 0 {
-          let item = itunes?.first as NSDictionary!
+          let item = itunes?.first as! NSDictionary!
           let artwork = item["artworkUrl100"] as? NSString
           if artwork != nil {
             self.cacheImage(artwork!)
@@ -140,12 +141,11 @@ class InterfaceController: WKInterfaceController {
             self.artworkImage.setImageNamed("Artwork")
           }
         }
-      },
-      failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         tracker.send(GAIDictionaryBuilder.createExceptionWithDescription(
-          NSString(format: "%@: %@", url.description, error.description), withFatal: false).build())
-      }
-    )
+          NSString(format: "%@: %@", url.description, error.description) as String, withFatal: false).build() as [NSObject : AnyObject])
+        return
+    }
   }
 
   func cacheImage(url: NSString) {
@@ -153,7 +153,7 @@ class InterfaceController: WKInterfaceController {
     let manager = AFHTTPSessionManager()
     manager.responseSerializer = AFImageResponseSerializer() as AFImageResponseSerializer
     manager.requestSerializer = AFHTTPRequestSerializer()
-    manager.GET(url, parameters: nil,
+    manager.GET(url as String, parameters: nil,
       success: { (task: NSURLSessionDataTask!, response: AnyObject!) -> Void in
         let image = response as? UIImage
         if image != nil {
@@ -166,7 +166,8 @@ class InterfaceController: WKInterfaceController {
       },
       failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         tracker.send(GAIDictionaryBuilder.createExceptionWithDescription(
-          NSString(format: "%@: %@", url.description, error.description), withFatal: false).build())
+          NSString(format: "%@: %@", url.description, error.description) as String, withFatal: false).build() as [NSObject : AnyObject])
+        return
       }
     )
   }

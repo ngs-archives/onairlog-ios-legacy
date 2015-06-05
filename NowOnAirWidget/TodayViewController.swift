@@ -21,6 +21,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     let dbURL = NSFileManager.defaultManager()
       .containerURLForSecurityApplicationGroupIdentifier(kOnAirLogDocumentContainerDomain)?
       .URLByAppendingPathComponent("OnAirLog.sqlite")
+    MagicalRecord.enableShorthandMethods()
     MagicalRecord.setupCoreDataStackWithStoreAtURL(dbURL)
     self.apiClient = SongAPIClient()
     // Google Analytics
@@ -36,19 +37,19 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
     let tracker = GAI.sharedInstance().defaultTracker
     tracker.set(kGAIScreenName, value: "Today Widget")
-    tracker.send(GAIDictionaryBuilder.createAppView().build())
+    tracker.send(GAIDictionaryBuilder.createScreenView().build() as [NSObject : AnyObject])
     self.apiClient?.load(0,
       success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         if self.updateSong() {
           completionHandler(.NewData)
-          tracker.send(GAIDictionaryBuilder.createEventWithCategory("widget", action: "new-data", label: self.song?.songID.stringValue, value: 1).build())
+          tracker.send(GAIDictionaryBuilder.createEventWithCategory("widget", action: "new-data", label: self.song?.songID.stringValue, value: 1).build() as [NSObject : AnyObject])
         } else {
-          tracker.send(GAIDictionaryBuilder.createEventWithCategory("widget", action: "no-data", label: self.song?.songID.stringValue, value: 1).build())
+          tracker.send(GAIDictionaryBuilder.createEventWithCategory("widget", action: "no-data", label: self.song?.songID.stringValue, value: 1).build() as [NSObject : AnyObject])
           completionHandler(.NoData)
         }
       },
       failure: { (task: NSURLSessionDataTask!,  error: NSError!) -> Void in
-        tracker.send(GAIDictionaryBuilder.createEventWithCategory("widget", action: "failed", label: self.song?.songID.stringValue, value: 1).build())
+        tracker.send(GAIDictionaryBuilder.createEventWithCategory("widget", action: "failed", label: self.song?.songID.stringValue, value: 1).build() as [NSObject : AnyObject])
         completionHandler(.Failed)
       }
     )
@@ -68,7 +69,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
       self.titleLabel.text = song?.title
       self.titleLabel.sizeToFit()
       let subtitle = NSString(format: "%@ %@", song!.artist!, song!.timeFormatted())
-      self.subtitleLabel.text = subtitle
+      self.subtitleLabel.text = subtitle as String
       self.subtitleLabel.sizeToFit()
       return true
     }
@@ -80,8 +81,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   @IBAction func didViewTapped(sender: AnyObject) {
     if song?.songID != nil {
       let tracker = GAI.sharedInstance().defaultTracker
-      tracker.send(GAIDictionaryBuilder.createEventWithCategory("widget", action: "tapped", label: self.song?.songID.stringValue, value: 1).build())
-      let url = NSURL(scheme: kOnAirLogAppScheme, host: kOnAirLogAppHost, path: NSString(format: "/song/%@", song!.songID!))
+      tracker.send(GAIDictionaryBuilder.createEventWithCategory("widget", action: "tapped", label: self.song?.songID.stringValue, value: 1).build() as [NSObject : AnyObject])
+      let url = NSURL(scheme: kOnAirLogAppScheme, host: kOnAirLogAppHost, path: NSString(format: "/song/%@", song!.songID!) as String)
       self.extensionContext?.openURL(url!, completionHandler: { (success: Bool) -> Void in })
     }
   }

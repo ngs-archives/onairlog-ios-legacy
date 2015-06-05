@@ -9,8 +9,8 @@
 import Foundation
 
 class SongAPISessionManager: AFHTTPSessionManager {
-  override init(baseURL url: NSURL!) {
-    super.init(baseURL: url)
+  init(baseURL url: NSURL!) {
+    super.init(baseURL: url, sessionConfiguration: nil)
     setup()
   }
 

@@ -25,7 +25,7 @@ class MasterViewController: BaseTableViewController, UISearchControllerDelegate,
   override func viewDidLoad() {
     super.viewDidLoad()
     self.definesPresentationContext = true
-    resultsTableController = self.storyboard?.instantiateViewControllerWithIdentifier("searchResultsController") as SearchResultsController
+    resultsTableController = self.storyboard?.instantiateViewControllerWithIdentifier("searchResultsController") as! SearchResultsController
     resultsTableController.masterViewController = self
     searchController = UISearchController(searchResultsController: resultsTableController)
     searchController.searchResultsUpdater = resultsTableController
@@ -59,13 +59,13 @@ class MasterViewController: BaseTableViewController, UISearchControllerDelegate,
         song = self.fetchedResultsController.objectAtIndexPath(indexPath) as? Song
       }
       if song != nil {
-        let controller = (segue.destinationViewController as UINavigationController).topViewController as DetailViewController
+        let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
         controller.song = song
         controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
         controller.navigationItem.leftItemsSupplementBackButton = true
       }
     } else if segue.identifier == "showDatePicker" {
-      let controller = (segue.destinationViewController as UINavigationController).topViewController as DatePickerViewController
+      let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DatePickerViewController
       controller.masterViewController = self
     }
   }
@@ -89,8 +89,8 @@ class MasterViewController: BaseTableViewController, UISearchControllerDelegate,
     let scrollTop = scrollView.contentOffset.y
     let diff = contentHeight - scrollTop - top
     if self.shouldAutoLoad() && diff < height && self.fetchedResultsController.sections?.count > 0 {
-      let section = self.fetchedResultsController.sections?.last? as NSFetchedResultsSectionInfo
-      let song = section.objects.last as Song
+      let section = self.fetchedResultsController.sections?.last as! NSFetchedResultsSectionInfo
+      let song = section.objects.last as! Song
       self.load(sinceID: song.songID.integerValue - 1)
     }
     scrollCache[filterTypeSegmentControl.selectedSegmentIndex] = scrollView.contentOffset.y
@@ -100,7 +100,7 @@ class MasterViewController: BaseTableViewController, UISearchControllerDelegate,
     GAI.sharedInstance().defaultTracker.send(
       GAIDictionaryBuilder.createEventWithCategory("timeline",
         action: "segment-change", label: isTimeline() ? "timeline" : "favorites" ,
-        value: 1).build())
+        value: 1).build() as [NSObject : AnyObject])
     if isTimeline() {
       self.tableView.addSubview(self.refreshControl!)
     } else {
@@ -138,14 +138,14 @@ class MasterViewController: BaseTableViewController, UISearchControllerDelegate,
       row = 0
       section++
     }
-    let song1 = self.fetchedResultsController .objectAtIndexPath(indexPath) as Song
+    let song1 = self.fetchedResultsController .objectAtIndexPath(indexPath) as! Song
     let songID1 = song1.songID.integerValue
     var sinceID = 0
     if section >= sectionCount {
       sinceID = songID1 - 1
     } else {
       let indexPath2 = NSIndexPath(forRow: row, inSection: section)
-      let song2 = self.fetchedResultsController .objectAtIndexPath(indexPath2) as Song
+      let song2 = self.fetchedResultsController .objectAtIndexPath(indexPath2)as! Song
       let songID2 = song2.songID.integerValue
       if songID1 - songID2  > 10 {
         sinceID = songID1 - 1
@@ -154,8 +154,8 @@ class MasterViewController: BaseTableViewController, UISearchControllerDelegate,
     if sinceID > 0  {
       GAI.sharedInstance().defaultTracker.send(
         GAIDictionaryBuilder.createEventWithCategory("timeline",
-          action: "load-more", label: NSString(format: "since = %@", sinceID.description),
-          value: 1).build())
+          action: "load-more", label: NSString(format: "since = %@", sinceID.description) as String,
+          value: 1).build() as [NSObject : AnyObject])
       self.load(sinceID: sinceID)
     }
   }
@@ -201,7 +201,7 @@ class MasterViewController: BaseTableViewController, UISearchControllerDelegate,
   func refresh(sender :AnyObject?) {
     GAI.sharedInstance().defaultTracker.send(
       GAIDictionaryBuilder.createEventWithCategory("timeline",
-        action: "refresh", label: nil, value: 1).build())
+        action: "refresh", label: nil, value: 1).build() as [NSObject : AnyObject])
     refreshControl?.beginRefreshing()
     self.load()
   }

@@ -8,8 +8,9 @@
 //
 
 #import "Song.h"
-#define MR_SHORTHAND
-#import <MagicalRecord/CoreData+MagicalRecord.h>
+#import <MagicalRecord/MagicalRecord.h>
+#import <MagicalRecord/MagicalRecord+ShorthandMethods.h>
+#import <MagicalRecord/MagicalRecordShorthandMethodAliases.h>
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
 #import <GoogleAnalytics-iOS-SDK/GAIFields.h>
 #import <GoogleAnalytics-iOS-SDK/GAIDictionaryBuilder.h>
@@ -26,7 +27,7 @@ static NSString *ITUNES_LINK_FORMAT = @"https://itunes.apple.com/WebObjects/MZSt
 
 + (id)findOrCreateWithAttributes:(NSDictionary *)attributes inContext:(NSManagedObjectContext *)context {
   id song = attributes[@"id"] ? [Song findFirstByAttribute:@"songID" withValue:attributes[@"id"] inContext:context] : nil;
-  if(!song) song = [self createEntityInContext:context];
+  if(!song) song = [self MR_createEntityInContext:context];
   [song updateAttributes:attributes];
   return song;
 }
