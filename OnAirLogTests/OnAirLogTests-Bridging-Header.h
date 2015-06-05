@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#define MR_SHORTHAND
 #import <MagicalRecord/MagicalRecord.h>
-#import <MagicalRecord/CoreData+MagicalRecord.h>
+#import <MagicalRecord/MagicalRecord+ShorthandMethods.h>
+#import <MagicalRecord/MagicalRecordShorthandMethodAliases.h>
 #import "Song.h"

@@ -24,6 +24,7 @@ class InterfaceController: WKInterfaceController {
     let dbURL = NSFileManager.defaultManager()
       .containerURLForSecurityApplicationGroupIdentifier(kOnAirLogDocumentContainerDomain)?
       .URLByAppendingPathComponent("OnAirLog.sqlite")
+    MagicalRecord.enableShorthandMethods()
     MagicalRecord.setupCoreDataStackWithStoreAtURL(dbURL)
     self.apiClient = SongAPIClient()
     // Google Analytics
@@ -38,7 +39,7 @@ class InterfaceController: WKInterfaceController {
     super.willActivate()
     let tracker = GAI.sharedInstance().defaultTracker
     tracker.set(kGAIScreenName, value: "Watch App")
-    tracker.send(GAIDictionaryBuilder.createAppView().build() as [NSObject : AnyObject])
+    tracker.send(GAIDictionaryBuilder.createScreenView().build() as [NSObject : AnyObject])
     self.refresh()
   }
 

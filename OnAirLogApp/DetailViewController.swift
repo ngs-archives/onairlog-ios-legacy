@@ -44,7 +44,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
       let songField = GAIFields.customDimensionForIndex(1)
       tracker.set(kGAIScreenName, value: "Detail Screen")
       tracker.set(songField, value: self.song!.songID.stringValue)
-      tracker.send(GAIDictionaryBuilder.createAppView().set(songField, forKey: "song").build() as [NSObject : AnyObject])
+      tracker.send(GAIDictionaryBuilder.createScreenView().set(songField, forKey: "song").build() as [NSObject : AnyObject])
       tracker.send(GAIDictionaryBuilder.createEventWithCategory("detail", action: "view", label: song?.songID.stringValue, value: 1).build() as [NSObject : AnyObject])
       //
       let manager = AFHTTPSessionManager()

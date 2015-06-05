@@ -101,6 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
   func initializeDB() {
     if !dbInitialized {
+      MagicalRecord.enableShorthandMethods()
       let dbURL = NSFileManager.defaultManager()
         .containerURLForSecurityApplicationGroupIdentifier(kOnAirLogDocumentContainerDomain)?
         .URLByAppendingPathComponent("OnAirLog.sqlite")

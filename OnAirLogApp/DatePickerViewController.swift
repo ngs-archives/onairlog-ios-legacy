@@ -26,7 +26,7 @@ class DatePickerViewController: UIViewController {
     super.viewDidAppear(animated)
     let tracker = GAI.sharedInstance().defaultTracker
     tracker.set(kGAIScreenName, value: "Date Picker Screen")
-    tracker.send(GAIDictionaryBuilder.createAppView().build() as [NSObject : AnyObject])
+    tracker.send(GAIDictionaryBuilder.createScreenView().build() as [NSObject : AnyObject])
   }
   @IBOutlet weak var datePicker: UIDatePicker!
   @IBAction func cancelButtonTapped(sender: AnyObject) {
