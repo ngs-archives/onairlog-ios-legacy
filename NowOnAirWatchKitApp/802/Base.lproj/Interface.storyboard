@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
+    </dependencies>
+    <scenes>
+        <!--Glance Interface Controller-->
+        <scene sceneID="mtq-Sj-lf1">
+            <objects>
+                <glanceController topTemplateType="body1Medium" id="w4s-h3-L2V" customClass="InterfaceController" customModule="NowOnAirWatchKitExtension802">
+                    <items>
+                        <label alignment="left" alpha="0.69999999999999996" text="Label" minimumScaleFactor="0.5" id="tw6-2E-3fW"/>
+                        <label alignment="left" text="123412341234123412341234" minimumScaleFactor="0.5" id="DAm-1A-mj9"/>
+                        <group alignment="left" id="smX-NZ-VOE">
+                            <items>
+                                <imageView width="100" height="100" alignment="center" verticalAlignment="bottom" contentMode="scaleAspectFit" id="19F-eF-7Y2">
+                                    <variation key="device=watch38mm" height="80" width="80"/>
+                                </imageView>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="artistLabel" destination="tw6-2E-3fW" id="EBC-Ah-zwj"/>
+                        <outlet property="artworkImage" destination="19F-eF-7Y2" id="1i2-z4-SAz"/>
+                        <outlet property="titleLabel" destination="DAm-1A-mj9" id="KZq-xm-t3J"/>
+                    </connections>
+                </glanceController>
+            </objects>
+            <point key="canvasLocation" x="26" y="480"/>
+        </scene>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="NowOnAirWatchKitExtension802">
+                    <items>
+                        <label width="0.90000000000000002" alignment="center" text="Label" numberOfLines="0" id="AM2-sV-dKm">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                        </label>
+                        <label width="0.90000000000000002" alignment="center" text="LabelLabelLabelLabelL" numberOfLines="0" id="0Xe-01-dPJ">
+                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                        </label>
+                        <label width="0.90000000000000002" alignment="center" text="Label" numberOfLines="0" id="dVV-54-56N">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                        </label>
+                        <imageView width="100" height="100" alignment="center" contentMode="scaleAspectFit" id="kwp-CS-wRi">
+                            <variation key="device=watch38mm" height="80" width="80"/>
+                        </imageView>
+                    </items>
+                    <menu key="menu" id="tKQ-Ue-Fed">
+                        <items>
+                            <menuItem title="Favorite" image="star-38" id="lJP-Hh-b7h">
+                                <variation key="device=watch38mm" image="star-38"/>
+                                <variation key="device=watch42mm" image="star-42"/>
+                                <connections>
+                                    <action selector="favoriteMenuAction" destination="AgC-eL-Hgc" id="fhw-LU-vH2"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="View Song" image="music-38" id="yWr-lg-KTN">
+                                <variation key="device=watch38mm" image="music-38"/>
+                                <variation key="device=watch42mm" image="music-42"/>
+                                <connections>
+                                    <action selector="viewMenuAction" destination="AgC-eL-Hgc" id="JlX-wN-czn"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                    <connections>
+                        <outlet property="artistLabel" destination="dVV-54-56N" id="NnD-fe-v5E"/>
+                        <outlet property="artworkImage" destination="kwp-CS-wRi" id="Ao7-rP-1EQ"/>
+                        <outlet property="timestampLabel" destination="AM2-sV-dKm" id="mhE-Xv-y77"/>
+                        <outlet property="titleLabel" destination="0Xe-01-dPJ" id="w0e-aK-DQy"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="26" y="191"/>
+        </scene>
+    </scenes>
+</document>

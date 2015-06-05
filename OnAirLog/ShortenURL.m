@@ -7,9 +7,10 @@
 //
 
 #import "ShortenURL.h"
-#define MR_SHORTHAND
-#import <MagicalRecord/CoreData+MagicalRecord.h>
 #import <AFNetworking/AFNetworking.h>
+#import <MagicalRecord/MagicalRecord.h>
+#import <MagicalRecord/MagicalRecord+ShorthandMethods.h>
+#import <MagicalRecord/MagicalRecordShorthandMethodAliases.h>
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
 #import <GoogleAnalytics-iOS-SDK/GAIFields.h>
 #import <GoogleAnalytics-iOS-SDK/GAIDictionaryBuilder.h>

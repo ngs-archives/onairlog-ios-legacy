@@ -36,8 +36,8 @@ public class BaseTableViewController: UITableViewController, NSFetchedResultsCon
     if sections?.count < section + 1 {
       return nil
     }
-    let s = sections![section] as NSFetchedResultsSectionInfo
-    let song = s.objects.first as Song
+    let s = sections![section] as! NSFetchedResultsSectionInfo
+    let song = s.objects.first as! Song
     return song.sectionTitle()
   }
 
@@ -46,12 +46,12 @@ public class BaseTableViewController: UITableViewController, NSFetchedResultsCon
   }
 
   override public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    let sectionInfo = self.fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo
+    let sectionInfo = self.fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo
     return sectionInfo.numberOfObjects
   }
 
   override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as SongTableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! SongTableViewCell
     self.configureCell(cell, atIndexPath: indexPath)
     return cell
   }
@@ -61,7 +61,7 @@ public class BaseTableViewController: UITableViewController, NSFetchedResultsCon
   }
 
   func configureCell(cell: SongTableViewCell, atIndexPath indexPath: NSIndexPath) {
-    let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as Song
+    let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Song
     cell.configureSong(object)
   }
 
@@ -69,7 +69,7 @@ public class BaseTableViewController: UITableViewController, NSFetchedResultsCon
 
   var fetchedResultsController: NSFetchedResultsController {
     if (_fetchedResultsController == nil) {
-      var appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+      var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
       appDelegate.initializeDB()
       _fetchedResultsController = Song.fetchAllSortedBy("songID", ascending: false, withPredicate: predicate(), groupBy: "sectionIdentifier", delegate: self, inContext: NSManagedObjectContext.MR_defaultContext())
       }
@@ -92,27 +92,24 @@ public class BaseTableViewController: UITableViewController, NSFetchedResultsCon
     }
   }
 
-  func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath) {
+  public func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?,
+    forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
     switch type {
     case .Insert:
-      tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
+      tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
     case .Delete:
-      tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+      tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
     case .Update:
-      let cell = tableView.cellForRowAtIndexPath(newIndexPath)
+      let cell = tableView.cellForRowAtIndexPath(newIndexPath!)
       if cell != nil {
-        self.configureCell(cell! as SongTableViewCell, atIndexPath: newIndexPath)
+        self.configureCell(cell! as! SongTableViewCell, atIndexPath: newIndexPath!)
       }
     case .Move:
-      tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-      tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
+      tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
+      tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
     default:
       return
     }
-  }
-
-  public func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-    self.configureCell(self.tableView.cellForRowAtIndexPath(indexPath!)! as SongTableViewCell, atIndexPath: indexPath!)
   }
 
   public func controllerDidChangeContent(controller: NSFetchedResultsController) {

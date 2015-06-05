@@ -16,7 +16,7 @@ class SongTests: XCTestCase {
   var _song: Song? = nil
   var song: Song {
     if _song == nil {
-      _song = Song.createEntity() as Song
+      _song = Song.MR_createEntity() as Song
       }
       return _song!
   }
@@ -26,7 +26,8 @@ class SongTests: XCTestCase {
   }
 
   func testUpdateAttributes() {
-    song.updateAttributes(fixtureData("song01"))
+    let data = fixtureData("song01")
+    song.updateAttributes(data as [NSObject : AnyObject])
     XCTAssert(song.artist == "CORNELIUS")
     XCTAssert(song.title == "STAR FRUITS SURF RIDER")
     XCTAssert(song.sectionIdentifier == "2014100606")

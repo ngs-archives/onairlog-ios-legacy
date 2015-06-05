@@ -30,3 +30,5 @@ OnAirLog/Environment.swift
 .env
 Certificates/
 *.mobileprovision*
+.*.swp
+.DS_Store
