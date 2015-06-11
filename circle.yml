@@ -27,16 +27,39 @@ test:
         environment:
           APPNAME: OnAirLog813
           DEPLOYGATE_DISTRIBUTION_KEY: $ONAIRLOG813_DEPLOYGATE_DISTRIBUTION_KEY
-    # - /bin/bash Scripts/build-adhoc.sh:
-    #    environment:
-    #      APPNAME: OnAirLog802
+    - /bin/bash  Scripts/distribute-s3.sh:
+        environment:
+          APPNAME: OnAirLog813
+          INFO_PLIST: OnAirLogApp/813/Info.plist
+          ICON_URL: 'https://raw.githubusercontent.com/ngs/onairlog-ios/master/OnAirLogApp/813/Images.xcassets/AppIcon.appiconset/iphone_icon_60x60%403x.png'
+    - /bin/bash Scripts/build-adhoc.sh:
+        environment:
+          APPNAME: OnAirLog802
+    - /bin/bash  Scripts/distribute-s3.sh:
+        environment:
+          APPNAME: OnAirLog802
+          INFO_PLIST: OnAirLogApp/802/Info.plist
+          ICON_URL: 'https://raw.githubusercontent.com/ngs/onairlog-ios/master/OnAirLogApp/802/Images.xcassets/AppIcon.appiconset/iphone_icon_60x60%403x.png'
     # - /bin/bash  Scripts/distribute-deploygate.sh:
     #    environment:
     #      APPNAME: OnAirLog802
     #      DEPLOYGATE_DISTRIBUTION_KEY: $ONAIRLOG802_DEPLOYGATE_DISTRIBUTION_KEY
-    - /bin/bash Scripts/build-release.sh:
-        environment:
-          APPNAME: OnAirLog813
-    - /bin/bash Scripts/build-release.sh:
-        environment:
-          APPNAME: OnAirLog802
+deployment:
+  master:
+    branch: /master|publish\-.+/
+    commands:
+      - /bin/bash Scripts/build-release.sh:
+          environment:
+            APPNAME: OnAirLog802
+      - /bin/bash Scripts/distribute-itunesconnect.sh:
+          environment:
+            APPNAME: OnAirLog802
+            APPLIE_ID: 423580398
+      - /bin/bash Scripts/build-release.sh:
+          environment:
+            APPNAME: OnAirLog813
+      - /bin/bash Scripts/distribute-itunesconnect.sh:
+          environment:
+            APPNAME: OnAirLog813
+            APPLIE_ID: 416761694
+
