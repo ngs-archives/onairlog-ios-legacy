@@ -54,12 +54,12 @@ deployment:
       - /bin/bash Scripts/distribute-itunesconnect.sh:
           environment:
             APPNAME: OnAirLog802
-            APPLIE_ID: 423580398
+            APPLE_ID: 423580398
       - /bin/bash Scripts/build-release.sh:
           environment:
             APPNAME: OnAirLog813
       - /bin/bash Scripts/distribute-itunesconnect.sh:
           environment:
             APPNAME: OnAirLog813
-            APPLIE_ID: 416761694
+            APPLE_ID: 416761694
 
