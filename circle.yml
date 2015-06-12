@@ -8,6 +8,8 @@ machine:
     XCODE_WORKSPACE: OnAirLog.xcworkspace
     BUILD_URL: "https://circleci.com/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_BUILD_NUM"
     RELEASE_NOTE: "Auto build from $BUILD_URL"
+    ONAIRLOG802_APPLE_ID: 423580398
+    ONAIRLOG813_APPLE_ID: 416761694
 general:
   artifacts:
     - Distribution
@@ -19,47 +21,57 @@ test:
     - /bin/bash Scripts/import-circle-keychain.sh
     - /bin/bash Scripts/update-bundle-version.sh
     - bundle exec rake env:export
-  post:
-    - /bin/bash Scripts/build-adhoc.sh:
-        environment:
-          APPNAME: OnAirLog813
-    - /bin/bash  Scripts/distribute-deploygate.sh:
-        environment:
-          APPNAME: OnAirLog813
-          DEPLOYGATE_DISTRIBUTION_KEY: $ONAIRLOG813_DEPLOYGATE_DISTRIBUTION_KEY
-    - /bin/bash  Scripts/distribute-s3.sh:
-        environment:
-          APPNAME: OnAirLog813
-          INFO_PLIST: OnAirLogApp/813/Info.plist
-          ICON_URL: 'https://raw.githubusercontent.com/ngs/onairlog-ios/master/OnAirLogApp/813/Images.xcassets/AppIcon.appiconset/iphone_icon_60x60%403x.png'
-    - /bin/bash Scripts/build-adhoc.sh:
-        environment:
-          APPNAME: OnAirLog802
-    - /bin/bash  Scripts/distribute-s3.sh:
-        environment:
-          APPNAME: OnAirLog802
-          INFO_PLIST: OnAirLogApp/802/Info.plist
-          ICON_URL: 'https://raw.githubusercontent.com/ngs/onairlog-ios/master/OnAirLogApp/802/Images.xcassets/AppIcon.appiconset/iphone_icon_60x60%403x.png'
-    # - /bin/bash  Scripts/distribute-deploygate.sh:
-    #    environment:
-    #      APPNAME: OnAirLog802
-    #      DEPLOYGATE_DISTRIBUTION_KEY: $ONAIRLOG802_DEPLOYGATE_DISTRIBUTION_KEY
 deployment:
   master:
-    branch: /master|publish\-.+/
+    branch: /^(master|publish\-.+)$/
     commands:
       - /bin/bash Scripts/build-release.sh:
           environment:
             APPNAME: OnAirLog802
-      - /bin/bash Scripts/distribute-itunesconnect.sh:
+      - '/bin/bash Scripts/distribute-itunesconnect.sh || echo "Failed"':
           environment:
             APPNAME: OnAirLog802
-            APPLE_ID: 423580398
+            APPLE_ID: $ONAIRLOG802_APPLE_ID
       - /bin/bash Scripts/build-release.sh:
           environment:
             APPNAME: OnAirLog813
-      - /bin/bash Scripts/distribute-itunesconnect.sh:
+      - '/bin/bash Scripts/distribute-itunesconnect.sh || echo "Failed"':
           environment:
             APPNAME: OnAirLog813
-            APPLE_ID: 416761694
+            APPLE_ID: $ONAIRLOG813_APPLE_ID
+  adhoc:
+    branch: /^(?!(master|publish\-.+)).*/
+    commands:
+      - /bin/bash Scripts/build-adhoc.sh:
+          environment:
+            APPNAME: OnAirLog813
+      - /bin/bash  Scripts/distribute-deploygate.sh:
+          environment:
+            APPNAME: OnAirLog813
+            DEPLOYGATE_DISTRIBUTION_KEY: $ONAIRLOG813_DEPLOYGATE_DISTRIBUTION_KEY
+      - /bin/bash  Scripts/distribute-s3.sh:
+          environment:
+            APPNAME: OnAirLog813
+            INFO_PLIST: OnAirLogApp/813/Info.plist
+            ICON_URL: 'https://raw.githubusercontent.com/ngs/onairlog-ios/master/OnAirLogApp/813/Images.xcassets/AppIcon.appiconset/iphone_icon_60x60%403x.png'
+      - '/bin/bash Scripts/distribute-itunesconnect-adhoc.sh || echo "Failed"':
+          environment:
+            APPNAME: OnAirLog813
+            APPLE_ID: $ONAIRLOG813_APPLE_ID
+      - /bin/bash Scripts/build-adhoc.sh:
+          environment:
+            APPNAME: OnAirLog802
+      - /bin/bash  Scripts/distribute-s3.sh:
+          environment:
+            APPNAME: OnAirLog802
+            INFO_PLIST: OnAirLogApp/802/Info.plist
+            ICON_URL: 'https://raw.githubusercontent.com/ngs/onairlog-ios/master/OnAirLogApp/802/Images.xcassets/AppIcon.appiconset/iphone_icon_60x60%403x.png'
+      - '/bin/bash Scripts/distribute-itunesconnect-adhoc.sh || echo "Failed"':
+          environment:
+            APPNAME: OnAirLog802
+            APPLE_ID: $ONAIRLOG802_APPLE_ID
+      # - /bin/bash  Scripts/distribute-deploygate.sh:
+      #    environment:
+      #      APPNAME: OnAirLog802
+      #      DEPLOYGATE_DISTRIBUTION_KEY: $ONAIRLOG802_DEPLOYGATE_DISTRIBUTION_KEY
 
