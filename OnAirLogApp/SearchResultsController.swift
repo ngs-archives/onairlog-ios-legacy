@@ -7,20 +7,40 @@
 //
 
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
 
-public class SearchResultsController: BaseTableViewController, UISearchResultsUpdating {
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
 
-  public var searchItems: [String]?
+
+open class SearchResultsController: BaseTableViewController, UISearchResultsUpdating {
+
+  open var searchItems: [String]?
   var masterViewController: MasterViewController?
 
-  public func updateSearchResultsForSearchController(searchController: UISearchController) {
-    let whitespaceCharacterSet = NSCharacterSet.whitespaceCharacterSet()
+  open func updateSearchResults(for searchController: UISearchController) {
+    let whitespaceCharacterSet = CharacterSet.whitespaces
     let strippedString = searchController.searchBar.text.stringByTrimmingCharactersInSet(whitespaceCharacterSet)
     searchItems = strippedString.componentsSeparatedByString(" ") as [String]
     updatePredicate()
   }
 
-  override public func predicate() -> NSPredicate? {
+  override open func predicate() -> NSPredicate? {
     var andMatchPredicates = [NSPredicate]()
     if searchItems == nil || !(searchItems?.count > 0) {
       return nil
@@ -29,27 +49,27 @@ public class SearchResultsController: BaseTableViewController, UISearchResultsUp
       if searchString == "" { continue }
       var searchItemsPredicate = [NSPredicate]()
       for key in ["title", "artist"] {
-        var lhs = NSExpression(forKeyPath: key)
-        var rhs = NSExpression(forConstantValue: searchString)
-        var finalPredicate = NSComparisonPredicate(leftExpression: lhs, rightExpression: rhs, modifier: .DirectPredicateModifier, type: .ContainsPredicateOperatorType, options: .CaseInsensitivePredicateOption)
+        let lhs = NSExpression(forKeyPath: key)
+        let rhs = NSExpression(forConstantValue: searchString)
+        let finalPredicate = NSComparisonPredicate(leftExpression: lhs, rightExpression: rhs, modifier: .direct, type: .contains, options: .caseInsensitive)
         searchItemsPredicate.append(finalPredicate)
       }
-      let orMatchPredicates = NSCompoundPredicate.orPredicateWithSubpredicates(searchItemsPredicate)
+      let orMatchPredicates = NSCompoundPredicate.orPredicate(withSubpredicates: searchItemsPredicate)
       andMatchPredicates.append(orMatchPredicates)
     }
     let masterPred = self.masterViewController?.predicate()
     if masterPred != nil {
       andMatchPredicates.append(masterPred!)
     }
-    return NSCompoundPredicate.andPredicateWithSubpredicates(andMatchPredicates)
+    return NSCompoundPredicate.andPredicate(withSubpredicates: andMatchPredicates)
   }
 
-  override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let song: Song! = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Song
-    self.masterViewController?.performSegueWithIdentifier("showDetail", sender: song)
+  override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let song: Song! = self.fetchedResultsController.object(at: indexPath) as! Song
+    self.masterViewController?.performSegue(withIdentifier: "showDetail", sender: song)
   }
 
-  override public func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override open func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
   }
 

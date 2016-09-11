@@ -8,22 +8,33 @@
 
 import UIKit
 import CoreData
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
 
-public class BaseTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+
+open class BaseTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
   var detailViewController: DetailViewController? = nil
-  public func predicate() -> NSPredicate? {
+  open func predicate() -> NSPredicate? {
     return nil
   }
   
-  override public func awakeFromNib() {
+  override open func awakeFromNib() {
     super.awakeFromNib()
-    if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+    if UIDevice.current.userInterfaceIdiom == .pad {
       self.clearsSelectionOnViewWillAppear = false
       self.preferredContentSize = CGSize(width: 320.0, height: 600.0)
     }
   }
 
-  public func updatePredicate() {
+  open func updatePredicate() {
     self.fetchedResultsController.fetchRequest.predicate = predicate()
     self.fetchedResultsController.performFetch(nil)
     self.tableView.reloadData()
@@ -31,7 +42,7 @@ public class BaseTableViewController: UITableViewController, NSFetchedResultsCon
 
   // MARK: - Table View
 
-  override public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+  override open func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     let sections = self.fetchedResultsController.sections
     if sections?.count < section + 1 {
       return nil
@@ -41,27 +52,27 @@ public class BaseTableViewController: UITableViewController, NSFetchedResultsCon
     return song.sectionTitle()
   }
 
-  override public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override open func numberOfSections(in tableView: UITableView) -> Int {
     return self.fetchedResultsController.sections?.count ?? 0
   }
 
-  override public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     let sectionInfo = self.fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo
     return sectionInfo.numberOfObjects
   }
 
-  override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! SongTableViewCell
+  override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SongTableViewCell
     self.configureCell(cell, atIndexPath: indexPath)
     return cell
   }
 
-  override public func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+  override open func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
     return false
   }
 
-  func configureCell(cell: SongTableViewCell, atIndexPath indexPath: NSIndexPath) {
-    let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Song
+  func configureCell(_ cell: SongTableViewCell, atIndexPath indexPath: IndexPath) {
+    let object = self.fetchedResultsController.object(at: indexPath) as! Song
     cell.configureSong(object)
   }
 
@@ -69,50 +80,50 @@ public class BaseTableViewController: UITableViewController, NSFetchedResultsCon
 
   var fetchedResultsController: NSFetchedResultsController {
     if (_fetchedResultsController == nil) {
-      var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+      var appDelegate = UIApplication.shared.delegate as! AppDelegate
       appDelegate.initializeDB()
-      _fetchedResultsController = Song.fetchAllSortedBy("songID", ascending: false, withPredicate: predicate(), groupBy: "sectionIdentifier", delegate: self, inContext: NSManagedObjectContext.MR_defaultContext())
+      _fetchedResultsController = Song.fetchAllSorted(by: "songID", ascending: false, with: predicate(), groupBy: "sectionIdentifier", delegate: self, in: NSManagedObjectContext.mr_default())
       }
       return _fetchedResultsController!
   }
   var _fetchedResultsController: NSFetchedResultsController? = nil
 
-  public func controllerWillChangeContent(controller: NSFetchedResultsController) {
+  open func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
     self.tableView.beginUpdates()
   }
 
-  public func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+  open func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
     switch type {
-    case .Insert:
-      self.tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
-    case .Delete:
-      self.tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+    case .insert:
+      self.tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
+    case .delete:
+      self.tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
     default:
       return
     }
   }
 
-  public func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?,
-    forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+  open func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?,
+    for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
     switch type {
-    case .Insert:
-      tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
-    case .Delete:
-      tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
-    case .Update:
-      let cell = tableView.cellForRowAtIndexPath(newIndexPath!)
+    case .insert:
+      tableView.insertRows(at: [newIndexPath!], with: UITableViewRowAnimation.fade)
+    case .delete:
+      tableView.deleteRows(at: [indexPath!], with: UITableViewRowAnimation.fade)
+    case .update:
+      let cell = tableView.cellForRow(at: newIndexPath!)
       if cell != nil {
         self.configureCell(cell! as! SongTableViewCell, atIndexPath: newIndexPath!)
       }
-    case .Move:
-      tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
-      tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
+    case .move:
+      tableView.deleteRows(at: [indexPath!], with: UITableViewRowAnimation.fade)
+      tableView.insertRows(at: [newIndexPath!], with: UITableViewRowAnimation.fade)
     default:
       return
     }
   }
 
-  public func controllerDidChangeContent(controller: NSFetchedResultsController) {
+  open func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
     self.tableView.endUpdates()
   }
 

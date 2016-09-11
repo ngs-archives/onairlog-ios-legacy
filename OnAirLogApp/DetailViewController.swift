@@ -23,47 +23,47 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
   override func awakeFromNib() {
     super.awakeFromNib()
-    self.shareButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "share:")
-    self.favoriteButtonItem = UIBarButtonItem(image: nil, style: UIBarButtonItemStyle.Plain, target: self, action: "toggleFavorite:")
-    let av = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    self.shareButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.action, target: self, action: #selector(DetailViewController.share(_:)))
+    self.favoriteButtonItem = UIBarButtonItem(image: nil, style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailViewController.toggleFavorite(_:)))
+    let av = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
     av.startAnimating()
     self.progressButtonItem = UIBarButtonItem(customView: av)
     self.updateBarButtonItems()
   }
 
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.configureView()
   }
 
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     if searchResults == nil && song != nil {
       // Screen tracking
       let tracker = GAI.sharedInstance().defaultTracker
-      let songField = GAIFields.customDimensionForIndex(1)
-      tracker.set(kGAIScreenName, value: "Detail Screen")
-      tracker.set(songField, value: self.song!.songID.stringValue)
-      tracker.send(GAIDictionaryBuilder.createScreenView().set(songField, forKey: "song").build() as [NSObject : AnyObject])
-      tracker.send(GAIDictionaryBuilder.createEventWithCategory("detail", action: "view", label: song?.songID.stringValue, value: 1).build() as [NSObject : AnyObject])
+      let songField = GAIFields.customDimension(for: 1)
+      tracker?.set(kGAIScreenName, value: "Detail Screen")
+      tracker?.set(songField, value: self.song!.songID.stringValue)
+      tracker?.send(GAIDictionaryBuilder.createScreenView().set( forKey: "song").build() as [AnyHashable: Any])
+      tracker?.send(GAIDictionaryBuilder.createEvent(withCategory: "detail", action: "view", label: song?.songID., value: 1).build() as [AnyHashable: Any])
       //
       let manager = AFHTTPSessionManager()
-      manager.responseSerializer = AFJSONResponseSerializer(readingOptions: NSJSONReadingOptions.AllowFragments)
+      manager.responseSerializer = AFJSONResponseSerializer(readingOptions: JSONSerialization.ReadingOptions.allowFragments)
       manager.requestSerializer = AFHTTPRequestSerializer()
       let url = NSString(format: "http://%@/song/%@.json", kOnAirLogAPIHost, song!.songID)
-      manager.GET(url as String, parameters: nil,
-        success: { (task: NSURLSessionDataTask!, response: AnyObject!) -> Void in
+      manager.get(url as String, parameters: nil,
+        success: { (task: URLSessionDataTask!, response: AnyObject!) -> Void in
           var json = response as? NSDictionary
           json = json == nil ? nil : json!["results"] as? NSDictionary
           json = json == nil ? nil : json!["song"] as? NSDictionary
           self.searchResults = (json == nil) ? [] : json!["itunes"] as! Array<NSDictionary>
           self.tableView.reloadData()
         },
-        failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        failure: { (task: URLSessionDataTask!, error: NSError!) -> Void in
           self.searchResults = []
           self.tableView.reloadData()
-          tracker.send(GAIDictionaryBuilder.createExceptionWithDescription(
-            NSString(format: "%@: %@", url.description, error.description) as String, withFatal: false).build() as [NSObject : AnyObject])
+          tracker.send(GAIDictionaryBuilder.createException(
+            withDescription: NSString(format: "%@: %@", url.description, error.description) as String, withFatal: false).build() as [AnyHashable: Any])
           return
         }
       )
@@ -81,10 +81,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
   func configureView() {
     if self.titleLabel == nil { return }
     let b = self.song == nil
-    self.timeStampLabel.hidden = b
-    self.artistLabel.hidden = b
-    self.titleLabel.hidden = b
-    self.tableView.hidden = b
+    self.timeStampLabel.isHidden = b
+    self.artistLabel.isHidden = b
+    self.titleLabel.isHidden = b
+    self.tableView.isHidden = b
     if !b {
       self.timeStampLabel.text = self.song!.dateTimeFormatted()
       self.artistLabel.text = self.song!.artist
@@ -107,7 +107,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     self.favoriteButtonItem?.image = UIImage(named: imgName)
   }
 
-  func toggleFavorite(sender: AnyObject?) {
+  func toggleFavorite(_ sender: AnyObject?) {
     if self.song == nil { return }
     let song = self.song!
     var error: NSError? = nil
@@ -117,23 +117,23 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     if error != nil {
       GAI.sharedInstance().defaultTracker.send(
-        GAIDictionaryBuilder.createExceptionWithDescription(error?.description, withFatal: true).build() as [NSObject : AnyObject])
+        GAIDictionaryBuilder.createException(withDescription: error?., withFatal: true).build() as [AnyHashable: Any])
     }
   }
 
-  func share(sender: AnyObject?) {
+  func share(_ sender: AnyObject?) {
     if self.song == nil { return }
     let song = self.song!
     let url = song.iTunesSearchURL()
     let cacheHit = ShortenURL.findOrCreateByOriginalURL(song.iTunesSearchURL(),
-      withAccessToken: BITLY_ACCESS_TOKEN) { (shortenURL: NSURL!) -> Void in
+      withAccessToken: BITLY_ACCESS_TOKEN) { (shortenURL: URL!) -> Void in
         let shareURL = shortenURL == nil ? song.iTunesSearchURL() : shortenURL
         let items = [NSString(format: "%@ %@ %@", song.title, song.artist, song.dateTimeFormatted()), shareURL]
         let av = UIActivityViewController(activityItems: items, applicationActivities: nil)
         self.presentViewController(av, animated: true) {}
         GAI.sharedInstance().defaultTracker.send(
           GAIDictionaryBuilder.createEventWithCategory("share",
-            action: "show", label: song.songID.stringValue, value: 1).build() as [NSObject : AnyObject])
+            action: "show", label: song.songID.stringValue, value: 1).build() as [AnyHashable: Any])
         self.shorteningInProgress = false
         self.updateBarButtonItems()
     }
@@ -150,57 +150,57 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
   // MARK: - TableView
 
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return searchResults == nil ? 1 : searchResults!.count
   }
 
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if searchResults == nil {
-      return tableView.dequeueReusableCellWithIdentifier("ActivityCell") as! UITableViewCell
+      return tableView.dequeueReusableCell(withIdentifier: "ActivityCell") as! UITableViewCell
     }
-    let cell = tableView.dequeueReusableCellWithIdentifier("ItemCell") as! UITableViewCell
-    let item = searchResults![indexPath.row]
-    let imageURL = NSURL(string: item["artworkUrl100"] as! String)
-    cell.imageView!.setImageWithURLRequest(NSURLRequest(URL: imageURL!),
+    let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell") as! UITableViewCell
+    let item = searchResults![(indexPath as NSIndexPath).row]
+    let imageURL = URL(string: item["artworkUrl100"] as! String)
+    cell.imageView!.setImageWithURLRequest(URLRequest(URL: imageURL!),
       placeholderImage: nil,
-      success: { (req: NSURLRequest!, res: NSHTTPURLResponse!, img: UIImage!) -> Void in
+      success: { (req: URLRequest!, res: HTTPURLResponse!, img: UIImage!) -> Void in
         cell.imageView!.image = img
         cell.setNeedsLayout()
       },
-      failure: { (req: NSURLRequest!, res: NSHTTPURLResponse!, error: NSError!) -> Void in })
+      failure: { (req: URLRequest!, res: HTTPURLResponse!, error: NSError!) -> Void in })
     cell.textLabel!.text = item["trackName"] as? String
     cell.detailTextLabel?.text = item["artistName"] as? String
     return cell
   }
 
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
     let vc = SKStoreProductViewController()
     vc.delegate = self
-    let item = (self.searchResults != nil) ? self.searchResults![indexPath.row] as NSDictionary? : nil
+    let item = (self.searchResults != nil) ? self.searchResults![(indexPath as NSIndexPath).row] as NSDictionary? : nil
     if item == nil || item!["trackId"] == nil { return }
-    let trackID: AnyObject = item!["trackId"]!
+    let trackID: AnyObject = item!["trackId"]! as AnyObject
     let params = [
       SKStoreProductParameterITunesItemIdentifier:trackID,
       SKStoreProductParameterAffiliateToken:"10l87J",
       SKStoreProductParameterCampaignToken:kOnAirLogCampaignToken
-    ]
+    ] as [String : Any]
     self.currentTrackID = trackID
     GAI.sharedInstance().defaultTracker.send(
-      GAIDictionaryBuilder.createEventWithCategory("store-view",
-        action: "show", label: trackID.stringValue, value: 1).build() as [NSObject : AnyObject])
-    vc.loadProductWithParameters(params, completionBlock: nil)
-    self.presentViewController(vc, animated: true, completion: nil)
+      GAIDictionaryBuilder.createEvent(withCategory: "store-view",
+        action: "show", label: trackID.stringValue, value: 1).build() as [AnyHashable: Any])
+    vc.loadProduct(withParameters: params, completionBlock: nil)
+    self.present(vc, animated: true, completion: nil)
   }
-  func productViewControllerDidFinish(viewController: SKStoreProductViewController!) {
-    viewController.dismissViewControllerAnimated(true, completion: nil)
+  func productViewControllerDidFinish(_ viewController: SKStoreProductViewController!) {
+    viewController.dismiss(animated: true, completion: nil)
     GAI.sharedInstance().defaultTracker.send(
-      GAIDictionaryBuilder.createEventWithCategory("store-view",
-        action: "dismiss", label: self.currentTrackID?.stringValue, value: 1).build() as [NSObject : AnyObject])
+      GAIDictionaryBuilder.createEvent(withCategory: "store-view",
+        action: "dismiss", label: self.currentTrackID?.stringValue, value: 1).build() as [AnyHashable: Any])
   }
   
-  @IBAction func dismissViewController(sender: AnyObject) {
-    self.dismissViewControllerAnimated(true, completion: { () -> Void in })
+  @IBAction func dismissViewController(_ sender: AnyObject) {
+    self.dismiss(animated: true, completion: { () -> Void in })
   }
 }
 
