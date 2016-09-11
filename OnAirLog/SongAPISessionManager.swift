@@ -9,12 +9,12 @@
 import Foundation
 
 class SongAPISessionManager: AFHTTPSessionManager {
-  init(baseURL url: NSURL!) {
+  init(baseURL url: URL!) {
     super.init(baseURL: url, sessionConfiguration: nil)
     setup()
   }
 
-  override init(baseURL url: NSURL!, sessionConfiguration configuration: NSURLSessionConfiguration!) {
+  override init(baseURL url: URL!, sessionConfiguration configuration: URLSessionConfiguration!) {
     super.init(baseURL: url, sessionConfiguration: configuration)
     setup()
   }
@@ -26,6 +26,6 @@ class SongAPISessionManager: AFHTTPSessionManager {
 
   func setup() {
     requestSerializer = AFHTTPRequestSerializer()
-    responseSerializer = SongAPIResponseSerializer(readingOptions: NSJSONReadingOptions.AllowFragments)
+    responseSerializer = SongAPIResponseSerializer(readingOptions: JSONSerialization.ReadingOptions.allowFragments)
   }
 }

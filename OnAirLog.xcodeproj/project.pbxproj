@@ -780,6 +780,7 @@
 		85F5240A19DD871B003105F0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "LittleApps Inc.";
 				TargetAttributes = {
@@ -798,6 +799,7 @@
 					85069DD219DE007A004F5C8F = {
 						CreatedOnToolsVersion = 6.0.1;
 						DevelopmentTeam = 3Y8APYUG2G;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -809,6 +811,7 @@
 					};
 					85639BE61AB1E7390097A98D = {
 						DevelopmentTeam = 3Y8APYUG2G;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -817,6 +820,7 @@
 					};
 					85639BFC1AB1E73D0097A98D = {
 						DevelopmentTeam = 3Y8APYUG2G;
+						LastSwiftMigration = 0800;
 					};
 					85DCB6941AB1D0C00051602C = {
 						CreatedOnToolsVersion = 6.2;
@@ -853,6 +857,7 @@
 					85F5245519DD88A6003105F0 = {
 						CreatedOnToolsVersion = 6.0.1;
 						DevelopmentTeam = 3Y8APYUG2G;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1383,6 +1388,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "NowOnAirWidget/NowOnAirWidget-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1430,6 +1436,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "NowOnAirWidget/NowOnAirWidget-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1485,6 +1492,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "NowOnAirWatchKitExtension/NowOnAirWKExtension-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1531,6 +1539,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "NowOnAirWatchKitExtension/NowOnAirWKExtension-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1578,6 +1587,7 @@
 				PRODUCT_NAME = NowOnAirWatchKitApp802;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
 			};
@@ -1620,6 +1630,7 @@
 				PRODUCT_NAME = NowOnAirWatchKitApp802;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
 				VALIDATE_PRODUCT = YES;
@@ -2115,6 +2126,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "OnAirLogApp/OnAirLogApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2164,6 +2176,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "OnAirLogApp/OnAirLogApp-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

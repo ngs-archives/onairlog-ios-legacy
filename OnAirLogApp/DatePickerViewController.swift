@@ -17,55 +17,55 @@ class DatePickerViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.datePicker.maximumDate = NSDate()
-    self.datePicker.date = NSDate(timeIntervalSinceNow: -3600)
-    self.preferredContentSize = CGSizeMake(320.0, self.datePicker.frame.size.height)
-    self.progressOverlayView.hidden = true
+    self.datePicker.maximumDate = Date()
+    self.datePicker.date = Date(timeIntervalSinceNow: -3600)
+    self.preferredContentSize = CGSize(width: 320.0, height: self.datePicker.frame.size.height)
+    self.progressOverlayView.isHidden = true
   }
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     let tracker = GAI.sharedInstance().defaultTracker
-    tracker.set(kGAIScreenName, value: "Date Picker Screen")
-    tracker.send(GAIDictionaryBuilder.createScreenView().build() as [NSObject : AnyObject])
+    tracker?.set(kGAIScreenName, value: "Date Picker Screen")
+    tracker?.send(GAIDictionaryBuilder.createScreenView().build() as [AnyHashable: Any])
   }
   @IBOutlet weak var datePicker: UIDatePicker!
-  @IBAction func cancelButtonTapped(sender: AnyObject) {
-    self.dismissViewControllerAnimated(true, completion: {})
+  @IBAction func cancelButtonTapped(_ sender: AnyObject) {
+    self.dismiss(animated: true, completion: {})
   }
-  @IBAction func doneButtonTapped(sender: AnyObject) {
+  @IBAction func doneButtonTapped(_ sender: AnyObject) {
     let tracker = GAI.sharedInstance().defaultTracker
     let dateFrom = self.datePicker.date
-    let dateTo = dateFrom.dateByAddingTimeInterval(3600)
-    let pred = NSPredicate(format: "timeStamp <= %@ AND timeStamp >= %@", dateTo, dateFrom)
-    tracker.send(GAIDictionaryBuilder.createEventWithCategory("filter", action: "date_picked", label: dateFrom.description, value: 1).build() as [NSObject : AnyObject])
-    let song: Song? = Song.findFirstWithPredicate(pred, sortedBy: "songID", ascending: false)
+    let dateTo = dateFrom.addingTimeInterval(3600)
+    let pred = NSPredicate(format: "timeStamp <= %@ AND timeStamp >= %@", dateTo as CVarArg, dateFrom as CVarArg)
+    tracker?.send(GAIDictionaryBuilder.createEvent(withCategory: "filter", action: "date_picked", label: dateFrom.description, value: 1).build() as [AnyHashable: Any])
+    let song: Song? = Song.findFirst(with: pred, sortedBy: "songID", ascending: false)
     if song != nil {
       self.masterViewController?.scrollToSong(song)
       self.cancelButtonTapped(sender)
       return
     }
     let apiClient = SongAPIClient()
-    self.doneButtonItem.enabled = false
-    self.progressOverlayView.hidden = false
+    self.doneButtonItem.isEnabled = false
+    self.progressOverlayView.isHidden = false
     self.progressOverlayView.alpha = 0.0
-    UIView.animateWithDuration(0.3, animations: {
+    UIView.animate(withDuration: 0.3, animations: {
       self.progressOverlayView.alpha = 1.0
     })
     apiClient.sinceDate = dateTo
     apiClient.load(0,
-      success: { (task: NSURLSessionDataTask!, res: AnyObject!) -> Void in
-        let song: Song? = Song.findFirstWithPredicate(pred, sortedBy: "songID", ascending: false)
+      success: { (task: URLSessionDataTask!, res: AnyObject!) -> Void in
+        let song: Song? = Song.findFirst(with: pred, sortedBy: "songID", ascending: false)
         self.masterViewController?.scrollToSong(song)
         self.cancelButtonTapped(sender)
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        self.doneButtonItem.enabled = true
-        UIView.animateWithDuration(0.3,
+      }) { (task: URLSessionDataTask!, error: NSError!) -> Void in
+        self.doneButtonItem.isEnabled = true
+        UIView.animate(withDuration: 0.3,
           animations: { () -> Void in
             self.progressOverlayView.alpha = 0.0
           },
           completion: { (finished: Bool) -> Void in
             if finished {
-              self.progressOverlayView.hidden = true
+              self.progressOverlayView.isHidden = true
             }
         })
     }

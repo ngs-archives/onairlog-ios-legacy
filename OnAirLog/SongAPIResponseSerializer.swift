@@ -12,7 +12,7 @@ class SongAPIResponseSerializer: AFJSONResponseSerializer {
   var currentPage = 0
   var totalPages = 0
   var songs: NSArray?
-  override func responseObjectForResponse(response: NSURLResponse!, data: NSData!, error: NSErrorPointer) -> AnyObject! {
+  override func responseObjectForResponse(_ response: URLResponse!, data: Data!, error: NSErrorPointer) -> AnyObject! {
     var json = super.responseObjectForResponse(response, data: data, error: error) as? NSDictionary
     if json == nil { return nil }
     json = json!["results"] as? NSDictionary

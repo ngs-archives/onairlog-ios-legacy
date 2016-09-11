@@ -7,25 +7,45 @@
 //
 
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class MasterViewController: BaseTableViewController, UISearchControllerDelegate, UISearchBarDelegate {
 
   @IBOutlet weak var filterTypeSegmentControl: UISegmentedControl!
-  private var scrollCache = [-CGFloat.max, -CGFloat.max]
+  fileprivate var scrollCache = [-CGFloat.greatestFiniteMagnitude, -CGFloat.greatestFiniteMagnitude]
   var searchController: UISearchController!
   var resultsTableController: SearchResultsController!
 
   override func awakeFromNib() {
     super.awakeFromNib()
     self.refreshControl = UIRefreshControl()
-    self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+    self.refreshControl!.addTarget(self, action: #selector(MasterViewController.refresh(_:)), for: UIControlEvents.valueChanged)
     self.tableView.addSubview(self.refreshControl!)
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
     self.definesPresentationContext = true
-    resultsTableController = self.storyboard?.instantiateViewControllerWithIdentifier("searchResultsController") as! SearchResultsController
+    resultsTableController = self.storyboard?.instantiateViewController(withIdentifier: "searchResultsController") as! SearchResultsController
     resultsTableController.masterViewController = self
     searchController = UISearchController(searchResultsController: resultsTableController)
     searchController.searchResultsUpdater = resultsTableController
@@ -40,7 +60,7 @@ class MasterViewController: BaseTableViewController, UISearchControllerDelegate,
     }
   }
 
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     self.load()
     var error: NSError?
@@ -50,39 +70,39 @@ class MasterViewController: BaseTableViewController, UISearchControllerDelegate,
 
   // MARK: - Segues
 
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showDetail" {
       var song: Song? = nil
-      if sender?.isKindOfClass(Song) == true {
+      if (sender as AnyObject).isKind(of: Song) == true {
         song = sender as? Song
-      } else if let indexPath = self.tableView.indexPathForSelectedRow() {
+      } else if let indexPath = self.tableView.indexPathForSelectedRow {
         song = self.fetchedResultsController.objectAtIndexPath(indexPath) as? Song
       }
       if song != nil {
-        let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
+        let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
         controller.song = song
-        controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+        controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
         controller.navigationItem.leftItemsSupplementBackButton = true
       }
     } else if segue.identifier == "showDatePicker" {
-      let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DatePickerViewController
+      let controller = (segue.destination as! UINavigationController).topViewController as! DatePickerViewController
       controller.masterViewController = self
     }
   }
 
   // MARK: - Scroll
 
-  private var isScrolling = false
+  fileprivate var isScrolling = false
 
-  override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+  override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
     self.isScrolling = true
   }
 
-  override func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+  override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
     self.isScrolling = false
   }
 
-  override func scrollViewDidScroll(scrollView: UIScrollView) {
+  override func scrollViewDidScroll(_ scrollView: UIScrollView) {
     let contentHeight = scrollView.contentSize.height
     let height = scrollView.frame.size.height
     let top = scrollView.frame.origin.y
@@ -96,11 +116,11 @@ class MasterViewController: BaseTableViewController, UISearchControllerDelegate,
     scrollCache[filterTypeSegmentControl.selectedSegmentIndex] = scrollView.contentOffset.y
   }
 
-  @IBAction func filterTypeSegmentChange(sender: AnyObject) {
+  @IBAction func filterTypeSegmentChange(_ sender: AnyObject) {
     GAI.sharedInstance().defaultTracker.send(
-      GAIDictionaryBuilder.createEventWithCategory("timeline",
+      GAIDictionaryBuilder.createEvent(withCategory: "timeline",
         action: "segment-change", label: isTimeline() ? "timeline" : "favorites" ,
-        value: 1).build() as [NSObject : AnyObject])
+        value: 1).build() as [AnyHashable: Any])
     if isTimeline() {
       self.tableView.addSubview(self.refreshControl!)
     } else {
@@ -109,7 +129,7 @@ class MasterViewController: BaseTableViewController, UISearchControllerDelegate,
     updatePredicate()
     let top = self.scrollCache[self.filterTypeSegmentControl.selectedSegmentIndex]
     if top > 0 {
-      self.tableView.contentOffset = CGPointMake(0, top)
+      self.tableView.contentOffset = CGPoint(x: 0, y: top)
     }
   }
 
@@ -125,38 +145,38 @@ class MasterViewController: BaseTableViewController, UISearchControllerDelegate,
   }
 
   func shouldAutoLoad() -> Bool {
-    return !self.apiClient.isLoading && isTimeline() && !self.isScrolling && self.isViewLoaded() && self.view.window != nil
+    return !self.apiClient.isLoading && isTimeline() && !self.isScrolling && self.isViewLoaded && self.view.window != nil
   }
 
-  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     if !shouldAutoLoad() { return }
-    var row = indexPath.row
-    var section = indexPath.section
-    var sectionCount = self.numberOfSectionsInTableView(tableView)
+    var row = (indexPath as NSIndexPath).row
+    var section = (indexPath as NSIndexPath).section
+    var sectionCount = self.numberOfSections(in: tableView)
     var rowCount = self.tableView(tableView, numberOfRowsInSection: section)
     if rowCount >= row + 1 {
       row = 0
-      section++
+      section += 1
     }
-    let song1 = self.fetchedResultsController .objectAtIndexPath(indexPath) as! Song
-    let songID1 = song1.songID.integerValue
+    let song1 = self.fetchedResultsController .object(at: indexPath) as! Song
+    let songID1 = song1.songID.intValue
     var sinceID = 0
     if section >= sectionCount {
       sinceID = songID1 - 1
     } else {
-      let indexPath2 = NSIndexPath(forRow: row, inSection: section)
-      let song2 = self.fetchedResultsController .objectAtIndexPath(indexPath2)as! Song
-      let songID2 = song2.songID.integerValue
+      let indexPath2 = IndexPath(row: row, section: section)
+      let song2 = self.fetchedResultsController .object(at: indexPath2)as! Song
+      let songID2 = song2.songID.intValue
       if songID1 - songID2  > 10 {
         sinceID = songID1 - 1
       }
     }
     if sinceID > 0  {
       GAI.sharedInstance().defaultTracker.send(
-        GAIDictionaryBuilder.createEventWithCategory("timeline",
+        GAIDictionaryBuilder.createEvent(withCategory: "timeline",
           action: "load-more", label: NSString(format: "since = %@", sinceID.description) as String,
-          value: 1).build() as [NSObject : AnyObject])
-      self.load(sinceID: sinceID)
+          value: 1).build() as [AnyHashable: Any])
+      self.load(sinceID)
     }
   }
 
@@ -171,66 +191,66 @@ class MasterViewController: BaseTableViewController, UISearchControllerDelegate,
 
   var _apiClient: SongAPIClient? = nil
 
-  func load(sinceID: Int = 0) {
+  func load(_ sinceID: Int = 0) {
     apiClient.load(sinceID,
-      success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      success: { (task: URLSessionDataTask!, responseObject: AnyObject!) -> Void in
         if self.refreshControl != nil {
           self.refreshControl?.endRefreshing()
         }
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+      }) { (task: URLSessionDataTask!, error: NSError!) -> Void in
         if self.refreshControl != nil {
           self.refreshControl?.endRefreshing()
         }
     }
   }
 
-  func scrollToSong(song :Song?) {
-    let indexPath = song == nil ? nil : self.fetchedResultsController.indexPathForObject(song!)
+  func scrollToSong(_ song :Song?) {
+    let indexPath = song == nil ? nil : self.fetchedResultsController.indexPath(forObject: song!)
     if indexPath != nil {
       self.isScrolling = true
       // lock loading more for 3.sec
-      let time = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 3))
-      dispatch_after(time, dispatch_get_main_queue(), {
+      let time = DispatchTime.now() + Double(Int64(NSEC_PER_SEC * 3)) / Double(NSEC_PER_SEC)
+      DispatchQueue.main.asyncAfter(deadline: time, execute: {
         self.isScrolling = false
       })
-      self.tableView.scrollToRowAtIndexPath(indexPath!,
-        atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+      self.tableView.scrollToRow(at: indexPath!,
+        at: UITableViewScrollPosition.top, animated: true)
     }
   }
 
-  func refresh(sender :AnyObject?) {
+  func refresh(_ sender :AnyObject?) {
     GAI.sharedInstance().defaultTracker.send(
-      GAIDictionaryBuilder.createEventWithCategory("timeline",
-        action: "refresh", label: nil, value: 1).build() as [NSObject : AnyObject])
+      GAIDictionaryBuilder.createEvent(withCategory: "timeline",
+        action: "refresh", label: nil, value: 1).build() as [AnyHashable: Any])
     refreshControl?.beginRefreshing()
     self.load()
   }
 
   // MARK: - UISearchBarDelegate
 
-  func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     searchBar.resignFirstResponder()
   }
 
   // MARK: - UISearchControllerDelegate
 
-  func presentSearchController(searchController: UISearchController) {
+  func presentSearchController(_ searchController: UISearchController) {
     //NSLog(__FUNCTION__)
   }
 
-  func willPresentSearchController(searchController: UISearchController) {
+  func willPresentSearchController(_ searchController: UISearchController) {
     //NSLog(__FUNCTION__)
   }
 
-  func didPresentSearchController(searchController: UISearchController) {
+  func didPresentSearchController(_ searchController: UISearchController) {
     //NSLog(__FUNCTION__)
   }
 
-  func willDismissSearchController(searchController: UISearchController) {
+  func willDismissSearchController(_ searchController: UISearchController) {
     //NSLog(__FUNCTION__)
   }
 
-  func didDismissSearchController(searchController: UISearchController) {
+  func didDismissSearchController(_ searchController: UISearchController) {
     //NSLog(__FUNCTION__)
   }
 

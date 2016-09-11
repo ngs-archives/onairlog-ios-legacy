@@ -18,51 +18,51 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   override func viewDidLoad() {
     super.viewDidLoad()
     // Magical Record
-    let dbURL = NSFileManager.defaultManager()
-      .containerURLForSecurityApplicationGroupIdentifier(kOnAirLogDocumentContainerDomain)?
-      .URLByAppendingPathComponent("OnAirLog.sqlite")
+    let dbURL = FileManager.default
+      .containerURL(forSecurityApplicationGroupIdentifier: kOnAirLogDocumentContainerDomain)?
+      .appendingPathComponent("OnAirLog.sqlite")
     MagicalRecord.enableShorthandMethods()
-    MagicalRecord.setupCoreDataStackWithStoreAtURL(dbURL)
+    MagicalRecord.setupCoreDataStackWithStore(at: dbURL)
     self.apiClient = SongAPIClient()
     // Google Analytics
     let gai = GAI.sharedInstance()
-    gai.trackUncaughtExceptions = true
-    gai.dispatchInterval = 20
-    gai.trackerWithTrackingId(kOnAirLogGATrackingId)
+    gai?.trackUncaughtExceptions = true
+    gai?.dispatchInterval = 20
+    gai?.tracker(withTrackingId: kOnAirLogGATrackingId)
     //
-    self.preferredContentSize = CGSizeMake(0, 130)
+    self.preferredContentSize = CGSize(width: 0, height: 130)
     self.updateSong()
   }
 
-  func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
+  func widgetPerformUpdate(completionHandler: ((NCUpdateResult) -> Void)!) {
     let tracker = GAI.sharedInstance().defaultTracker
-    tracker.set(kGAIScreenName, value: "Today Widget")
-    tracker.send(GAIDictionaryBuilder.createScreenView().build() as [NSObject : AnyObject])
+    tracker?.set(kGAIScreenName, value: "Today Widget")
+    tracker?.send(GAIDictionaryBuilder.createScreenView().build() as [AnyHashable: Any])
     self.apiClient?.load(0,
-      success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      success: { (task: URLSessionDataTask!, responseObject: AnyObject!) -> Void in
         if self.updateSong() {
-          completionHandler(.NewData)
-          tracker.send(GAIDictionaryBuilder.createEventWithCategory("widget", action: "new-data", label: self.song?.songID.stringValue, value: 1).build() as [NSObject : AnyObject])
+          completionHandler(.newData)
+          tracker.send(GAIDictionaryBuilder.createEvent(withCategory: "widget", action: "new-data", label: self.song?.songID.stringValue, value: 1).build() as [AnyHashable: Any])
         } else {
-          tracker.send(GAIDictionaryBuilder.createEventWithCategory("widget", action: "no-data", label: self.song?.songID.stringValue, value: 1).build() as [NSObject : AnyObject])
-          completionHandler(.NoData)
+          tracker.send(GAIDictionaryBuilder.createEvent(withCategory: "widget", action: "no-data", label: self.song?.songID.stringValue, value: 1).build() as [AnyHashable: Any])
+          completionHandler(.noData)
         }
       },
-      failure: { (task: NSURLSessionDataTask!,  error: NSError!) -> Void in
-        tracker.send(GAIDictionaryBuilder.createEventWithCategory("widget", action: "failed", label: self.song?.songID.stringValue, value: 1).build() as [NSObject : AnyObject])
-        completionHandler(.Failed)
+      failure: { (task: URLSessionDataTask!,  error: NSError!) -> Void in
+        tracker.send(GAIDictionaryBuilder.createEvent(withCategory: "widget", action: "failed", label: self.song?.songID.stringValue, value: 1).build() as [AnyHashable: Any])
+        completionHandler(.failed)
       }
     )
   }
 
-  func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
+  func widgetMarginInsets(forProposedMarginInsets defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
     return UIEdgeInsets(top: 0, left: 50, bottom: 0, right: 30)
   }
 
   func updateSong() -> Bool {
-    let newSong = Song.MR_findFirstOrderedByAttribute("songID", ascending: false)
+    let newSong = Song.mr_findFirstOrdered(byAttribute: "songID", ascending: false)
     if newSong != nil {
-      if newSong.isEqual(song) {
+      if (newSong?.isEqual(song))! {
         return false
       }
       song = newSong
@@ -78,12 +78,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     return false
   }
 
-  @IBAction func didViewTapped(sender: AnyObject) {
+  @IBAction func didViewTapped(_ sender: AnyObject) {
     if song?.songID != nil {
       let tracker = GAI.sharedInstance().defaultTracker
-      tracker.send(GAIDictionaryBuilder.createEventWithCategory("widget", action: "tapped", label: self.song?.songID.stringValue, value: 1).build() as [NSObject : AnyObject])
-      let url = NSURL(scheme: kOnAirLogAppScheme, host: kOnAirLogAppHost, path: NSString(format: "/song/%@", song!.songID!) as String)
-      self.extensionContext?.openURL(url!, completionHandler: { (success: Bool) -> Void in })
+      tracker?.send(GAIDictionaryBuilder.createEvent(withCategory: "widget", action: "tapped", label: self.song?.songID., value: 1).build() as [AnyHashable: Any])
+      let url = NSURL(scheme: kOnAirLogAppScheme, host: kOnAirLogAppHost, path: NSString(format: "/song/%@", song!.songID!) as String) as? URL
+      self.extensionContext?.open(url!, completionHandler: { (success: Bool) -> Void in })
     }
   }
   

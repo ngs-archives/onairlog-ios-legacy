@@ -16,7 +16,7 @@ class SongTableViewCell: UITableViewCell {
   @IBOutlet weak var favoriteButton: UIButton!
   var song: Song?
 
-  @IBAction func toggleFavorite(sender: AnyObject) {
+  @IBAction func toggleFavorite(_ sender: AnyObject) {
     if self.song != nil {
       self.song?.isFavorited = !self.song!.isFavorited
       self.song?.managedObjectContext?.saveToPersistentStoreAndWait()
@@ -26,11 +26,11 @@ class SongTableViewCell: UITableViewCell {
   override func layoutSubviews() {
     super.layoutSubviews()
     let imgName = self.song?.isFavorited == true ? "726-star-toolbar-selected" : "726-star-toolbar"
-    let img = UIImage(named: imgName)?.imageWithRenderingMode(.AlwaysTemplate)
-    self.favoriteButton.setImage(img, forState: .Normal)
+    let img = UIImage(named: imgName)?.withRenderingMode(.alwaysTemplate)
+    self.favoriteButton.setImage(img, for: UIControlState())
   }
 
-  func configureSong(song: Song) {
+  func configureSong(_ song: Song) {
     self.song = song
     self.titleLabel.text = song.title
     self.subtitleLabel.text = song.artist
@@ -38,7 +38,7 @@ class SongTableViewCell: UITableViewCell {
     self.setNeedsUpdateConstraints()
     self.updateConstraints()
     self.setNeedsLayout()
-    self.favoriteButton.selected = song.isFavorited
+    self.favoriteButton.isSelected = song.isFavorited
   }
   
 }
