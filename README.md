@@ -1,5 +1,6 @@
 OnAirLog for iOS
 ================
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/ngs/onairlog-ios?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![Circle CI](https://circleci.com/gh/ngs/onairlog-ios.svg?style=svg&circle-token=c5eb8ca1be0340ded0f77dd7f0f36e5569d9ec16)](https://circleci.com/gh/ngs/onairlog-ios)
 
